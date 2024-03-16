@@ -1,0 +1,47 @@
+.footer {
+  background-color: bisque;
+  width: 100%;
+  min-height: 50px;
+  text-align: center;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  
+  .copyright {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .social__media {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .contact {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+}

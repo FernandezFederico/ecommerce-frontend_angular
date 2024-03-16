@@ -1,0 +1,11 @@
+<mat-drawer-container class="dashboard__container" autosize>
+  <mat-drawer #drawer class="dashboard__sidenav" mode="side" position="end" [opened]="layoutService.isSidenavOpen">
+    <p>side works!</p>
+    <ng-container *ngIf="layoutService.showCartInfo"> info CART </ng-container>
+    <ng-container *ngIf="layoutService.showUserInfo"> info USER</ng-container>
+  </mat-drawer>
+
+  <div class="dashboard__content">
+    <app-home></app-home>
+  </div>
+</mat-drawer-container>

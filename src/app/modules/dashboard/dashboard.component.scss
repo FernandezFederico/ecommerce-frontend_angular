@@ -1,0 +1,17 @@
+.dashboard__container {
+  height: 100%;
+  width: 100%;
+  background-color: aqua;
+
+  .dashboard__sidenav {
+    background-color: bisque;
+    min-width: 100px;
+
+    margin: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  }
+
+  .dashboard__content {
+
+  }
+}
