@@ -7,16 +7,28 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+
+import { CarouselComponent } from './components/carousel/carousel.component';
+import { CardsComponent } from './components/cards/cards.component';
+import { ValidationErrorsPipe } from './pipes/validation-errors.pipe';
 
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 
+
+
 @NgModule({
-  declarations: [],
+  declarations: [
+    CarouselComponent,
+    CardsComponent,
+    ValidationErrorsPipe,
+  ],
   imports: [
     CommonModule,
   ],
   exports: [
+    ValidationErrorsPipe,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -26,6 +38,10 @@ import { InputIconModule } from 'primeng/inputicon';
     MatInputModule,
     IconFieldModule,
     InputIconModule,
+    CarouselComponent,
+    CardsComponent,
+    MatCardModule,
+
 
   ]
 })

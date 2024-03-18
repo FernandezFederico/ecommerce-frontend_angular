@@ -6,6 +6,10 @@ import { DashboardComponent } from './dashboard.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SharedModule } from '../shared/shared.module';
 import { LayoutModule } from '../layout/layout.module';
+import { LoginComponent } from '../auth/login/login.component';
+import { SignUpComponent } from '../auth/sign-up/sign-up.component';
+
+
 
 
 
@@ -13,7 +17,9 @@ import { LayoutModule } from '../layout/layout.module';
 @NgModule({
   declarations: [
     HomeComponent,
-    DashboardComponent
+    DashboardComponent,
+    LoginComponent,
+    SignUpComponent,
   ],
   imports: [
     CommonModule,

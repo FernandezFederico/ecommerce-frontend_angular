@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { CarouselComponent } from './carousel/carousel.component';
-import { CardsComponent } from './cards/cards.component';
+import { CarouselComponent } from '../shared/components/carousel/carousel.component';
+import { CardsComponent } from '../shared/components/cards/cards.component';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -14,8 +14,7 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     HeaderComponent,
     FooterComponent,
-    CarouselComponent,
-    CardsComponent,
+
   ],
   imports: [
     CommonModule,
@@ -24,8 +23,7 @@ import { SharedModule } from '../shared/shared.module';
   exports: [
     HeaderComponent,
     FooterComponent,
-    CarouselComponent,
-    CardsComponent,
+
 
   ]
 })

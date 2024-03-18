@@ -1,0 +1,43 @@
+.login__container {
+  width: 100%;
+
+  .login__card {
+
+    .login__header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1rem;
+
+    }
+
+    .login__content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .login__form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .login__field {
+          width: 100%;
+
+        }
+        .login__actions {
+          width: 100%;
+          .login__button {
+            width: 100%;
+            background-color: blue;
+            color: white;
+          }
+        }
+      }
+    }
+
+
+  }
+
+
+}

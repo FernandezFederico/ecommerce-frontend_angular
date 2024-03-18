@@ -1,0 +1,43 @@
+.sign-up__container {
+  width: 100%;
+  
+  .sign-up__card {
+
+    .sign-up__header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .sign-up__content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .sign-up__form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .sign-up__field {
+          width: 100%;
+
+        }
+
+        .sign-up__actions {
+          width: 100%;
+          .sign-up__button {
+            width: 100%;
+            background-color: blue;
+            color: white;
+          }
+        }
+      }
+
+    }
+  }
+
+
+
+}
