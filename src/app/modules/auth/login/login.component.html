@@ -2,26 +2,30 @@
 	<mat-card class="login__card">
 		<mat-card-header class="login__header">
 			<mat-card-title>
-				<h1 class="login__title" appTittleFontSize>Login</h1>
+				<h1 class="login__title" appTittleFontSize>Iniciar sesión</h1>
 			</mat-card-title>
 		</mat-card-header>
 		<mat-card-content class="login__content">
-			<form  class="login__form">
+			<form class="login__form" [formGroup]="loginForm">
 				<mat-form-field class="login__field">
-					<mat-label>Email</mat-label>
-					<input  matInput type="email" />
-					<mat-error>{{ loginForm.get('email')?.errors | validationErrors }}</mat-error>
+					<mat-label>Correo electrónico</mat-label>
+					<input matInput type="email" formControlName="email" />
+					<mat-error>
+						{{ loginForm.get('email')?.errors | validationErrors }}
+					</mat-error>
 				</mat-form-field>
 				<mat-form-field class="login__field">
 					<mat-label>Contraseña</mat-label>
-					<input matInput [type]="ShowLoginPassword ? 'text' : 'password'" />
-					<mat-error>{{ loginForm.get('password')?.errors | validationErrors }}</mat-error>
+					<input matInput [type]="ShowLoginPassword ? 'text' : 'password'" formControlName="password" />
+					<mat-error>
+						{{ loginForm.get('password')?.errors | validationErrors }}
+					</mat-error>
 					<button type="button" mat-icon-button matSuffix (click)="ShowLoginPassword = !ShowLoginPassword">
 						<mat-icon class="login__icon">visibility</mat-icon>
 					</button>
 				</mat-form-field>
 				<mat-card-actions class="login__actions">
-					<button type="submit" mat-flat-button class="login__button" color="primary">Ingresar</button>
+					<button (click)="login()" type="submit" mat-flat-button class="login__button" color="primary">Ingresar</button>
 				</mat-card-actions>
 			</form>
 		</mat-card-content>

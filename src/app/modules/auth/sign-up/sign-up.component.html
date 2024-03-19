@@ -6,32 +6,32 @@
 			</mat-card-title>
 		</mat-card-header>
 		<mat-card-content class="sign-up__content">
-			<form  class="sign-up__form">
+			<form  class="sign-up__form" [formGroup]="signUpForm">
 				<mat-form-field class="sign-up__field">
 					<mat-label>Nombre</mat-label>
-					<input  matInput type="text" />
+					<input formControlName="name" matInput type="text" />
 					<mat-error>{{ signUpForm.get('name')?.errors | validationErrors }}</mat-error>
 				</mat-form-field>
 				<mat-form-field class="sign-up__field">
 					<mat-label>Apellido</mat-label>
-					<input  matInput type="text" />
+					<input formControlName="lastName"  matInput type="text" />
 					<mat-error>{{ signUpForm.get('lastName')?.errors | validationErrors }}</mat-error>
 				</mat-form-field>
         <mat-form-field class="sign-up__field">
 					<mat-label>Email</mat-label>
-					<input  matInput type="email" />
+					<input formControlName="email" form  matInput type="email" />
 					<mat-error>{{ signUpForm.get('email')?.errors | validationErrors }}</mat-error>
 				</mat-form-field>
 				<mat-form-field class="sign-up__field">
 					<mat-label>Contraseña</mat-label>
-					<input matInput [type]="ShowLoginPassword ? 'text' : 'password'" />
+					<input formControlName="password" matInput [type]="ShowLoginPassword ? 'text' : 'password'" />
 					<mat-error>{{ signUpForm.get('password')?.errors | validationErrors }}</mat-error>
 					<button type="button" mat-icon-button matSuffix (click)="ShowLoginPassword = !ShowLoginPassword">
 						<mat-icon class="login__icon">visibility</mat-icon>
 					</button>
 				</mat-form-field>
 				<mat-card-actions class="sign-up__actions">
-					<button type="submit" mat-flat-button class="sign-up__button" color="primary">Registrarse</button>
+					<button (click)="signUp()" type="submit" mat-flat-button class="sign-up__button" color="primary">Registrarse</button>
 				</mat-card-actions>
 			</form>
 		</mat-card-content>

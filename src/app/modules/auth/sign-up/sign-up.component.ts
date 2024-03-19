@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss'
 })
-export class SignUpComponent {
+export class SignUpComponent implements OnInit {
   signUpForm: FormGroup;
   ShowLoginPassword = false;
 
@@ -20,5 +20,17 @@ export class SignUpComponent {
       password: this.fb.control('', [Validators.required, Validators.minLength(6), Validators.maxLength(12),]),
     });
   }
+
+  ngOnInit(): void {}
+
+  signUp() {
+    if (this.signUpForm.valid) {
+      console.log(this.signUpForm.value);
+    }else {
+      this.signUpForm.markAllAsTouched();
+    }
+  }
+
+
 
 }

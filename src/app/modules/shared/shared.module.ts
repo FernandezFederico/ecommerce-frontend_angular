@@ -8,6 +8,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
+import { ReactiveFormsModule } from '@angular/forms'; 
 
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { CardsComponent } from './components/cards/cards.component';
@@ -41,6 +42,7 @@ import { InputIconModule } from 'primeng/inputicon';
     CarouselComponent,
     CardsComponent,
     MatCardModule,
+    ReactiveFormsModule,  
 
 
   ]
