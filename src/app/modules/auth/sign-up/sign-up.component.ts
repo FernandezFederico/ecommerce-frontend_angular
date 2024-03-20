@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -12,6 +13,7 @@ export class SignUpComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private authService: AuthService,
   ) {
     this.signUpForm = this.fb.group({
       name: this.fb.control('', [Validators.required, Validators.minLength(3)]),
@@ -21,14 +23,14 @@ export class SignUpComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
-  signUp() {
-    if (this.signUpForm.valid) {
-      console.log(this.signUpForm.value);
-    }else {
-      this.signUpForm.markAllAsTouched();
-    }
+  onUserSignUp(data: any):void {
+    console.log(data);
+    this.authService.userSingUp(data).subscribe((result)=>{
+      console.log(result);
+      
+    });
   }
 
 
