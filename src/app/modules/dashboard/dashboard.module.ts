@@ -10,7 +10,7 @@ import { LoginComponent } from '../auth/login/login.component';
 import { SignUpComponent } from '../auth/sign-up/sign-up.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UsersComponent } from './pages/users/users.component';
-
+import { RouterModule } from '@angular/router';
 
 
 
@@ -26,6 +26,7 @@ import { UsersComponent } from './pages/users/users.component';
     HomeComponent,
     UsersComponent,
 
+
   ],
   imports: [
     CommonModule,
@@ -33,6 +34,24 @@ import { UsersComponent } from './pages/users/users.component';
     SharedModule,
     LayoutModule,
     HttpClientModule,
+    RouterModule.forChild(
+      [
+        {
+          path: 'home',
+          component: HomeComponent,
+          
+        },
+        {
+          path: 'users',
+          component: UsersComponent,
+        },
+        {
+          path: '**',
+          redirectTo: 'home',
+        },
+      ]
+    )
+    
   ],
   exports: [
     DashboardComponent,

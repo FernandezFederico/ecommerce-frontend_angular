@@ -10,21 +10,7 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    children: [
-      {
-        path: 'home',
-        component: HomeComponent,
-        
-      },
-      {
-        path: 'users',
-        component: UsersComponent,
-      },
-      {
-        path: '**',
-        redirectTo: 'home',
-      },
-    ]
+    loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
   },
   {
     path: '**',
