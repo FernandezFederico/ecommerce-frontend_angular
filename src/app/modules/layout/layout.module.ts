@@ -3,10 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { CarouselComponent } from '../shared/components/carousel/carousel.component';
-import { CardsComponent } from '../shared/components/cards/cards.component';
 
 import { SharedModule } from '../shared/shared.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -19,6 +18,7 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     SharedModule,
+    RouterModule
   ],
   exports: [
     HeaderComponent,

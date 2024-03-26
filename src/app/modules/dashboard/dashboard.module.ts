@@ -25,8 +25,7 @@ import { RouterModule } from '@angular/router';
     SignUpComponent,
     HomeComponent,
     UsersComponent,
-
-
+    
   ],
   imports: [
     CommonModule,

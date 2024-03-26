@@ -3,15 +3,17 @@
   <div class="header">
     <div class="header__form">
       <p-iconField iconPosition="left">
-        <p-inputIcon styleClass="pi pi-search" />
+        <p-inputIcon styleClass="pi pi-search"/>
         <input class="header__input" type="text" name="search" pInputText placeholder="Search"/>
     </p-iconField>
     </div>
     <div class="header__logo">
-      <button routerLink="" routerLinkActive="router-link-active" mat-button>
-        <span>My E-commerce</span>
-      </button>
-    </div>
+      <mat-nav-list>
+        <a mat-list-item routerLink="dashboard/users">
+          <h1>Logo</h1>
+        </a>
+      </mat-nav-list>
+    </div> 
     <section class="header__actions">
       <button mat-icon-button class="header__button" (click)="onToggleCartSidenav()">
         <mat-icon>shopping_cart</mat-icon>
