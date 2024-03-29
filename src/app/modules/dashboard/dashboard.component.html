@@ -1,14 +1,40 @@
 <app-header></app-header>
 <mat-drawer-container class="dashboard__container" autosize>
+
   <mat-drawer #drawer class="dashboard__sidenav" mode="over" position="end" [opened]="layoutService.isSidenavOpen">
-    <ng-container *ngIf="layoutService.showCartInfo"> 
-      info CART 
+    <ng-container *ngIf="layoutService.showCartInfo">
+      info CART
     </ng-container>
+
     <ng-container *ngIf="layoutService.showUserInfo">
-    <app-login></app-login>
-    <app-sign-up></app-sign-up>
+      <ng-container>
+        <div class="logout__container">
+          <button (click)="onLogout()" class="logout__button" mat-flat-button color="primary">Logout</button>
+        </div>
+      </ng-container>
+
+      <ng-container>
+        <h4>Administración</h4>
+        <mat-nav-list class="admin__links">
+          <mat-list-item class="link" mat-list-item routerLink="/dashboard/home" (click)="layoutService.toggleSidenav()">
+            <mat-icon>home</mat-icon> INICIO
+          </mat-list-item>
+          <mat-list-item class="link" mat-list-item routerLink="/dashboard/users" (click)="layoutService.toggleSidenav()">
+            <mat-icon>person</mat-icon> USUARIOS
+          </mat-list-item>
+          <mat-list-item class="link" mat-list-item>
+           <mat-icon>category</mat-icon> PRODUCTOS
+          </mat-list-item>
+        </mat-nav-list>
+      </ng-container>
+
+      <ng-container>
+        <app-login></app-login>
+        <app-sign-up></app-sign-up>
+      </ng-container>
     </ng-container>
   </mat-drawer>
+
   <div class="dashboard__content">
     <router-outlet></router-outlet>
   </div>

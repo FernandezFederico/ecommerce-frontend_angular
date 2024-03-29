@@ -2,15 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './modules/not-found/not-found.component';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
-import { HomeComponent } from './modules/dashboard/pages/home/home.component';
-import { UsersComponent } from './modules/dashboard/pages/users/users.component';
 
 
 const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
+    loadChildren: () => import('./modules/dashboard/dashboard.module').then(
+      (m) => m.DashboardModule
+    ),
   },
   {
     path: '**',
@@ -20,7 +20,6 @@ const routes: Routes = [
     path: '404',
     component: NotFoundComponent,
   },
-
 ];
 
 @NgModule({

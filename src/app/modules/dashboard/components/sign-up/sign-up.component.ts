@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../../core/services/auth.service';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -26,10 +26,13 @@ export class SignUpComponent implements OnInit {
   ngOnInit(): void { }
 
   onUserSignUp(data: any):void {
+    // muestra los datos ingresados en el form
     console.log(data);
     this.authService.userSingUp(data).subscribe((result)=>{
+      // muestra lo que carga en db con token data y role predefinido
       console.log(result);
-      
+      // limpia el formulario
+      this.signUpForm.reset();
     });
   }
 

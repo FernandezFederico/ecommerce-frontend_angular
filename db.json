@@ -1,14 +1,14 @@
 {
   "users": [
     {
-      "id": "aed6",
-      "name": "test",
-      "lastName": "test",
-      "email": "test@test",
+      "id": "26e0",
+      "name": "ADMIN",
+      "lastName": "ADMIN",
+      "email": "ADMIN@ADMIN.com",
       "password": "123456",
-      "role": "Customer",
-      "created_at": "2024-03-20T23:08:49.957Z",
-      "token": "L3LQnBlyOYUhZ1z"
+      "role": "Admin",
+      "created_at": "2024-03-27T21:43:37.746Z",
+      "token": "CEuDiU0syMm62z8"
     }
   ]
 }
