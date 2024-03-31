@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { NotFoundComponent } from './modules/not-found/not-found.component';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
 

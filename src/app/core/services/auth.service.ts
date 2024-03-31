@@ -31,4 +31,5 @@ export class AuthService {
     this.router.navigate(['dashboard', 'home']);
     localStorage.removeItem('token');
   }
+  
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../../core/services/auth.service';
+import { LayoutService } from '../../../../core/services/layout.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -14,6 +15,7 @@ export class SignUpComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
+    private layoutService: LayoutService,
   ) {
     this.signUpForm = this.fb.group({
       name: this.fb.control('', [Validators.required, Validators.minLength(3)]),
@@ -25,15 +27,25 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  onUserSignUp(data: any):void {
-    // muestra los datos ingresados en el form
-    console.log(data);
-    this.authService.userSingUp(data).subscribe((result)=>{
-      // muestra lo que carga en db con token data y role predefinido
-      console.log(result);
-      // limpia el formulario
-      this.signUpForm.reset();
-    });
+  onUserSignUp(data: any): void {
+    if (this.signUpForm.invalid) {
+      this.signUpForm.markAllAsTouched();
+      alert('Form invalid');
+    } else {
+      alert('Form valid');
+      console.log(this.signUpForm.value);
+      this.authService.userSingUp(data).subscribe({
+        next: (result) => {
+          // muestra lo que carga en db con token data y role predefinido
+          console.log(result);
+          // limpia el formulario
+          this.signUpForm.reset();
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      });
+    }
   }
 
 
