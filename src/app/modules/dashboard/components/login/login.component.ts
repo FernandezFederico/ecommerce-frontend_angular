@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, afterNextRender } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../../core/services/auth.service';
+import { LayoutService } from '../../../../core/services/layout.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private layoutService: LayoutService,
   ) {
     this.loginForm = this.fb.group({
       email: this.fb.control('', [Validators.required, Validators.email, Validators.minLength(6)]),
@@ -31,6 +33,17 @@ export class LoginComponent implements OnInit {
     } else {
       alert('Form valid');
       console.log(this.loginForm.value);
+      this.authService.login(this.loginForm.value).subscribe({
+        next: (response) => {
+          console.log('inicio sesión correcto', response);
+          this.loginForm.reset();
+          this.layoutService.toggleSidenav();
+        },
+        error: (error) => {
+          console.log('Error en inicio de sesión', error);
+        }
+      }
+      );
     }
   }
 }

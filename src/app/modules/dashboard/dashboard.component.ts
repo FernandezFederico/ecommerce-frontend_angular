@@ -13,11 +13,11 @@ export class DashboardComponent {
     public layoutService: LayoutService,
     private authService: AuthService,
 
-    ) { }
+  ) { }
 
-    onLogout(): void {
-      this.authService.logout();
-      this.layoutService.toggleSidenav();
-    }
+  onUserLogout(): void {
+    this.authService.logout();
+    this.layoutService.toggleSidenav();
+  }
 
 }

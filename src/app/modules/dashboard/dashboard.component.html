@@ -9,21 +9,23 @@
     <ng-container *ngIf="layoutService.showUserInfo">
       <ng-container>
         <div class="logout__container">
-          <button (click)="onLogout()" class="logout__button" mat-flat-button color="primary">Logout</button>
+          <button (click)="onUserLogout()" class="logout__button" mat-flat-button color="primary">Logout</button>
         </div>
       </ng-container>
 
       <ng-container>
         <h4>Administración</h4>
         <mat-nav-list class="admin__links">
-          <mat-list-item class="link" mat-list-item routerLink="/dashboard/home" (click)="layoutService.toggleSidenav()">
+          <mat-list-item class="link" mat-list-item routerLink="/dashboard/home"
+            (click)="layoutService.toggleSidenav()">
             <mat-icon>home</mat-icon> INICIO
           </mat-list-item>
-          <mat-list-item class="link" mat-list-item routerLink="/dashboard/users" (click)="layoutService.toggleSidenav()">
+          <mat-list-item class="link" mat-list-item routerLink="/dashboard/users"
+            (click)="layoutService.toggleSidenav()">
             <mat-icon>person</mat-icon> USUARIOS
           </mat-list-item>
           <mat-list-item class="link" mat-list-item>
-           <mat-icon>category</mat-icon> PRODUCTOS
+            <mat-icon>category</mat-icon> PRODUCTOS
           </mat-list-item>
         </mat-nav-list>
       </ng-container>
