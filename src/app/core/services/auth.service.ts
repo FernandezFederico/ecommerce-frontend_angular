@@ -61,9 +61,8 @@ export class AuthService {
     return localStorage.getItem('token') !== null;
   }
 
-  getLoggedInUser(): void {
-    const userData = this.authLoginUser = JSON.parse(localStorage.getItem('userData') || '{}');
-    this.authLoginUser = userData;
+  getLoggedInUser(): Array<User> | void {
+    this.authLoginUser = JSON.parse(localStorage.getItem('userData') || '{}');
   }
   logout() {
     this.router.navigate(['dashboard', 'home']);
