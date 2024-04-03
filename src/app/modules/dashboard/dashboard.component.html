@@ -5,23 +5,25 @@
     <ng-container *ngIf="layoutService.showCartInfo">
       info CART
     </ng-container>
-
     <ng-container *ngIf="layoutService.showUserInfo">
-      <ng-container>
+      <ng-container *ngIf="onIsloggedIn()">
+        <div class="user__data">
+          <p>{{authService.authLoginUser?.name}} {{authService.authLoginUser?.lastName}}</p>
+        </div>
         <div class="logout__container">
           <button (click)="onUserLogout()" class="logout__button" mat-flat-button color="primary">Logout</button>
         </div>
       </ng-container>
 
-      <ng-container>
+      <ng-container *ngIf="this.authService.authLoginUser?.role === 'Admin'">
         <h4>Administración</h4>
         <mat-nav-list class="admin__links">
           <mat-list-item class="link" mat-list-item routerLink="/dashboard/home"
-            (click)="layoutService.toggleSidenav()">
+            (click)="onToggleSidenav()">
             <mat-icon>home</mat-icon> INICIO
           </mat-list-item>
           <mat-list-item class="link" mat-list-item routerLink="/dashboard/users"
-            (click)="layoutService.toggleSidenav()">
+            (click)="onToggleSidenav()">
             <mat-icon>person</mat-icon> USUARIOS
           </mat-list-item>
           <mat-list-item class="link" mat-list-item>
@@ -30,7 +32,7 @@
         </mat-nav-list>
       </ng-container>
 
-      <ng-container>
+      <ng-container *ngIf="!onIsloggedIn()">
         <app-login></app-login>
         <app-sign-up></app-sign-up>
       </ng-container>

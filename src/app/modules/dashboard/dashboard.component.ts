@@ -7,11 +7,11 @@ import { AuthService } from '../../core/services/auth.service';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
-export class DashboardComponent {
+export class DashboardComponent{
 
   constructor(
     public layoutService: LayoutService,
-    private authService: AuthService,
+    public authService: AuthService,
 
   ) { }
 
@@ -19,5 +19,17 @@ export class DashboardComponent {
     this.authService.logout();
     this.layoutService.toggleSidenav();
   }
+
+  onToggleSidenav(): void {
+    this.layoutService.toggleSidenav();
+  }
+
+  onIsloggedIn(): boolean {
+    return this.authService.isLoggedIn();
+  }
+
+  onGetLoggedInUser() {
+    return this.authService.getLoggedInUser();
+  };
 
 }
