@@ -1,0 +1,36 @@
+<div class="reset__container">
+	<mat-card  class="reset__card">
+		<mat-card-header class="reset__header">
+			<mat-card-title>
+				<h1 class="reset__title" appTittleFontSize>Iniciar sesión</h1>
+			</mat-card-title>
+		</mat-card-header>
+		<mat-card-content class="reset__content">
+			<form class="reset__form" [formGroup]="resetPassForm">
+				<mat-form-field class="reset__field">
+					<mat-label>Nombre</mat-label>
+					<input formControlName="name" matInput type="text" />
+					<mat-error>{{ resetPassForm.get('name')?.errors | validationErrors }}</mat-error>
+				</mat-form-field>
+				<mat-form-field class="reset__field">
+					<mat-label>Correo Electrónico</mat-label>
+					<input matInput type="email" formControlName="email" />
+					<input matInput type="email" formControlName="email" />
+					<mat-error>
+						{{ resetPassForm.get('email')?.errors | validationErrors }}
+					</mat-error>
+				</mat-form-field>
+				<mat-card-actions class="reset__actions">
+					<button class="reset__button" type="submit" mat-flat-button color="primary">Ingresar</button>
+					<button class="back__button" type="button" mat-flat-button (click)="resetPassService.toggleResetForms()">
+						<mat-icon>
+							arrow_back
+						</mat-icon>
+						VOLVER
+					</button>
+				</mat-card-actions>
+
+			</form>
+		</mat-card-content>
+	</mat-card>
+</div>

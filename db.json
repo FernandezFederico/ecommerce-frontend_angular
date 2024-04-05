@@ -11,14 +11,24 @@
       "token": "CEuDiU0syMm62z8"
     },
     {
-      "id": "8c62",
-      "name": "TEST",
-      "lastName": "CUSTOMER",
-      "email": "TEST@CUSTOMER.com",
+      "id": "6a42",
+      "name": "Employee",
+      "lastName": "Test",
+      "email": "employee@test",
       "password": "123456",
-      "role": "Customer",
-      "created_at": "2024-03-31T03:16:44.391Z",
-      "token": "DCWl5sMZqDWNGpY"
+      "role": "Emp",
+      "created_at": "2024-04-04T11:24:28.669Z",
+      "token": "XnpdxdMWUo2V3ZD"
+    },
+    {
+      "id": "c828",
+      "name": "Customer",
+      "lastName": "Test",
+      "email": "Customer@test",
+      "password": "123456",
+      "role": "Cust",
+      "created_at": "2024-04-04T11:21:01.151Z",
+      "token": "hlBmnF0bmivUqOF"
     }
   ]
 }

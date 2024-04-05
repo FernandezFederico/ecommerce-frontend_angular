@@ -2,14 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { User } from '../../modules/dashboard/pages/users/interface';
+import { UserLoginData } from '../../modules/dashboard/pages/users/interface';  
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
 
-
-interface UserLoginData {
-  email: string;
-  password: string;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -32,8 +28,8 @@ export class AuthService {
     }
     return result;
   }
-  singUp(newUser: User) {
-    return this.http.post<User>(`${environment.apiUrl}/users`, { ...newUser, role: 'Customer', created_at: new Date(), token: this.generateRandomString(15) });
+  signUp(newUser: User) {
+    return this.http.post<User>(`${environment.apiUrl}/users`, { ...newUser, role: 'Cust', created_at: new Date(), token: this.generateRandomString(15) });
   }
 
   private setAuthLoginUser(user: User) {
@@ -61,14 +57,14 @@ export class AuthService {
     return localStorage.getItem('token') !== null;
   }
 
-  getLoggedInUser(): Array<User> | void {
+ getLoggedInUser(): Array<User> | void {
     this.authLoginUser = JSON.parse(localStorage.getItem('userData') || '{}');
   }
   logout() {
-    this.router.navigate(['dashboard', 'home']);
     localStorage.removeItem('token');
     localStorage.removeItem('userData');
     this.authLoginUser = null;
+    this.router.navigate(['dashboard', 'home']);
   }
 
 }

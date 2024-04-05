@@ -1,10 +1,10 @@
-.login__container {
+.reset__container {
   width: 100%;
 
-  .login__card {
+  .reset__card {
     width: 100%;
 
-    .login__header {
+    .reset__header {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -12,29 +12,38 @@
 
     }
 
-    .login__content {
+    .reset__content {
       display: flex;
       justify-content: center;
       align-items: center;
 
-      .login__form {
+      .reset__form {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-
-        .login__field {
+        .reset__field {
           width: 100%;
 
         }
-
-        .login__actions {
+        .reset__actions {
           width: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
 
-          .login__button {
+          .reset__button {
             width: 100%;
             background-color: blue;
             color: white;
+          }
+          .back__button {
+            width: 100%;
+            margin-top: 20px;
+            background-color: rgba(88, 87, 87, 0.185);
+            color: grey;
+
           }
         }
       }

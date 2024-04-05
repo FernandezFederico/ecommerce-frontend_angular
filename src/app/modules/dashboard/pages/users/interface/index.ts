@@ -8,3 +8,7 @@ export interface User {
   created_at: Date | string;
   token: string;
 }
+export interface UserLoginData {
+  email: string;
+  password: string;
+}

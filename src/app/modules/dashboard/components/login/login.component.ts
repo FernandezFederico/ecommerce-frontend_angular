@@ -1,5 +1,6 @@
-import { Component, OnInit, afterNextRender } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { AuthService } from '../../../../core/services/auth.service';
 import { LayoutService } from '../../../../core/services/layout.service';
 
@@ -8,7 +9,7 @@ import { LayoutService } from '../../../../core/services/layout.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent{
 
   loginForm: FormGroup;
   ShowLoginPassword = false;
@@ -23,8 +24,6 @@ export class LoginComponent implements OnInit {
       password: this.fb.control('', [Validators.required, Validators.minLength(6), Validators.maxLength(12),]),
     });
   }
-
-  ngOnInit(): void { }
 
   onUserLogin() {
     if (this.loginForm.invalid) {

@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { HomeModule } from './pages/home/home.module';
 import { HomeComponent } from './pages/home/home.component';
 import { UsersModule } from './pages/users/users.module';
+import { ResetPassComponent } from './components/reset-pass/reset-pass/reset-pass.component';
 
 
 
@@ -25,6 +26,7 @@ import { UsersModule } from './pages/users/users.module';
     DashboardComponent,
     LoginComponent,
     SignUpComponent,
+    ResetPassComponent,
     
   ],
   imports: [
