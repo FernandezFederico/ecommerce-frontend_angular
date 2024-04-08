@@ -2,7 +2,7 @@
 
   <div class="header">
     <div class="header__form">
-      <p-iconField iconPosition="left">
+      <p-iconField *ngIf="route.url.includes('dashboard/home')" iconPosition="left">
         <p-inputIcon styleClass="pi pi-search"/>
         <input class="header__input" type="text" name="search" pInputText placeholder="Search"/>
     </p-iconField>
@@ -15,7 +15,7 @@
       </mat-nav-list>
     </div> 
     <section class="header__actions">
-      <button mat-icon-button class="header__button" (click)="onToggleCartSidenav()">
+      <button mat-icon-button class="header__button" *ngIf="onIsloggedIn()" (click)="onToggleCartSidenav()">
         <mat-icon>shopping_cart</mat-icon>
       </button>
       <button mat-icon-button class="header__button" (click)="onToggleUserSidenav()">

@@ -18,7 +18,6 @@ export class ResetPassComponent {
       name: this.fb.control('', [Validators.required, Validators.minLength(3)]),
       email: this.fb.control('', [Validators.required, Validators.minLength(6), Validators.maxLength(12),]),
     });
-    
   }
-  
+
 }

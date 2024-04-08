@@ -16,6 +16,13 @@ const routes: Routes = [
     )
   },
   {
+    path: 'products',
+    canActivate: [custGuard],
+    loadChildren: () => import('./pages/products/products.module').then(
+      (m) => m.ProductsModule
+    )
+  },
+  {
     path: '**',
     redirectTo: 'home',
   },

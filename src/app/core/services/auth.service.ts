@@ -1,24 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
-import { User } from '../../modules/dashboard/pages/users/interface';
-import { UserLoginData } from '../../modules/dashboard/pages/users/interface';  
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
+
+import { User } from '../../modules/dashboard/pages/users/interface';
+import { UserLoginData } from '../../modules/dashboard/pages/users/interface';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
   authLoginUser: User | null = null;
-
   constructor(
     private http: HttpClient,
     private router: Router,
   ) { }
-
   generateRandomString(length: number) {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let result = '';
@@ -34,7 +32,6 @@ export class AuthService {
 
   private setAuthLoginUser(user: User) {
     this.authLoginUser = user;
-    localStorage.setItem('token', user.token);
     localStorage.setItem('userData', JSON.stringify(user));
   }
 
@@ -43,8 +40,6 @@ export class AuthService {
       tap((response) => {
         if (!!response[0]) {
           this.setAuthLoginUser(response[0]);
-          console.log('desde auth', response[0]);
-          console.log('el usuario lo guardo en la variable', this.authLoginUser);
         } else {
           alert('Credenciales incorrectas');
         }
@@ -54,14 +49,13 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    return localStorage.getItem('token') !== null;
+    return localStorage.getItem('userData') !== null;
   }
 
  getLoggedInUser(): Array<User> | void {
     this.authLoginUser = JSON.parse(localStorage.getItem('userData') || '{}');
   }
   logout() {
-    localStorage.removeItem('token');
     localStorage.removeItem('userData');
     this.authLoginUser = null;
     this.router.navigate(['dashboard', 'home']);

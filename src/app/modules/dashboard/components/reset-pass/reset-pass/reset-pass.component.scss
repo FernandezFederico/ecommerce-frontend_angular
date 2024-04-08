@@ -3,7 +3,6 @@
 
   .reset__card {
     width: 100%;
-
     .reset__header {
       display: flex;
       justify-content: center;
@@ -22,10 +21,12 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
         .reset__field {
           width: 100%;
 
         }
+
         .reset__actions {
           width: 100%;
           display: flex;
@@ -38,6 +39,7 @@
             background-color: blue;
             color: white;
           }
+
           .back__button {
             width: 100%;
             margin-top: 20px;

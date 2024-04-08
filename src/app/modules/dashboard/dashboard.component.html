@@ -3,56 +3,53 @@
 
   <mat-drawer #drawer class="dashboard__sidenav" mode="over" position="end" [opened]="layoutService.isSidenavOpen">
     <div class="sidenav__container">
-    <ng-container *ngIf="layoutService.showCartInfo">
-      info CART
-    </ng-container>
-    <ng-container *ngIf="layoutService.showUserInfo">
-      <ng-container *ngIf="onIsloggedIn()">
-        <div class="user__data">
-          <p>{{authService.authLoginUser?.name}} {{authService.authLoginUser?.lastName}}</p>
-        </div>
-        <div class="logout__container">
-          <button (click)="onUserLogout()" class="logout__button" mat-flat-button color="primary">Logout</button>
-        </div>
+      <ng-container *ngIf="layoutService.showCartInfo">
+        info CART
       </ng-container>
+      <ng-container *ngIf="layoutService.showUserInfo">
+        <section *ngIf="onIsloggedIn()">
+          <div class="user__data">
+            <p>{{authService.authLoginUser?.name}} {{authService.authLoginUser?.lastName}}</p>
+          </div>
+          <div class="logout__container">
+            <button (click)="onUserLogout()" class="logout__button" mat-flat-button color="primary">Logout</button>
+          </div>
+        </section>
+        <section *ngIf=" authService.authLoginUser?.role === 'Admin' ">
+          <h4>Administración</h4>
+          <mat-nav-list class="admin__links">
+            <mat-list-item class="link" mat-list-item routerLink="/dashboard/home" (click)="onToggleSidenav()">
+              <mat-icon>home</mat-icon> INICIO
+            </mat-list-item>
+            <mat-list-item class="link" mat-list-item routerLink="/dashboard/users" (click)="onToggleSidenav()">
+              <mat-icon>person</mat-icon> USUARIOS
+            </mat-list-item>
+            <mat-list-item class="link" mat-list-item routerLink="/dashboard/products" (click)="onToggleSidenav()">
+              <mat-icon>category</mat-icon> PRODUCTOS
+            </mat-list-item>
+          </mat-nav-list>
+        </section>
+        <ng-container *ngIf="!onIsloggedIn()">
+          <div *ngIf="!resetPassService.showResetPassForm">
+            <app-login *ngIf="!showSignUpForm"></app-login>
+            <app-sign-up *ngIf="showSignUpForm"></app-sign-up>
+          </div>
+          <app-reset-pass *ngIf="resetPassService.showResetPassForm"></app-reset-pass>
+          <div class="forms__links">
+            <a class="forms__toggler" *ngIf="!resetPassService.showResetPassForm" (click)="toggleForms()">
+              <span *ngIf="!showSignUpForm">¿Quieres CREAR una cuenta? Ingresa aquí.</span>
+              <span *ngIf="showSignUpForm">¿Ya TIENES una cuenta? Ingresa aquí.</span>
+            </a>
+            <a *ngIf="!resetPassService.showResetPassForm" class="forms__restore-password"
+              (click)="onToggleResetForms()">
+              ¿Olvidaste tu contraseña contraseña? Ingresa
+              aquí.
+            </a>
+          </div>
+        </ng-container>
 
-      <ng-container *ngIf="authService.authLoginUser?.role === 'Admin'">
-        <h4>Administración</h4>
-        <mat-nav-list class="admin__links">
-          <mat-list-item class="link" mat-list-item routerLink="/dashboard/home" (click)="onToggleSidenav()">
-            <mat-icon>home</mat-icon> INICIO
-          </mat-list-item>
-          <mat-list-item class="link" mat-list-item routerLink="/dashboard/users" (click)="onToggleSidenav()">
-            <mat-icon>person</mat-icon> USUARIOS
-          </mat-list-item>
-          <mat-list-item class="link" mat-list-item>
-            <mat-icon>category</mat-icon> PRODUCTOS
-          </mat-list-item>
-        </mat-nav-list>
       </ng-container>
-
-      <ng-container *ngIf="!onIsloggedIn()">
-
-        <div *ngIf="!resetPassService.showResetPassForm" >
-          <app-login *ngIf="!showSignUpForm"></app-login>
-          <app-sign-up *ngIf="showSignUpForm"></app-sign-up>
-        </div>
-        <app-reset-pass *ngIf="resetPassService.showResetPassForm"></app-reset-pass>
-        <div class="forms__links">
-          <a class="forms__toggler" *ngIf="!resetPassService.showResetPassForm" (click)="toggleForms()">
-            <span *ngIf="!showSignUpForm">¿Quieres CREAR una cuenta? Ingresa aquí.</span>
-            <span *ngIf="showSignUpForm">¿Ya TIENES una cuenta? Ingresa aquí.</span>
-          </a>
-          <a *ngIf="!resetPassService.showResetPassForm" class="forms__restore-password" (click)="onToggleResetForms()">
-            ¿Olvidaste tu contraseña contraseña? Ingresa
-            aquí.
-          </a>
-        </div>
-        
-      </ng-container>
-
-    </ng-container>
-  </div>
+    </div>
   </mat-drawer>
 
   <div class="dashboard__content">

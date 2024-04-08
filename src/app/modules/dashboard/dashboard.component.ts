@@ -17,8 +17,11 @@ export class DashboardComponent implements OnInit {
     public resetPassService: ResetPassService,
 
   ) { }
+
+
   ngOnInit(): void {
     this.onGetLoggedInUser();
+    
   }
   onIsloggedIn(): boolean {
     return this.authService.isLoggedIn();

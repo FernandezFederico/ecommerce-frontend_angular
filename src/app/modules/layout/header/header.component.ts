@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { LayoutService } from '../../../core/services/layout.service';
+import { AuthService } from '../../../core/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,8 +10,11 @@ import { LayoutService } from '../../../core/services/layout.service';
 })
 export class HeaderComponent {
 
-
-  constructor( private layoutService : LayoutService ) { }
+  constructor(
+    private layoutService: LayoutService,
+    public authService: AuthService,
+    public route: Router,
+  ) { }
 
   onToggleCartSidenav() {
     this.layoutService.toggleCart();
@@ -17,6 +22,10 @@ export class HeaderComponent {
 
   onToggleUserSidenav() {
     this.layoutService.toggleUser();
+  }
+
+  onIsloggedIn(): boolean {
+    return this.authService.isLoggedIn();
   }
 
 }
