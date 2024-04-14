@@ -21,6 +21,7 @@ import { ResetPassComponent } from './components/reset-pass/reset-pass/reset-pas
 
 
 
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -36,7 +37,8 @@ import { ResetPassComponent } from './components/reset-pass/reset-pass/reset-pas
     LayoutModule,
     HomeModule,
     UsersModule,
-    HttpClientModule,  
+    HttpClientModule,
+
   ],
   exports: [
     DashboardComponent,

@@ -31,15 +31,13 @@ export class LoginComponent{
       alert('Form invalid');
     } else {
       alert('Form valid');
-      console.log(this.loginForm.value);
       this.authService.login(this.loginForm.value).subscribe({
         next: (response) => {
-          console.log('inicio sesión correcto', response);
           this.loginForm.reset();
           this.layoutService.toggleSidenav();
         },
         error: (error) => {
-          console.log('Error en inicio de sesión', error);
+          alert('Error en inicio de sesión');
         }
       }
       );

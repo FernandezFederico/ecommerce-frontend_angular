@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment.development';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs';
 
+import { tap } from 'rxjs';
+import { environment } from '../../../environments/environment.development';
 import { User } from '../../modules/dashboard/pages/users/interface';
 import { UserLoginData } from '../../modules/dashboard/pages/users/interface';
 

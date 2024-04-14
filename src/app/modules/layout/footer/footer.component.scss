@@ -29,19 +29,29 @@
     align-items: center;
     justify-content: center;
 
-    a {
+    .social__link {
+      max-width: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
-    }
+ 
+  }
+ 
   }
 
   .contact {
-
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+
+    .contact__link {
+      max-width: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+    }
   }
 
 }

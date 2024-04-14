@@ -9,6 +9,8 @@ import { SharedModule } from './modules/shared/shared.module';
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +20,7 @@ import { SharedModule } from './modules/shared/shared.module';
     AppRoutingModule,
     DashboardModule,
     SharedModule,
+
   ],
   providers: [
     provideAnimationsAsync()

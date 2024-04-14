@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -8,15 +10,21 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
-import { ReactiveFormsModule } from '@angular/forms';
 import { MatListModule } from '@angular/material/list';
+import { MatTableModule } from '@angular/material/table'
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule } from '@angular/material/dialog';
+
+
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
 
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { ValidationErrorsPipe } from './pipes/validation-errors.pipe';
+import { TableComponent } from './components/table/table.component';
 
-import { IconFieldModule } from 'primeng/iconfield';
-import { InputIconModule } from 'primeng/inputicon';
 
 
 
@@ -25,9 +33,11 @@ import { InputIconModule } from 'primeng/inputicon';
     CarouselComponent,
     CardsComponent,
     ValidationErrorsPipe,
+    TableComponent,
   ],
   imports: [
     CommonModule,
+    MatTableModule,
   ],
   exports: [
     ValidationErrorsPipe,
@@ -45,6 +55,12 @@ import { InputIconModule } from 'primeng/inputicon';
     MatCardModule,
     ReactiveFormsModule,
     MatListModule,
+    TableComponent,
+    MatPaginatorModule,
+    MatTableModule,
+    MatSortModule,
+    MatDialogModule,
+    
   ]
 })
 export class SharedModule { }
