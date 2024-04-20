@@ -3,72 +3,64 @@
 	<form class="products__form" [formGroup]="productForm">
 
 		<mat-form-field class="products__field">
-			<mat-label>ID</mat-label>
-			<input matInput type="text" formControlName="productsId" />
-			<mat-error>
-				{{ productForm.get('productsId')?.errors | validationErrors }}
-			</mat-error>
-		</mat-form-field>
-
-		<mat-form-field class="products__field">
 			<mat-label>IMAGEN</mat-label>
-			<input matInput type="text" formControlName="productsImage" />
+			<input matInput type="text" formControlName="productImage" />
 			<mat-error>
-				{{ productForm.get('productsImage')?.errors | validationErrors }}
+				{{ productForm.get('productImage')?.errors | validationErrors }}
 			</mat-error>
 		</mat-form-field>
 
 		<mat-form-field class="products__field">
 			<mat-label>NOMBRE</mat-label>
-			<input matInput type="text" formControlName="productsName" />
+			<input matInput type="text" formControlName="productName" />
 			<mat-error>
-				{{ productForm.get('productsName')?.errors | validationErrors }}
+				{{ productForm.get('productName')?.errors | validationErrors }}
 			</mat-error>
 		</mat-form-field>
 
 		<mat-form-field class="products__field">
 			<mat-label>CATEGORÍA</mat-label>
-			<input matInput type="text" formControlName="productsCategory" />
+			<input matInput type="text" formControlName="productCategory" />
 			<mat-error>
-				{{ productForm.get('productsCategory')?.errors | validationErrors }}
-			</mat-error>
-		</mat-form-field>
-
-		<mat-form-field class="products__field">
-			<mat-label>DESCRIPCIÓN</mat-label>
-			<textarea matInput type="text" formControlName="productsDescription"></textarea>
-			<mat-error>
-				{{ productForm.get('productsDescription')?.errors | validationErrors }}
+				{{ productForm.get('productCategory')?.errors | validationErrors }}
 			</mat-error>
 		</mat-form-field>
 
 		<mat-form-field class="products__field">
 			<mat-label>PRECIO</mat-label>
-			<input matInput type="text" formControlName="productsPrice" />
+			<input matInput type="text" formControlName="productPrice" />
 			<mat-error>
-				{{ productForm.get('productsPrice')?.errors | validationErrors }}
+				{{ productForm.get('productPrice')?.errors | validationErrors }}
 			</mat-error>
 		</mat-form-field>
 
 		<mat-form-field class="products__field">
 			<mat-label>FECHA DE CREACIÓN</mat-label>
-			<input matInput type="text" formControlName="productsCreatedAt" />
+			<input matInput type="text" formControlName="productCreatedAt" />
 			<mat-error>
-				{{ productForm.get('productsCreatedAt')?.errors | validationErrors }}
+				{{ productForm.get('productCreatedAt')?.errors | validationErrors }}
 			</mat-error>
 		</mat-form-field>
 
 		<mat-form-field class="products__field">
 			<mat-label>STOCK</mat-label>
-			<input matInput type="text" formControlName="productsStock" />
+			<input matInput type="text" formControlName="productStock" />
 			<mat-error>
-				{{ productForm.get('productsStock')?.errors | validationErrors }}
+				{{ productForm.get('productStock')?.errors | validationErrors }}
+			</mat-error>
+		</mat-form-field>
+
+		<mat-form-field class="products__field">
+			<mat-label>DESCRIPCIÓN</mat-label>
+			<textarea matInput type="text" formControlName="productDescription"></textarea>
+			<mat-error>
+				{{ productForm.get('productDescription')?.errors | validationErrors }}
 			</mat-error>
 		</mat-form-field>
 
 	</form>
 	<mat-card-actions class="products__actions">
-		<button mat-raised-button color="primary">ACEPTAR</button>
+		<button mat-raised-button color="primary" (click)="addNewProduct()">ACEPTAR</button>
 		<button mat-raised-button color="warn" mat-dialog-close>CANCELAR</button>
 	</mat-card-actions>
 

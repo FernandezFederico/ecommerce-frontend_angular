@@ -26,7 +26,6 @@ export class ValidationErrorsPipe implements PipeTransform {
       if (error['pattern']) {
         errorMessages.push('Este campo debe ser valido');
       }
-
       return errorMessages.join(', ') + '.';
     }
     return null;

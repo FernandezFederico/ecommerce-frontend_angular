@@ -15,14 +15,14 @@ export class ProductsComponent {
   dataSource = new MatTableDataSource<Product>();
   displayedColumns: string[] = [
     'id',
-    'image',
-    'name',
-    'category',
-    'description',
-    'price',
-    'created_at',
-    'stock',
-    'actions',
+    'productImage',
+    'productName',
+    'productCategory',
+    'productPrice',
+    'productCreatedAt',
+    'productStock',
+    'productDescription',
+    'productActions',
   ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -35,22 +35,21 @@ export class ProductsComponent {
 
   constructor(
     private productsService: ProductsService,
-    public matDialog: MatDialog,
+    public matDialog: MatDialog
   ) {}
 
   ngOnInit(): void {
-    this.productsService.getProducts().subscribe({
-      next: (response) => {
-        this.dataSource.data = response;
-      },
-    });
+    this.loadProducts();
   }
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.matDialog.open(ProductsDialogComponent,{
-      enterAnimationDuration,
-      exitAnimationDuration,
-     });
+  loadProducts() {
+    this.productsService.getProducts().subscribe({
+      next: (products) => {
+        this.dataSource.data = products;
+        console.log('Productos cargados:', products);
+        console.log('DataSource:', this.dataSource.data);
+      },
+    });
   }
 
   applyFilter(event: Event) {
@@ -62,4 +61,40 @@ export class ProductsComponent {
     }
   }
 
+  openDialog(
+    enterAnimationDuration: string,
+    exitAnimationDuration: string
+  ): void {
+    this.matDialog
+      .open(ProductsDialogComponent, {
+        enterAnimationDuration,
+        exitAnimationDuration,
+      })
+      .afterClosed()
+      .subscribe({
+        next: (result) => {
+          if (result) {
+            this.productsService.createProduct(result).subscribe({
+              next: (product) => {
+                this.dataSource.data = product;
+              },
+              complete: () => {
+                alert('Se agrego el producto');
+              },
+            });
+          }
+        },
+      });
+  }
+
+  onDeleteProduct(data: string): void {
+    this.productsService.deleProduct(data).subscribe({
+      next: (result) => {
+        this.dataSource.data = result;
+      },
+      complete: () => {
+        alert('Se elimino el producto');
+      },
+    });
+  }
 }

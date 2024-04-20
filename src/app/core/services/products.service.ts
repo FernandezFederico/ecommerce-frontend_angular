@@ -7,29 +7,31 @@ import { environment } from '../../../environments/environment.development';
 import { Product } from '../../modules/dashboard/pages/products/interface/index';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductsService {
-
-  constructor(
-    private http: HttpClient,
-
-  ) { }
+  constructor(private http: HttpClient) {}
 
   getProducts() {
-    return this.http.get<Product[]>(`${environment.apiUrl}/products`).pipe( 
-      catchError((error) =>{
+    return this.http.get<Product[]>(`${environment.apiUrl}/products`).pipe(
+      catchError((error) => {
         alert('Error al cargar los productos');
         return of([]);
       })
     );
   }
 
-/*   createProduct(newProduct: Product) {
-    return this.http.post<Product>(`${environment.apiUrl}/products`, newProduct).pipe(
-      mergeMap(() => this.getProducts())
-    )
-  } */
+  createProduct(newProduct: Product) {
+    return this.http
+      .post<Product>(`${environment.apiUrl}/products`, newProduct)
+      .pipe(mergeMap(() => this.getProducts()));
+  }
+
+  deleProduct(productId: string) {
+    return this.http
+      .delete<Product>(`${environment.apiUrl}/products/${productId}`)
+      .pipe(mergeMap(() => this.getProducts()));
+  }
 
 
 }
