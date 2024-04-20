@@ -15,7 +15,8 @@ import { MatTableModule } from '@angular/material/table'
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
@@ -60,6 +61,8 @@ import { TableComponent } from './components/table/table.component';
     MatTableModule,
     MatSortModule,
     MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     
   ]
 })

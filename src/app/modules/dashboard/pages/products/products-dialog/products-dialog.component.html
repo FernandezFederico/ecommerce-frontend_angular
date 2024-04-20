@@ -29,6 +29,7 @@
 		<mat-form-field class="products__field">
 			<mat-label>PRECIO</mat-label>
 			<input matInput type="text" formControlName="productPrice" />
+			<span matTextPrefix>$&nbsp;</span>
 			<mat-error>
 				{{ productForm.get('productPrice')?.errors | validationErrors }}
 			</mat-error>
@@ -36,7 +37,10 @@
 
 		<mat-form-field class="products__field">
 			<mat-label>FECHA DE CREACIÓN</mat-label>
-			<input matInput type="text" formControlName="productCreatedAt" />
+			<input matInput [matDatepicker]="picker" formControlName="productCreatedAt">
+			<mat-hint>MM/DD/YYYY</mat-hint>
+			<mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+			<mat-datepicker #picker></mat-datepicker>
 			<mat-error>
 				{{ productForm.get('productCreatedAt')?.errors | validationErrors }}
 			</mat-error>
@@ -52,7 +56,7 @@
 
 		<mat-form-field class="products__field">
 			<mat-label>DESCRIPCIÓN</mat-label>
-			<textarea matInput type="text" formControlName="productDescription"></textarea>
+			<textarea matInput type="text" formControlName="productDescription" maxlength="100" ></textarea>
 			<mat-error>
 				{{ productForm.get('productDescription')?.errors | validationErrors }}
 			</mat-error>
