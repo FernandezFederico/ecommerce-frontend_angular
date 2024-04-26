@@ -33,24 +33,50 @@
   ],
   "products": [
     {
-      "id": "b855",
-      "productImage": "test1",
-      "productName": "test1",
-      "productCategory": "test1",
-      "productPrice": "123456",
-      "productCreatedAt": "12/04/24",
-      "productStock": "10000",
-      "productDescription": "test1-test1test1-test1test1-test1test1-test1test1-test1test1-test1test1-test1test1-test1test1-test1test1-test1test1-test1test1-test1test1-test1test1-test1test1-test1test1-test1test1-test1test1-test1test1-test1test1-test1test1-test1test1-test1"
+      "id": "1a36",
+      "productImage": "Test1",
+      "productName": "Test1",
+      "productCategory": "categoria_1",
+      "productPrice": "123",
+      "productCreatedAt": "2024-04-23T03:00:00.000Z",
+      "productStock": "12",
+      "productDescription": "Test1Test1Test1"
     },
     {
-      "id": "27c6",
-      "productImage": "test2",
-      "productName": "test2",
-      "productCategory": "test2",
-      "productPrice": "10000",
-      "productCreatedAt": "10/02/24",
-      "productStock": "150000",
-      "productDescription": "test2-test2 test2-test2test2-test2test2-test2"
+      "id": "fcd7",
+      "productImage": "Test2",
+      "productName": "Test2",
+      "productCategory": "categoria_2",
+      "productPrice": "321",
+      "productCreatedAt": "2024-04-27T03:00:00.000Z",
+      "productStock": "31",
+      "productDescription": "Test2Test2Test2"
+    },
+    {
+      "id": "f34a",
+      "productImage": "ad",
+      "productName": "dawda",
+      "productCategory": "category_1",
+      "productPrice": "123",
+      "productCreatedAt": "2024-04-24T03:00:00.000Z",
+      "productStock": "123",
+      "productDescription": "123"
+    },
+    {
+      "id": "8f88",
+      "productImage": "dfsd",
+      "productName": "dsfasdf",
+      "productCategory": "category_1",
+      "productPrice": "123",
+      "productCreatedAt": "2024-04-10T03:00:00.000Z",
+      "productStock": "21313",
+      "productDescription": "fsdfdf"
+    }
+  ],
+  "categories": [
+    {
+      "id": "8c31",
+      "category": "testCategory_1"
     }
   ]
 }

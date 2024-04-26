@@ -1,17 +1,17 @@
-import { Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ProductsService } from '../../../../core/services/products.service';
 import { Product } from './interface';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductsDialogComponent } from './products-dialog/products-dialog.component';
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource<Product>();
   displayedColumns: string[] = [
     'id',
@@ -26,16 +26,14 @@ export class ProductsComponent {
   ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   constructor(
     private productsService: ProductsService,
-    public matDialog: MatDialog
+    public matDialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
@@ -46,9 +44,8 @@ export class ProductsComponent {
     this.productsService.getProducts().subscribe({
       next: (products) => {
         this.dataSource.data = products;
-        console.log('Productos cargados:', products);
-        console.log('DataSource:', this.dataSource.data);
       },
+      
     });
   }
 
@@ -88,7 +85,7 @@ export class ProductsComponent {
   }
 
   onDeleteProduct(data: string): void {
-    this.productsService.deleProduct(data).subscribe({
+    this.productsService.deleteProduct(data).subscribe({
       next: (result) => {
         this.dataSource.data = result;
       },

@@ -1,10 +1,11 @@
 .products__container {
-  width: 100%;
+  width: 100vw;
   min-height: 75vh;
   padding: 40px;
 
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 
   .products__message {

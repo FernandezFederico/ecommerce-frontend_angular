@@ -1,5 +1,4 @@
 .dashboard__container {
-  width: 100%;
 
   .sidenav__container {
     width: 100%;
@@ -11,6 +10,7 @@
   }
 
   .dashboard__sidenav {
+    
     min-width: 404px;
     margin: 10px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
@@ -97,6 +97,5 @@
 
     }
   }
-
 
 }

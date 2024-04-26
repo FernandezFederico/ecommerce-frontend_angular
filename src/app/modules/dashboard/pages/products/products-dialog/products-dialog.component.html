@@ -18,14 +18,28 @@
 			</mat-error>
 		</mat-form-field>
 
-		<mat-form-field class="products__field">
+		<mat-form-field class="products__field" >
 			<mat-label>CATEGORÍA</mat-label>
-			<input matInput type="text" formControlName="productCategory" />
+			<mat-select formControlName="productCategory" >
+					<mat-option value=" default " >
+						<p>Default Category</p>
+					</mat-option>
+					<mat-option class="products__option" *ngFor="let category of categories" [value]="category" style="width: 100%;">
+						<p>{{ category.category }}<button class="products__delete" mat-icon-button color="warn"(click)="onDeleteCategory(category.id)"><mat-icon >delete</mat-icon></button></p>
+					</mat-option>
+				<form [formGroup]="categoryForm">
+					<mat-form-field style="width: 100%;">
+						<mat-label>AGREGAR CATEGORÍA</mat-label>
+						<input matInput type="text" formControlName="category" />
+						<button matSuffix mat-icon-button color="primary" (click)="onCreateCategory()"><mat-icon>add</mat-icon></button>
+					</mat-form-field>
+				</form>
+			</mat-select>
 			<mat-error>
 				{{ productForm.get('productCategory')?.errors | validationErrors }}
 			</mat-error>
-		</mat-form-field>
 
+		</mat-form-field>
 		<mat-form-field class="products__field">
 			<mat-label>PRECIO</mat-label>
 			<input matInput type="text" formControlName="productPrice" />
@@ -56,7 +70,7 @@
 
 		<mat-form-field class="products__field">
 			<mat-label>DESCRIPCIÓN</mat-label>
-			<textarea matInput type="text" formControlName="productDescription" maxlength="100" ></textarea>
+			<textarea matInput type="text" formControlName="productDescription" maxlength="100"></textarea>
 			<mat-error>
 				{{ productForm.get('productDescription')?.errors | validationErrors }}
 			</mat-error>
