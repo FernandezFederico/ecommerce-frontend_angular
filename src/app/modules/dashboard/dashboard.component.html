@@ -15,13 +15,13 @@
             <button (click)="onUserLogout()" class="logout__button" mat-flat-button color="primary">Logout</button>
           </div>
         </section>
-        <section *ngIf=" authService.authLoginUser?.role === 'Admin' ">
+        <section *ngIf=" authService.authLoginUser?.role === 'Admin' || authService.authLoginUser?.role === 'Employee'" >
           <h4>Administración</h4>
           <mat-nav-list class="admin__links">
             <mat-list-item class="link" mat-list-item routerLink="/dashboard/home" (click)="onToggleSidenav()">
               <mat-icon>home</mat-icon> INICIO
             </mat-list-item>
-            <mat-list-item class="link" mat-list-item routerLink="/dashboard/users" (click)="onToggleSidenav()">
+            <mat-list-item ngif="authService.authLoginUser?.role === 'Admin'" class="link" mat-list-item routerLink="/dashboard/users" (click)="onToggleSidenav()">
               <mat-icon>person</mat-icon> USUARIOS
             </mat-list-item>
             <mat-list-item class="link" mat-list-item routerLink="/dashboard/products" (click)="onToggleSidenav()">

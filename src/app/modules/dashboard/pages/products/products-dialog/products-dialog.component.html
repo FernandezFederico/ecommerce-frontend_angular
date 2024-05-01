@@ -19,18 +19,18 @@
 		</mat-form-field>
 
 		<mat-form-field class="products__field" >
-			<mat-label>CATEGORÍA</mat-label>
-			<mat-select formControlName="productCategory" >
-					<mat-option value=" default " >
+			<mat-label for="productCategory" >CATEGORÍA</mat-label>
+			<mat-select formControlName="productCategory" id="productCategory" >
+					<mat-option value=" default" >
 						<p>Default Category</p>
 					</mat-option>
-					<mat-option class="products__option" *ngFor="let category of categories" [value]="category" style="width: 100%;">
-						<p>{{ category.category }}<button class="products__delete" mat-icon-button color="warn"(click)="onDeleteCategory(category.id)"><mat-icon >delete</mat-icon></button></p>
+					<mat-option class="products__option" *ngFor="let category of categories" [value]="category.productCategory" style="width: 100%;">
+						<p>{{ category.productCategory }}<button class="products__delete" mat-icon-button color="warn"(click)="onDeleteCategory(category.id)"><mat-icon fontIcon="delete"></mat-icon></button></p>
 					</mat-option>
 				<form [formGroup]="categoryForm">
 					<mat-form-field style="width: 100%;">
-						<mat-label>AGREGAR CATEGORÍA</mat-label>
-						<input matInput type="text" formControlName="category" />
+						<mat-label >AGREGAR CATEGORÍA</mat-label>
+						<input matInput type="text" formControlName="productCategory" />
 						<button matSuffix mat-icon-button color="primary" (click)="onCreateCategory()"><mat-icon>add</mat-icon></button>
 					</mat-form-field>
 				</form>

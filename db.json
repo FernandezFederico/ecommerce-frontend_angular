@@ -34,7 +34,7 @@
   "products": [
     {
       "id": "1a36",
-      "productImage": "Test1",
+      "productImage": "https://http2.mlstatic.com/D_NQ_NP_864844-MLM51559388062_092022-O.webp",
       "productName": "Test1",
       "productCategory": "categoria_1",
       "productPrice": "123",
@@ -43,40 +43,28 @@
       "productDescription": "Test1Test1Test1"
     },
     {
-      "id": "fcd7",
-      "productImage": "Test2",
+      "id": "5c5c",
+      "productImage": "https://http2.mlstatic.com/D_NQ_NP_864844-MLM51559388062_092022-O.webp",
       "productName": "Test2",
-      "productCategory": "categoria_2",
-      "productPrice": "321",
-      "productCreatedAt": "2024-04-27T03:00:00.000Z",
-      "productStock": "31",
+      "productCategory": "testCategory_2",
+      "productPrice": "233",
+      "productCreatedAt": "2024-05-02T03:00:00.000Z",
+      "productStock": "365",
       "productDescription": "Test2Test2Test2"
-    },
-    {
-      "id": "f34a",
-      "productImage": "ad",
-      "productName": "dawda",
-      "productCategory": "category_1",
-      "productPrice": "123",
-      "productCreatedAt": "2024-04-24T03:00:00.000Z",
-      "productStock": "123",
-      "productDescription": "123"
-    },
-    {
-      "id": "8f88",
-      "productImage": "dfsd",
-      "productName": "dsfasdf",
-      "productCategory": "category_1",
-      "productPrice": "123",
-      "productCreatedAt": "2024-04-10T03:00:00.000Z",
-      "productStock": "21313",
-      "productDescription": "fsdfdf"
     }
   ],
   "categories": [
     {
       "id": "8c31",
-      "category": "testCategory_1"
+      "productCategory": "testCategory_1"
+    },
+    {
+      "id": "c0d8",
+      "productCategory": "testCategory_2"
+    },
+    {
+      "id": "97b7",
+      "productCategory": "testcategory_3"
     }
   ]
 }

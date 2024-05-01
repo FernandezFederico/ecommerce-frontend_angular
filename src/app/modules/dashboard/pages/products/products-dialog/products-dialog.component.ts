@@ -43,7 +43,7 @@ export class ProductsDialogComponent implements OnInit {
     });
 
     this.categoryForm = this.fb.group({
-      category: this.fb.control('', [Validators.minLength(3)]),
+      productCategory: this.fb.control('', [Validators.minLength(3)]),
     });
   }
 
@@ -55,6 +55,7 @@ export class ProductsDialogComponent implements OnInit {
     this.productsService.getCategories().subscribe({
       next: (categories) => {
         this.categories = categories;
+        
       },
     });
   }
@@ -72,12 +73,9 @@ export class ProductsDialogComponent implements OnInit {
         },
       });
     }
-    /*     console.log(this.categoryForm.value.category);
-    this.categoryForm.reset(); */
   }
 
   onDeleteCategory(data: string): void {
-    console.log("borrar", data);
     
     this.productsService.deleteCategory(data).subscribe({
       next: () => {
@@ -93,7 +91,6 @@ export class ProductsDialogComponent implements OnInit {
   addNewProduct(): void {
     if (this.productForm.valid) {
       this.dialogRef.close(this.productForm.value);
-      console.log(this.productForm.value);
     } else {
       this.productForm.markAllAsTouched();
     }

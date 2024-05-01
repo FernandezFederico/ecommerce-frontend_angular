@@ -33,17 +33,14 @@ export class SignUpComponent implements OnInit {
       alert('Form invalid');
     } else {
       alert('Form valid');
-      console.log(this.signUpForm.value);
       this.authService.signUp(data).subscribe({
         next: (result) => {
-          // muestra lo que carga en db con token data y role predefinido
-          console.log(result);
-          // limpia el formulario
+          alert('Cuenta creada con éxito');
           this.signUpForm.reset();
           this.layoutService.toggleSidenav();
         },
         error: (error) => {
-          console.log(error);
+          alert('Error en inicio de sesión');
         }
       });
     }

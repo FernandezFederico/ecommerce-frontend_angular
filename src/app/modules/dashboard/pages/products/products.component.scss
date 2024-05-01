@@ -20,7 +20,7 @@
 
     .products__filter {
       max-width: 300px;
-      margin-left: 30px;
+      margin: 30px 0 0 30px;
     }
 
     .button__container {
@@ -50,4 +50,21 @@
     width: 100%;
   }
 
+}
+
+.products__image {
+  max-width: 60px;
+  max-height: auto;
+}
+
+td {
+  vertical-align: middle;
+}
+
+.gray-row {
+  background-color: #f0f0f0; /* Color gris */
+}
+
+.white-row {
+  background-color: #ffffff; /* Color blanco */
 }

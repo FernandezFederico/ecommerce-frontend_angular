@@ -17,6 +17,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
@@ -60,7 +61,9 @@ import { ValidationErrorsPipe } from './pipes/validation-errors.pipe';
     MatDialogModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSelectModule,    
+    MatSelectModule,
+    MatProgressSpinnerModule,
+    
   ]
 })
 export class SharedModule { }
