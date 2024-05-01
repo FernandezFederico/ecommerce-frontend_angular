@@ -11,7 +11,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { UsersComponent } from './pages/users/users.component';
 import { RouterModule } from '@angular/router';
 import { HomeModule } from './pages/home/home.module';
-import { HomeComponent } from './pages/home/home.component';
 import { UsersModule } from './pages/users/users.module';
 import { ResetPassComponent } from './components/reset-pass/reset-pass/reset-pass.component';
 
@@ -37,7 +36,7 @@ import { ResetPassComponent } from './components/reset-pass/reset-pass/reset-pas
     LayoutModule,
     HomeModule,
     UsersModule,
-    HttpClientModule,
+    
 
   ],
   exports: [

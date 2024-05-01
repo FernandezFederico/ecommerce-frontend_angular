@@ -20,7 +20,7 @@
 
 		<mat-form-field class="products__field" >
 			<mat-label for="productCategory" >CATEGORÍA</mat-label>
-			<mat-select formControlName="productCategory" id="productCategory" >
+			<mat-select #categorySelect formControlName="productCategory" id="productCategory" >
 					<mat-option value=" default" >
 						<p>Default Category</p>
 					</mat-option>

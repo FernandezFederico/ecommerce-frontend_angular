@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ProductsService } from '../../../../../core/services/products.service';
 import { ProductsCategory } from '../interface';
+import { MatSelect } from '@angular/material/select';
 @Component({
   selector: 'app-products-dialog',
   templateUrl: './products-dialog.component.html',
   styleUrl: './products-dialog.component.scss',
 })
 export class ProductsDialogComponent implements OnInit {
+  @ViewChild('categorySelect') categorySelect: MatSelect | undefined;
   productForm: FormGroup;
   categoryForm: FormGroup;
   categories: ProductsCategory[] = [];
@@ -67,6 +69,8 @@ export class ProductsDialogComponent implements OnInit {
           alert('Categoría creada');
           this.categoryForm.reset();
           this.loadCategories();
+          this.categorySelect?.close();
+          
         },
         error: (err) => {
           alert('Error al crear la categoría');

@@ -51,6 +51,16 @@
       "productCreatedAt": "2024-05-02T03:00:00.000Z",
       "productStock": "365",
       "productDescription": "Test2Test2Test2"
+    },
+    {
+      "id": "b437",
+      "productImage": "https://http2.mlstatic.com/D_NQ_NP_864844-MLM51559388062_092022-O.webp",
+      "productName": "Test3",
+      "productCategory": "testcategory_3",
+      "productPrice": "321",
+      "productCreatedAt": "2024-05-03T03:00:00.000Z",
+      "productStock": "333",
+      "productDescription": "Test3Test3Test3"
     }
   ],
   "categories": [
@@ -65,6 +75,10 @@
     {
       "id": "97b7",
       "productCategory": "testcategory_3"
+    },
+    {
+      "id": "2039",
+      "productCategory": "testcategory_4"
     }
   ]
 }
