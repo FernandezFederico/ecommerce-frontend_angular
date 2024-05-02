@@ -53,13 +53,13 @@
       "productDescription": "Test2Test2Test2"
     },
     {
-      "id": "b437",
+      "id": "83d8",
       "productImage": "https://http2.mlstatic.com/D_NQ_NP_864844-MLM51559388062_092022-O.webp",
       "productName": "Test3",
       "productCategory": "testcategory_3",
-      "productPrice": "321",
+      "productPrice": "333",
       "productCreatedAt": "2024-05-03T03:00:00.000Z",
-      "productStock": "333",
+      "productStock": "321",
       "productDescription": "Test3Test3Test3"
     }
   ],

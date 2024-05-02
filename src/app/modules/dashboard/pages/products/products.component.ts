@@ -34,10 +34,12 @@ export class ProductsComponent implements OnInit, AfterViewInit {
   constructor(
     private productsService: ProductsService,
     public matDialog: MatDialog,
-  ) {}
+  ) {
+    this.loadProducts();
+  }
 
   ngOnInit(): void {
-    this.loadProducts();
+    
   }
 
   loadProducts() {
