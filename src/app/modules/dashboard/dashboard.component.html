@@ -21,7 +21,7 @@
             <mat-list-item class="link" mat-list-item routerLink="/dashboard/home" (click)="onToggleSidenav()">
               <mat-icon>home</mat-icon> INICIO
             </mat-list-item>
-            <mat-list-item ngif="authService.authLoginUser?.role === 'Admin'" class="link" mat-list-item routerLink="/dashboard/users" (click)="onToggleSidenav()">
+            <mat-list-item *ngIf="authService.authLoginUser?.role === 'Admin'" class="link" mat-list-item routerLink="/dashboard/users" (click)="onToggleSidenav()">
               <mat-icon>person</mat-icon> USUARIOS
             </mat-list-item>
             <mat-list-item class="link" mat-list-item routerLink="/dashboard/products" (click)="onToggleSidenav()">

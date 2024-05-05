@@ -10,7 +10,7 @@ import { AlertService } from '../../../../../core/services/alert.service';
   templateUrl: './products-dialog.component.html',
   styleUrl: './products-dialog.component.scss',
 })
-export class ProductsDialogComponent{
+export class ProductsDialogComponent {
   @ViewChild('categorySelect') categorySelect: MatSelect | undefined;
   productForm: FormGroup;
   categoryForm: FormGroup;
@@ -20,10 +20,9 @@ export class ProductsDialogComponent{
     private dialogRef: MatDialogRef<ProductsDialogComponent>,
     private productsService: ProductsService,
     private alertService: AlertService,
-    @Inject( MAT_DIALOG_DATA ) public data: Product,
+    @Inject(MAT_DIALOG_DATA) public data: Product
   ) {
     this.loadCategories();
-    
 
     this.productForm = this.fb.group({
       productImage: this.fb.control('', [Validators.required]),
@@ -71,7 +70,6 @@ export class ProductsDialogComponent{
     this.productsService.getCategories().subscribe({
       next: (categories) => {
         this.categories = categories;
-        
       },
     });
   }
@@ -84,7 +82,6 @@ export class ProductsDialogComponent{
           this.categoryForm.reset();
           this.loadCategories();
           this.categorySelect?.close();
-          
         },
         error: (err) => {
           this.alertService.showErrorAlert('Error al crear la categoría');
@@ -108,13 +105,6 @@ export class ProductsDialogComponent{
           },
         });
       }
-    })
+    });
   }
-
-
-
-
-
-
-
 }

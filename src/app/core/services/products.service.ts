@@ -42,7 +42,9 @@ export class ProductsService {
       .pipe(
         mergeMap(() => this.getProducts()),
         catchError((error) => {
-          this.alertService.showErrorAlert('Error al crear el producto, inténtalo de nuevo');
+          this.alertService.showErrorAlert(
+            'Error al crear el producto, inténtalo de nuevo'
+          );
           return of([]);
         })
       );
@@ -86,7 +88,10 @@ export class ProductsService {
 
   updateProduct(productId: string | number, updatedProduct: Product) {
     return this.http
-      .put<Product>(`${environment.apiUrl}/products/${productId}`, updatedProduct)
+      .put<Product>(
+        `${environment.apiUrl}/products/${productId}`,
+        updatedProduct
+      )
       .pipe(
         mergeMap(() => this.getProducts()),
         catchError((error) => {
