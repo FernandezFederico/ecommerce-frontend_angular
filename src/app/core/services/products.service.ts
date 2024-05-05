@@ -8,17 +8,18 @@ import {
   Product,
   ProductsCategory,
 } from '../../modules/dashboard/pages/products/interface/index';
+import { AlertService } from './alert.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductsService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private alertService: AlertService) {}
 
   getProducts() {
     return this.http.get<Product[]>(`${environment.apiUrl}/products`).pipe(
       catchError((error) => {
-        alert('Error al cargar los productos');
+        this.alertService.showErrorAlert('Error al cargar los productos');
         return of([]);
       })
     );
@@ -29,7 +30,7 @@ export class ProductsService {
       .get<ProductsCategory[]>(`${environment.apiUrl}/categories`)
       .pipe(
         catchError((error) => {
-          alert('Error al cargar las categorías');
+          this.alertService.showErrorAlert('Error al cargar las categorías');
           return of([]);
         })
       );
@@ -38,25 +39,48 @@ export class ProductsService {
   createProduct(newProduct: Product) {
     return this.http
       .post<Product>(`${environment.apiUrl}/products`, newProduct)
-      .pipe(mergeMap(() => this.getProducts()));
+      .pipe(
+        mergeMap(() => this.getProducts()),
+        catchError((error) => {
+          this.alertService.showErrorAlert('Error al crear el producto, inténtalo de nuevo');
+          return of([]);
+        })
+      );
   }
 
   createCategory(newCategory: ProductsCategory) {
-    return this.http.post<Product>(
-      `${environment.apiUrl}/categories`,
-      newCategory
-    );
+    return this.http
+      .post<Product>(`${environment.apiUrl}/categories`, newCategory)
+      .pipe(
+        mergeMap(() => this.getCategories()),
+        catchError((error) => {
+          this.alertService.showErrorAlert('Error al crear la categoría');
+          return of([]);
+        })
+      );
   }
 
   deleteProduct(productId: string) {
     return this.http
       .delete<Product>(`${environment.apiUrl}/products/${productId}`)
-      .pipe(mergeMap(() => this.getProducts()));
+      .pipe(
+        mergeMap(() => this.getProducts()),
+        catchError((error) => {
+          this.alertService.showErrorAlert('Error al borrar los productos');
+          return of([]);
+        })
+      );
   }
 
   deleteCategory(categoryId: string) {
     return this.http
       .delete<Product>(`${environment.apiUrl}/categories/${categoryId}`)
-      .pipe(mergeMap(() => this.getCategories()));
+      .pipe(
+        mergeMap(() => this.getCategories()),
+        catchError((error) => {
+          this.alertService.showErrorAlert('Error al borrar las categorías');
+          return of([]);
+        })
+      );
   }
 }

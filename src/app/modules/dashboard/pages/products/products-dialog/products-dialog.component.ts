@@ -1,15 +1,16 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ProductsService } from '../../../../../core/services/products.service';
 import { ProductsCategory } from '../interface';
 import { MatSelect } from '@angular/material/select';
+import { AlertService } from '../../../../../core/services/alert.service';
 @Component({
   selector: 'app-products-dialog',
   templateUrl: './products-dialog.component.html',
   styleUrl: './products-dialog.component.scss',
 })
-export class ProductsDialogComponent implements OnInit {
+export class ProductsDialogComponent{
   @ViewChild('categorySelect') categorySelect: MatSelect | undefined;
   productForm: FormGroup;
   categoryForm: FormGroup;
@@ -17,8 +18,11 @@ export class ProductsDialogComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<ProductsDialogComponent>,
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private alertService: AlertService,
   ) {
+    this.loadCategories();
+
     this.productForm = this.fb.group({
       productImage: this.fb.control('', [Validators.required]),
       productName: this.fb.control('', [
@@ -49,10 +53,6 @@ export class ProductsDialogComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.loadCategories();
-  }
-
   loadCategories(): void {
     this.productsService.getCategories().subscribe({
       next: (categories) => {
@@ -66,30 +66,35 @@ export class ProductsDialogComponent implements OnInit {
     if (this.categoryForm.valid) {
       this.productsService.createCategory(this.categoryForm.value).subscribe({
         next: () => {
-          alert('Categoría creada');
+          this.alertService.showSuccessAlert('Categoría creada');
           this.categoryForm.reset();
           this.loadCategories();
           this.categorySelect?.close();
           
         },
         error: (err) => {
-          alert('Error al crear la categoría');
+          this.alertService.showErrorAlert('Error al crear la categoría');
         },
       });
     }
   }
 
   onDeleteCategory(data: string): void {
-    
-    this.productsService.deleteCategory(data).subscribe({
-      next: () => {
-        alert('Categoría eliminada');
-        this.loadCategories();
-      },
-      error: (err) => {
-        alert('Error al eliminar la categoría');
-      },
-    });
+    this.alertService.showDeleteConfirmation().then((confirmed) => {
+      if (confirmed) {
+        this.productsService.deleteCategory(data).subscribe({
+          next: () => {
+            this.loadCategories();
+          },
+          complete: () => {
+            this.alertService.showSuccessAlert('Categoría eliminada');
+          },
+          error: (err) => {
+            alert('Error al eliminar la categoría');
+          },
+        });
+      }
+    })
   }
 
   addNewProduct(): void {

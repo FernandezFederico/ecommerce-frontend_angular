@@ -1,17 +1,18 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { ProductsService } from '../../../../core/services/products.service';
 import { Product } from './interface';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductsDialogComponent } from './products-dialog/products-dialog.component';
+import { AlertService } from '../../../../core/services/alert.service';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
 })
-export class ProductsComponent implements OnInit, AfterViewInit {
+export class ProductsComponent implements AfterViewInit {
   dataSource = new MatTableDataSource<Product>();
   displayedColumns: string[] = [
     'id',
@@ -34,20 +35,15 @@ export class ProductsComponent implements OnInit, AfterViewInit {
   constructor(
     private productsService: ProductsService,
     public matDialog: MatDialog,
+    private alertService: AlertService
   ) {
     this.loadProducts();
   }
-
-  ngOnInit(): void {
-    
-  }
-
   loadProducts() {
     this.productsService.getProducts().subscribe({
       next: (products) => {
         this.dataSource.data = products;
       },
-      
     });
   }
 
@@ -78,7 +74,7 @@ export class ProductsComponent implements OnInit, AfterViewInit {
                 this.dataSource.data = product;
               },
               complete: () => {
-                alert('Se agrego el producto');
+                this.alertService.showSuccessAlert('Se agrego el producto');
               },
             });
           }
@@ -87,13 +83,22 @@ export class ProductsComponent implements OnInit, AfterViewInit {
   }
 
   onDeleteProduct(data: string): void {
-    this.productsService.deleteProduct(data).subscribe({
-      next: (result) => {
-        this.dataSource.data = result;
-      },
-      complete: () => {
-        alert('Se elimino el producto');
-      },
+    this.alertService.showDeleteConfirmation().then((confirmed) => {
+      if (confirmed) {
+        this.productsService.deleteProduct(data).subscribe({
+          next: (result) => {
+            this.dataSource.data = result;
+          },
+          complete: () => {
+            this.alertService.showSuccessAlert('Se elimino el producto');
+          },
+          error: (err) => {
+            this.alertService.showErrorAlert('Error al eliminar el proyecto');
+          }
+        });
+      }
     });
   }
+
+
 }

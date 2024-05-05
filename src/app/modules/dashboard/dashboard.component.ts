@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { LayoutService } from '../../core/services/layout.service';
 import { AuthService } from '../../core/services/auth.service';
 import { ResetPassService } from '../../core/services/reset-pass.service';
+import { AlertService } from '../../core/services/alert.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,6 +16,7 @@ export class DashboardComponent implements OnInit {
     public layoutService: LayoutService,
     public authService: AuthService,
     public resetPassService: ResetPassService,
+    private alertService: AlertService,
 
   ) { }
 
@@ -29,6 +31,7 @@ export class DashboardComponent implements OnInit {
   onUserLogout(): void {
     this.authService.logout();
     this.layoutService.toggleSidenav();
+    this.alertService.showSuccessAlert('Sesión cerrada');
   }
 
   onToggleSidenav(): void {

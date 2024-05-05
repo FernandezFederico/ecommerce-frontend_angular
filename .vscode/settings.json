@@ -7,6 +7,7 @@
     "Loged",
     "maxlength",
     "primeng",
-    "sidenav"
+    "sidenav",
+    "Swal"
   ]
 }

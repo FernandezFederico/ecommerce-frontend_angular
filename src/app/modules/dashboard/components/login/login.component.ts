@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AuthService } from '../../../../core/services/auth.service';
 import { LayoutService } from '../../../../core/services/layout.service';
+import { AlertService } from '../../../../core/services/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ export class LoginComponent{
     private fb: FormBuilder,
     private authService: AuthService,
     private layoutService: LayoutService,
+    private alertService: AlertService,
   ) {
     this.loginForm = this.fb.group({
       email: this.fb.control('', [Validators.required, Validators.email, Validators.minLength(6)]),
@@ -28,16 +30,16 @@ export class LoginComponent{
   onUserLogin() {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
-      alert('Form invalid');
+      this.alertService.showErrorAlert('Por favor, verifique los campos');
     } else {
-      alert('Form valid');
       this.authService.login(this.loginForm.value).subscribe({
         next: (response) => {
           this.loginForm.reset();
           this.layoutService.toggleSidenav();
+          this.alertService.showSuccessAlert('Bienvenido');
         },
         error: (error) => {
-          alert('Error en inicio de sesión');
+          this.alertService.showErrorAlert(error.error.message);
         }
       }
       );

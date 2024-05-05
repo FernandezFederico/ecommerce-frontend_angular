@@ -6,6 +6,7 @@ import { tap } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 import { User } from '../../modules/dashboard/pages/users/interface';
 import { UserLoginData } from '../../modules/dashboard/pages/users/interface';
+import { AlertService } from './alert.service';
 
 
 @Injectable({
@@ -16,6 +17,7 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
+    private alertService: AlertService,
   ) { }
   generateRandomString(length: number) {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -41,7 +43,7 @@ export class AuthService {
         if (!!response[0]) {
           this.setAuthLoginUser(response[0]);
         } else {
-          alert('Credenciales incorrectas');
+          this.alertService.showErrorAlert('Credenciales incorrectas');
         }
       })
     )
