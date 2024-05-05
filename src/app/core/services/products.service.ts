@@ -83,4 +83,16 @@ export class ProductsService {
         })
       );
   }
+
+  updateProduct(productId: string | number, updatedProduct: Product) {
+    return this.http
+      .put<Product>(`${environment.apiUrl}/products/${productId}`, updatedProduct)
+      .pipe(
+        mergeMap(() => this.getProducts()),
+        catchError((error) => {
+          this.alertService.showErrorAlert('Error al actualizar el producto');
+          return of([]);
+        })
+      );
+  }
 }

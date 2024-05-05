@@ -1,8 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Inject, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ProductsService } from '../../../../../core/services/products.service';
-import { ProductsCategory } from '../interface';
+import { Product, ProductsCategory } from '../interface';
 import { MatSelect } from '@angular/material/select';
 import { AlertService } from '../../../../../core/services/alert.service';
 @Component({
@@ -20,8 +20,10 @@ export class ProductsDialogComponent{
     private dialogRef: MatDialogRef<ProductsDialogComponent>,
     private productsService: ProductsService,
     private alertService: AlertService,
+    @Inject( MAT_DIALOG_DATA ) public data: Product,
   ) {
     this.loadCategories();
+    
 
     this.productForm = this.fb.group({
       productImage: this.fb.control('', [Validators.required]),
@@ -51,6 +53,18 @@ export class ProductsDialogComponent{
     this.categoryForm = this.fb.group({
       productCategory: this.fb.control('', [Validators.minLength(3)]),
     });
+
+    if (data) {
+      this.productForm.patchValue(data);
+    }
+  }
+
+  onSaveProduct(): void {
+    if (this.productForm.valid) {
+      this.dialogRef.close(this.productForm.value);
+    } else {
+      this.productForm.markAllAsTouched();
+    }
   }
 
   loadCategories(): void {
@@ -97,11 +111,10 @@ export class ProductsDialogComponent{
     })
   }
 
-  addNewProduct(): void {
-    if (this.productForm.valid) {
-      this.dialogRef.close(this.productForm.value);
-    } else {
-      this.productForm.markAllAsTouched();
-    }
-  }
+
+
+
+
+
+
 }

@@ -2,7 +2,7 @@ export interface Product {
   id: string;
   productImage: string;
   productName: string;
-  productCategory: string;
+  productCategory: string | ProductsCategory;
   productPrice: number;
   productCreatedAt: Date | string;
   productStock: number;

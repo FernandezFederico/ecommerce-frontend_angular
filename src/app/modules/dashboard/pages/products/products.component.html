@@ -58,11 +58,7 @@
       <ng-container matColumnDef="productActions">
         <th mat-header-cell *matHeaderCellDef> ACCIONES </th>
         <td mat-cell *matCellDef="let product">
-          <button mat-icon-button color="black">
-            <mat-icon>visibility</mat-icon>
-          </button>
-
-          <button mat-icon-button color="black">
+          <button mat-icon-button color="black" (click)="onEditProduct(product)">
             <mat-icon>edit</mat-icon>
           </button>
           <button mat-icon-button color="warn" (click)="onDeleteProduct(product.id)">

@@ -33,14 +33,14 @@
   ],
   "products": [
     {
-      "id": "1a36",
       "productImage": "https://http2.mlstatic.com/D_NQ_NP_864844-MLM51559388062_092022-O.webp",
       "productName": "Test1",
-      "productCategory": "categoria_1",
+      "productCategory": "testCategory_1",
       "productPrice": "123",
       "productCreatedAt": "2024-04-23T03:00:00.000Z",
       "productStock": "12",
-      "productDescription": "Test1Test1Test1"
+      "productDescription": "Test1Test1Test1",
+      "id": "1a36"
     },
     {
       "id": "5c5c",
@@ -53,14 +53,14 @@
       "productDescription": "Test2Test2Test2"
     },
     {
-      "id": "83d8",
       "productImage": "https://http2.mlstatic.com/D_NQ_NP_864844-MLM51559388062_092022-O.webp",
       "productName": "Test3",
       "productCategory": "testcategory_3",
       "productPrice": "333",
       "productCreatedAt": "2024-05-03T03:00:00.000Z",
       "productStock": "321",
-      "productDescription": "Test3Test3Test3"
+      "productDescription": "Test3Test3Test3",
+      "id": "83d8"
     }
   ],
   "categories": [

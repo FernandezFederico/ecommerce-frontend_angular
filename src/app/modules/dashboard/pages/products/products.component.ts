@@ -35,7 +35,7 @@ export class ProductsComponent implements AfterViewInit {
   constructor(
     private productsService: ProductsService,
     public matDialog: MatDialog,
-    private alertService: AlertService
+    private alertService: AlertService,
   ) {
     this.loadProducts();
   }
@@ -99,6 +99,50 @@ export class ProductsComponent implements AfterViewInit {
       }
     });
   }
+
+  onEditProduct(product: Product): void {
+    this.matDialog.open(ProductsDialogComponent,{
+      data: product,
+    }).afterClosed().subscribe({
+      next: (result) => {
+        if (result) {
+          this.productsService.updateProduct(product.id, result).subscribe({
+            next: (product) => {
+              this.dataSource.data = product;
+            },
+            complete: () => {
+              this.alertService.showSuccessAlert('Se actualizo el producto');
+            },
+            error: (err) => {
+              this.alertService.showErrorAlert('Error al actualizar el producto');
+            }
+          });
+        }
+      },
+    })
+    
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
