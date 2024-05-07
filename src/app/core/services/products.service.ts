@@ -100,4 +100,10 @@ export class ProductsService {
         })
       );
   }
+
+  carouselProducts() {
+    return this.http
+      .get<Product[]>(`${environment.apiUrl}/products?_limit=3`)
+      .pipe();
+  }
 }

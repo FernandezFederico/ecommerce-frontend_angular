@@ -1,20 +1,16 @@
 import { Injectable } from '@angular/core';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ResetPassService {
   showResetPassForm: boolean = false;
 
-
-  constructor( ) {
-  }
+  constructor() {}
 
   toggleResetForms() {
     this.showResetPassForm = !this.showResetPassForm;
   }
 
-// TODO: se necesita el backend para que funcione
-
+  // TODO: se necesita el backend para que funcione
 }

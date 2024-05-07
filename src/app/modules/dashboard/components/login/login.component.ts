@@ -8,10 +8,9 @@ import { AlertService } from '../../../../core/services/alert.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
 })
-export class LoginComponent{
-
+export class LoginComponent {
   loginForm: FormGroup;
   ShowLoginPassword = false;
 
@@ -19,11 +18,19 @@ export class LoginComponent{
     private fb: FormBuilder,
     private authService: AuthService,
     private layoutService: LayoutService,
-    private alertService: AlertService,
+    private alertService: AlertService
   ) {
     this.loginForm = this.fb.group({
-      email: this.fb.control('', [Validators.required, Validators.email, Validators.minLength(6)]),
-      password: this.fb.control('', [Validators.required, Validators.minLength(6), Validators.maxLength(12),]),
+      email: this.fb.control('', [
+        Validators.required,
+        Validators.email,
+        Validators.minLength(6),
+      ]),
+      password: this.fb.control('', [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(12),
+      ]),
     });
   }
 
@@ -39,10 +46,9 @@ export class LoginComponent{
           this.alertService.showSuccessAlert('Bienvenido');
         },
         error: (error) => {
-          this.alertService.showErrorAlert(error.error.message);
-        }
-      }
-      );
+          this.alertService.showErrorAlert('Error al iniciar sesión');
+        },
+      });
     }
   }
 }

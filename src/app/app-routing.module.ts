@@ -4,14 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './modules/not-found/not-found.component';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
 
-
 const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    loadChildren: () => import('./modules/dashboard/dashboard.module').then(
-      (m) => m.DashboardModule
-    ),
+    loadChildren: () =>
+      import('./modules/dashboard/dashboard.module').then(
+        (m) => m.DashboardModule
+      ),
   },
   {
     path: '**',
@@ -25,6 +25,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LayoutService {
   isSidenavOpen = false;
@@ -9,7 +9,7 @@ export class LayoutService {
   showCartInfo = false;
   showUserInfo = false;
 
-  constructor() { }
+  constructor() {}
 
   toggleSidenav() {
     this.isSidenavOpen = !this.isSidenavOpen;

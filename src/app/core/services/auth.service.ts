@@ -8,19 +8,19 @@ import { User } from '../../modules/dashboard/pages/users/interface';
 import { UserLoginData } from '../../modules/dashboard/pages/users/interface';
 import { AlertService } from './alert.service';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   authLoginUser: User | null = null;
   constructor(
     private http: HttpClient,
     private router: Router,
-    private alertService: AlertService,
-  ) { }
+    private alertService: AlertService
+  ) {}
   generateRandomString(length: number) {
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const characters =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let result = '';
     const charactersLength = characters.length;
     for (let i = 0; i < length; i++) {
@@ -29,7 +29,12 @@ export class AuthService {
     return result;
   }
   signUp(newUser: User) {
-    return this.http.post<User>(`${environment.apiUrl}/users`, { ...newUser, role: 'Cust', created_at: new Date(), token: this.generateRandomString(15) });
+    return this.http.post<User>(`${environment.apiUrl}/users`, {
+      ...newUser,
+      role: 'Cust',
+      created_at: new Date(),
+      token: this.generateRandomString(15),
+    });
   }
 
   private setAuthLoginUser(user: User) {
@@ -38,23 +43,26 @@ export class AuthService {
   }
 
   login(data: UserLoginData) {
-    return this.http.get<User[]>(`${environment.apiUrl}/users?email=${data.email}&password=${data.password}`).pipe(
-      tap((response) => {
-        if (!!response[0]) {
-          this.setAuthLoginUser(response[0]);
-        } else {
-          this.alertService.showErrorAlert('Credenciales incorrectas');
-        }
-      })
-    )
-
+    return this.http
+      .get<User[]>(
+        `${environment.apiUrl}/users?email=${data.email}&password=${data.password}`
+      )
+      .pipe(
+        tap((response) => {
+          if (!!response[0]) {
+            this.setAuthLoginUser(response[0]);
+          } else {
+            this.alertService.showErrorAlert('Credenciales incorrectas');
+          }
+        })
+      );
   }
 
   isLoggedIn(): boolean {
     return localStorage.getItem('userData') !== null;
   }
 
- getLoggedInUser(): Array<User> | void {
+  getLoggedInUser(): Array<User> | void {
     this.authLoginUser = JSON.parse(localStorage.getItem('userData') || '{}');
   }
   logout() {
@@ -62,5 +70,4 @@ export class AuthService {
     this.authLoginUser = null;
     this.router.navigate(['dashboard', 'home']);
   }
-
 }

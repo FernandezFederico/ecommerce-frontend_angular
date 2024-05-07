@@ -5,10 +5,14 @@ import { LoadingService } from './core/services/loading.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent{
   title = 'ecommerce';
 
   onIsLoading$ = this.loadingService.isLoading$;
 
-  constructor(private loadingService: LoadingService) {}
+  constructor(private loadingService: LoadingService) {
+
+  }
+
+
 }

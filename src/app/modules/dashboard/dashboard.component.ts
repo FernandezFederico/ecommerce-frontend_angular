@@ -16,14 +16,11 @@ export class DashboardComponent implements OnInit {
     public layoutService: LayoutService,
     public authService: AuthService,
     public resetPassService: ResetPassService,
-    private alertService: AlertService,
-
-  ) { }
-
+    private alertService: AlertService
+  ) {}
 
   ngOnInit(): void {
     this.onGetLoggedInUser();
-    
   }
   onIsloggedIn(): boolean {
     return this.authService.isLoggedIn();
@@ -43,11 +40,10 @@ export class DashboardComponent implements OnInit {
   }
 
   toggleForms() {
-    this.showSignUpForm = !this.showSignUpForm
+    this.showSignUpForm = !this.showSignUpForm;
   }
 
   onToggleResetForms() {
-    this.resetPassService.toggleResetForms()
+    this.resetPassService.toggleResetForms();
   }
-
 }

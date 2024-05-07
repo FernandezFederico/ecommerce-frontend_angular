@@ -11,16 +11,14 @@ const routes: Routes = [
   {
     path: 'users',
     canActivate: [custGuard],
-    loadChildren: () => import('./pages/users/users.module').then(
-      (m) => m.UsersModule
-    )
+    loadChildren: () =>
+      import('./pages/users/users.module').then((m) => m.UsersModule),
   },
   {
     path: 'products',
     canActivate: [custGuard],
-    loadChildren: () => import('./pages/products/products.module').then(
-      (m) => m.ProductsModule
-    )
+    loadChildren: () =>
+      import('./pages/products/products.module').then((m) => m.ProductsModule),
   },
   {
     path: '**',
@@ -30,6 +28,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class DashboardRoutingModule { }
+export class DashboardRoutingModule {}

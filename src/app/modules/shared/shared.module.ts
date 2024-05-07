@@ -25,7 +25,7 @@ import { InputIconModule } from 'primeng/inputicon';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { ValidationErrorsPipe } from './pipes/validation-errors.pipe';
-
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -38,7 +38,10 @@ import { ValidationErrorsPipe } from './pipes/validation-errors.pipe';
   imports: [
     CommonModule,
     MatTableModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    NgbCarouselModule,
+
+
   ],
   exports: [
     ValidationErrorsPipe,
@@ -62,8 +65,7 @@ import { ValidationErrorsPipe } from './pipes/validation-errors.pipe';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    MatProgressSpinnerModule,
-    
+    MatProgressSpinnerModule,    
   ]
 })
 export class SharedModule { }

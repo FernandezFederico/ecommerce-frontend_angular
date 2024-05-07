@@ -34,7 +34,7 @@ export class AlertService {
     return new Promise<boolean>((resolve) => {
       Swal.fire({
         title: '¿Estás seguro?',
-        text: "No podrás revertir esto!",
+        text: 'No podrás revertir esto!',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',

@@ -175,3 +175,14 @@ body {
   /* (Opcional) */
   -moz-osx-font-smoothing: grayscale;
 }
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+border-radius: 10%;
+background-color: black;
+}
+.carousel-indicators .active  {
+  background-color: red;
+}
