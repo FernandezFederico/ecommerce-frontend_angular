@@ -34,12 +34,15 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
     CarouselComponent,
     CardsComponent,
     ValidationErrorsPipe,
+    
   ],
   imports: [
     CommonModule,
     MatTableModule,
     MatFormFieldModule,
     NgbCarouselModule,
+    MatCardModule,
+    MatButtonModule,
 
 
   ],

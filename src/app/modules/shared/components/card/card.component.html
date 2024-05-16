@@ -1,3 +1,14 @@
-<div class="card__container">
-  <p>card works!</p>
-</div>
+<mat-card class="card">
+  <div class="image__container">
+    <a href="#">
+      <img class="card__image" src="{{ product.productImage }}" alt="">
+    </a>
+    </div>
+    <mat-card-content>
+      <h4>{{ product.productName }}</h4>
+      <span>$&nbsp;{{ product.productPrice}}</span>
+    </mat-card-content>
+    <mat-card-actions>
+      <button>Agregar a carrito</button>
+    </mat-card-actions>
+  </mat-card>

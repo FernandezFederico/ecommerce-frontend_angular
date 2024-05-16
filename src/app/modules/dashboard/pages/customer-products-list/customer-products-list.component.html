@@ -1,16 +1,3 @@
 <div class="customer-products-list__container">
-  <mat-card class="card" *ngFor="let product of productsList">
-  <div class="image__container">
-    <a href="#">
-      <img class="card__image" src="{{ product.productImage }}" alt="">
-    </a>
-    </div>
-    <mat-card-content>
-      <h4>{{ product.productName }}</h4>
-      <span>$&nbsp;{{ product.productPrice}}</span>
-    </mat-card-content>
-    <mat-card-actions>
-      <button>Agregar a carrito</button>
-    </mat-card-actions>
-  </mat-card>  
+  <app-card *ngFor="let product of productsList" [product]="product"></app-card>
 </div>

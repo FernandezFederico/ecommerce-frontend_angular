@@ -1,8 +1,8 @@
 <mat-toolbar class="header__container header mat-elevation-z4">
 
   <div class="header">
-    <div class="header__form">
-      <p-iconField *ngIf="route.url.includes('dashboard/home')" iconPosition="left">
+    <div class="header__form" *ngIf="route.url.includes('dashboard/customer-products-list') || route.url.includes('dashboard/home')" iconPosition="left">
+      <p-iconField>
         <p-inputIcon styleClass="pi pi-search"/>
         <input class="header__input" type="text" name="search" pInputText placeholder="Search"/>
     </p-iconField>
