@@ -1,15 +1,17 @@
-<ngb-carousel *ngIf="carouselProductsList.length > 0" class="carousel" #carousel [interval]="2500"
-  [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus">
-  <ng-template *ngFor="let product of carouselProductsList" ngbSlide>
-    <div class="picsum-img-wrapper">
-      <a href="#"><img class="carousel__image" src="{{product.productImage}}" alt="Random first slide" /></a>
-    </div>
-    <div class="carousel-caption">
-      <h3>{{product.productName }}</h3>
-      <p>{{ product.productDescription }}</p>
-    </div>
-  </ng-template>
-</ngb-carousel>
-<div *ngIf="carouselProductsList.length === 0">
-  <span> sin datos en Carousel!</span>
+<div class="carousel__container">
+  <ngb-carousel class="carousel" *ngIf="carouselProductsList.length > 0" #carousel [interval]="2500"
+    [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus">
+    <ng-template class="slider" *ngFor="let product of carouselProductsList" ngbSlide>
+      <div class="image__container">
+        <a href="#"><img class="carousel__image" src="{{ product.productImage }}" alt="Random first slide" /></a>
+      </div>
+      <div class="carousel-caption">
+        <h3>{{ product.productName }}</h3>
+        <p>{{ product.productDescription }}</p>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+  <div *ngIf="carouselProductsList.length === 0">
+    <span> sin datos en Carousel!</span>
+  </div>
 </div>

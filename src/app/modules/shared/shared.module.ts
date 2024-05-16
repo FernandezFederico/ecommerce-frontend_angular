@@ -23,7 +23,7 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 
 import { CarouselComponent } from './components/carousel/carousel.component';
-import { CardsComponent } from './components/cards/cards.component';
+import { CardsComponent } from './components/card/card.component';
 import { ValidationErrorsPipe } from './pipes/validation-errors.pipe';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 

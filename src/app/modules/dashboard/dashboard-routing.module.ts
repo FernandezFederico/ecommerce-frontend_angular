@@ -21,6 +21,11 @@ const routes: Routes = [
       import('./pages/products/products.module').then((m) => m.ProductsModule),
   },
   {
+    path: 'customer-products-list',
+    loadChildren: () =>
+      import('./pages/customer-products-list/customer-products-list.module').then((m) => m.CustomerProductsListModule),
+  },
+  {
     path: '**',
     redirectTo: 'home',
   },

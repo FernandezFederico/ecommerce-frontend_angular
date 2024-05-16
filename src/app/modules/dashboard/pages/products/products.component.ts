@@ -38,11 +38,14 @@ export class ProductsComponent implements AfterViewInit {
     private alertService: AlertService
   ) {
     this.loadProducts();
+    console.log(this.loadProducts(), 'loadProducts');
+    
   }
   loadProducts() {
     this.productsService.getProducts().subscribe({
       next: (products) => {
         this.dataSource.data = products;
+        
       },
     });
   }

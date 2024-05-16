@@ -37,7 +37,10 @@
 
       <ng-container matColumnDef="productPrice">
         <th mat-header-cell *matHeaderCellDef > PRECIO </th>
-        <td mat-cell *matCellDef="let product"> {{product.productPrice}} </td>
+        <td mat-cell *matCellDef="let product">
+          <span matTextPrefix>$&nbsp;</span>
+          {{product.productPrice}}
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="productCreatedAt">

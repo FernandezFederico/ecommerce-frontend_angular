@@ -1,8 +1,12 @@
-.carousel {
-  background-color: rgb(185, 177, 177);
-  width: 100vw;
+.carousel__container {
+  width: 100%;
+  background-color: chartreuse;
 }
 
+.carousel {
+  background-color: rgb(185, 177, 177);
+  width: 95vw;
+}
 .carousel__image {
   width: 100%;
   height: 600px;

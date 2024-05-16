@@ -52,7 +52,7 @@ export class ProductsService {
 
   createCategory(newCategory: ProductsCategory) {
     return this.http
-      .post<Product>(`${environment.apiUrl}/categories`, newCategory)
+      .post<ProductsCategory>(`${environment.apiUrl}/categories`, newCategory)
       .pipe(
         mergeMap(() => this.getCategories()),
         catchError((error) => {
@@ -76,7 +76,7 @@ export class ProductsService {
 
   deleteCategory(categoryId: string) {
     return this.http
-      .delete<Product>(`${environment.apiUrl}/categories/${categoryId}`)
+      .delete<ProductsCategory>(`${environment.apiUrl}/categories/${categoryId}`)
       .pipe(
         mergeMap(() => this.getCategories()),
         catchError((error) => {
@@ -101,7 +101,7 @@ export class ProductsService {
       );
   }
 
-  carouselProducts() {
+  carouselProducts()  {
     return this.http
       .get<Product[]>(`${environment.apiUrl}/products?_limit=3`)
       .pipe();
