@@ -1,14 +1,10 @@
 import { Injectable } from '@angular/core';
-
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, mergeMap, of } from 'rxjs';
-
 import { environment } from '../../../environments/environment.development';
-import {
-  Product,
-  ProductsCategory,
-} from '../../modules/dashboard/pages/products/interface/index';
+import { Product, ProductsCategory } from '../../modules/dashboard/pages/products/interface/index';
 import { AlertService } from './alert.service';
+
 
 @Injectable({
   providedIn: 'root',
@@ -74,9 +70,11 @@ export class ProductsService {
       );
   }
 
-  deleteCategory(categoryId: string) {
+  deleteCategory(_id: string) {
     return this.http
-      .delete<ProductsCategory>(`${environment.apiUrl}/categories/${categoryId}`)
+      .delete<ProductsCategory>(
+        `${environment.apiUrl}/categories/${_id}`
+      )
       .pipe(
         mergeMap(() => this.getCategories()),
         catchError((error) => {
@@ -101,9 +99,13 @@ export class ProductsService {
       );
   }
 
-  carouselProducts()  {
+  carouselProducts() {
     return this.http
       .get<Product[]>(`${environment.apiUrl}/products?_limit=3`)
       .pipe();
+  }
+
+  getSelectedProducts() {
+    return this.http.get<any>(`${environment.apiUrl}/products?_limit=4`);
   }
 }

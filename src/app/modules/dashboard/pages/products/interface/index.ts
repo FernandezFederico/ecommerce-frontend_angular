@@ -1,15 +1,15 @@
 export interface Product {
-  id: string;
+  _id: string;
   productImage: string;
   productName: string;
   productCategory: string | ProductsCategory;
   productPrice: number;
-  productCreatedAt: Date | string;
+  createdAt: Date | string;
   productStock: number;
   productDescription: string;
 }
 
 export interface ProductsCategory {
-  id: string;
+  _id: string;
   productCategory: string;
 }

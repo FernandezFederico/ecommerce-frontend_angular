@@ -15,12 +15,12 @@ import { AlertService } from '../../../../core/services/alert.service';
 export class ProductsComponent implements AfterViewInit {
   dataSource = new MatTableDataSource<Product>();
   displayedColumns: string[] = [
-    'id',
+    '_id',
     'productImage',
     'productName',
     'productCategory',
     'productPrice',
-    'productCreatedAt',
+    'createdAt',
     'productStock',
     'productDescription',
     'productActions',
@@ -35,16 +35,14 @@ export class ProductsComponent implements AfterViewInit {
   constructor(
     private productsService: ProductsService,
     public matDialog: MatDialog,
-    private alertService: AlertService
+    private alertService: AlertService,
   ) {
     this.loadProducts();
-    console.log(this.loadProducts(), 'loadProducts');
-    
   }
   loadProducts() {
     this.productsService.getProducts().subscribe({
       next: (products) => {
-        this.dataSource.data = products;
+        this.dataSource.data = products;       
         
       },
     });
@@ -112,7 +110,7 @@ export class ProductsComponent implements AfterViewInit {
       .subscribe({
         next: (result) => {
           if (result) {
-            this.productsService.updateProduct(product.id, result).subscribe({
+            this.productsService.updateProduct(product._id, result).subscribe({
               next: (product) => {
                 this.dataSource.data = product;
               },

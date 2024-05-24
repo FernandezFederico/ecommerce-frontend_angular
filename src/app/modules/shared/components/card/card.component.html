@@ -1,14 +1,14 @@
-<mat-card class="card">
+<mat-card class="card" [ngStyle]="{'width': cardWidth, 'height': cardHeight}">
   <div class="image__container">
     <a href="#">
-      <img class="card__image" src="{{ product.productImage }}" alt="">
+      <img class="card__image" src="{{ product.productImage }}" alt="imagen del producto">
     </a>
     </div>
     <mat-card-content>
       <h4>{{ product.productName }}</h4>
-      <span>$&nbsp;{{ product.productPrice}}</span>
+      <span *ngIf="showPrice">$&nbsp;{{ product.productPrice}}</span>
     </mat-card-content>
     <mat-card-actions>
-      <button>Agregar a carrito</button>
+      <button *ngIf="showAddButton" mat-raised-button color="primary">Agregar a carrito</button>
     </mat-card-actions>
   </mat-card>

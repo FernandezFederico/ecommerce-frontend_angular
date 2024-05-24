@@ -38,7 +38,7 @@ export class ProductsDialogComponent {
         Validators.required,
         Validators.pattern('[0-9]*'),
       ]),
-      productCreatedAt: this.fb.control('', [Validators.required]),
+      createdAt: this.fb.control('', [Validators.required]),
       productStock: this.fb.control('', [
         Validators.required,
         Validators.pattern('[0-9]*'),

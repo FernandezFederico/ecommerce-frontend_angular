@@ -15,9 +15,9 @@
       </div>
     </div>
     <table *ngIf="dataSource.data.length > 0" mat-table [dataSource]="dataSource" class=" products__table" matSort>
-      <ng-container matColumnDef="id">
+      <ng-container matColumnDef="_id">
         <th mat-header-cell *matHeaderCellDef> ID </th>
-        <td mat-cell *matCellDef="let product"  > {{product.id}} </td>
+        <td mat-cell *matCellDef="let product"  > {{product._id}} </td>
       </ng-container>
 
       <ng-container matColumnDef="productImage">
@@ -43,9 +43,9 @@
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="productCreatedAt">
+      <ng-container matColumnDef="createdAt">
         <th mat-header-cell *matHeaderCellDef> FECHA DE CREACIÓN </th>
-        <td mat-cell *matCellDef="let product"> {{product.productCreatedAt | date: 'dd/MM/yyyy hh:mm a'}} </td>
+        <td mat-cell *matCellDef="let product"> {{product.createdAt | date: 'medium'}} </td>
       </ng-container>
 
       <ng-container matColumnDef="productStock">
@@ -64,7 +64,7 @@
           <button mat-icon-button color="black" (click)="onEditProduct(product)">
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button color="warn" (click)="onDeleteProduct(product.id)">
+          <button mat-icon-button color="warn" (click)="onDeleteProduct(product._id)">
             <mat-icon>delete</mat-icon>
           </button>
         </td>

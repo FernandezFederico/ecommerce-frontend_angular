@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ProductsService } from '../../../../core/services/products.service';
+import { Product } from '../products/interface';
 
 @Component({
   selector: 'app-home',
@@ -6,5 +8,21 @@ import { Component } from '@angular/core';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
+  selectedProductsList!: Product[];
 
+  constructor (
+    private productService: ProductsService
+  ) {
+    this.loadSelectedProducts()
+  }
+
+  loadSelectedProducts() {
+    this.productService.getSelectedProducts().subscribe({
+      next: (products) => {
+        this.selectedProductsList = products
+        console.log(products);
+        
+      }
+    })
+  }
 }

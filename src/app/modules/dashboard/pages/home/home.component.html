@@ -3,6 +3,14 @@
     <app-carousel></app-carousel>
   </main>
   <section class="trendy__categories">
-    aca irán links a categorías
+    <app-card
+      *ngFor="let product of selectedProductsList"
+      [product]="product"
+      [cardWidth]="'300px'"
+      [cardHeight]="'500px'"
+      [showAddButton]="false"
+      [showPrice]="false"
+    >
+    </app-card>
   </section>
 </div>
