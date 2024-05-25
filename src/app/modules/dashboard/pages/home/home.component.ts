@@ -19,9 +19,7 @@ export class HomeComponent {
   loadSelectedProducts() {
     this.productService.getSelectedProducts().subscribe({
       next: (products) => {
-        this.selectedProductsList = products
-        console.log(products);
-        
+        this.selectedProductsList = products        
       }
     })
   }
