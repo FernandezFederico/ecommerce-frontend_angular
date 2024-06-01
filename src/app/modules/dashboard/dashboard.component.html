@@ -28,10 +28,6 @@
             <mat-list-item class="link" mat-list-item routerLink="/dashboard/products" (click)="onToggleSidenav()">
               <mat-icon>category</mat-icon> PRODUCTOS
             </mat-list-item>
-            <mat-list-item class="link" mat-list-item routerLink="/dashboard/customer-products-list"
-              (click)="onToggleSidenav()">
-              <mat-icon>list</mat-icon> TODOS LOS PRODUCTOS
-            </mat-list-item>
           </mat-nav-list>
         </section>
         <ng-container *ngIf="!onIsloggedIn()">

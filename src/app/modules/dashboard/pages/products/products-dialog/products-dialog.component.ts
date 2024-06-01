@@ -22,10 +22,15 @@ export class ProductsDialogComponent {
     private alertService: AlertService,
     @Inject(MAT_DIALOG_DATA) public data: Product
   ) {
+    
+    
     this.loadCategories();
 
     this.productForm = this.fb.group({
-      productImage: this.fb.control('', [Validators.required]),
+
+      productImage: this.fb.control('', [
+        Validators.required
+      ]),
       productName: this.fb.control('', [
         Validators.required,
         Validators.minLength(3),

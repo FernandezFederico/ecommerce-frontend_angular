@@ -1,10 +1,10 @@
 <mat-toolbar class="header__container header mat-elevation-z4">
 
   <div class="header">
-    <div class="header__form" *ngIf="route.url.includes('dashboard/customer-products-list') || route.url.includes('dashboard/home')" iconPosition="left">
+    <div class="header__form" *ngIf="route.url.includes('dashboard/customer-products-list')" >
       <p-iconField>
-        <p-inputIcon styleClass="pi pi-search"/>
-        <input class="header__input" type="text" name="search" pInputText placeholder="Search"/>
+        <p-inputIcon styleClass="pi pi-search" />
+        <input class="header__input" type="text" name="search" pInputText placeholder=" Search" (keyup)="onGetSearchParam($event)" />
     </p-iconField>
     </div>
     <div class="header__logo">
@@ -15,7 +15,7 @@
       </mat-nav-list>
     </div> 
     <section class="header__actions">
-      <button mat-icon-button class="header__button" *ngIf="onIsloggedIn()" (click)="onToggleCartSidenav()">
+      <button mat-icon-button class="header__button" *ngIf="onIsLoggedIn()" (click)="onToggleCartSidenav()">
         <mat-icon>shopping_cart</mat-icon>
       </button>
       <button mat-icon-button class="header__button" (click)="onToggleUserSidenav()">
@@ -26,9 +26,10 @@
   
   <div class="header__nav">
     <ul class="list">
-      <li class="list__item"><a>Sección 1</a></li>
-      <li class="list__item"><a>Sección 2</a></li>
-      <li class="list__item"><a>Sección 3</a></li>
+      <li class="list__item">
+        <a routerLink="/dashboard/customer-products-list"><mat-icon>list</mat-icon> TODOS LOS PRODUCTOS</a></li>
+      <li class="list__item"><a>Categoría 1</a></li>
+      <li class="list__item"><a>Categoría 2</a></li>
     </ul>
   </div>
 </mat-toolbar>

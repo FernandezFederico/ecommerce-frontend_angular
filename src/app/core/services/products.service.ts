@@ -1,15 +1,24 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { catchError, mergeMap, of } from 'rxjs';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpErrorResponse,
+} from '@angular/common/http';
+import { BehaviorSubject, catchError, mergeMap, of } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
-import { Product, ProductsCategory } from '../../modules/dashboard/pages/products/interface/index';
+import {
+  Product,
+  ProductsCategory,
+} from '../../modules/dashboard/pages/products/interface/index';
 import { AlertService } from './alert.service';
-
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductsService {
+  private productQuerySubject = new BehaviorSubject<string>('');
+  productQuery$ = this.productQuerySubject.asObservable();
+
   constructor(private http: HttpClient, private alertService: AlertService) {}
 
   getProducts() {
@@ -72,9 +81,7 @@ export class ProductsService {
 
   deleteCategory(_id: string) {
     return this.http
-      .delete<ProductsCategory>(
-        `${environment.apiUrl}/categories/${_id}`
-      )
+      .delete<ProductsCategory>(`${environment.apiUrl}/categories/${_id}`)
       .pipe(
         mergeMap(() => this.getCategories()),
         catchError((error) => {
@@ -106,6 +113,18 @@ export class ProductsService {
   }
 
   getSelectedProducts() {
-    return this.http.get<any>(`${environment.apiUrl}/products?_limit=4`);
+    return this.http.get<Product[]>(`${environment.apiUrl}/products?_limit=4`);
+  }
+
+  searchProducts(query: string) {
+    return this.http.get<any>(`${environment.apiUrl}/products/?q=${query}`);
+  }
+
+  getSearchParam(query: string) {
+    this.productQuerySubject.next(query);
+  }
+
+  clearSearchParam() {
+    this.productQuerySubject.next('');
   }
 }

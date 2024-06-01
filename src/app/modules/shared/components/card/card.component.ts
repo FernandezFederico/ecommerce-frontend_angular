@@ -10,10 +10,10 @@ export class CardsComponent {
     productName: string;
     productPrice: number;
     productImage: string;
+    productDescription: string;
+    productCategory: string;
+    
   };
-
-  @Input() cardWidth: string | null = null;
-  @Input() cardHeight: string | null = null;
 
   @Input() showPrice: boolean = true;
   @Input() showAddButton: boolean = true;

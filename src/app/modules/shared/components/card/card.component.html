@@ -1,9 +1,10 @@
-<mat-card class="card" [ngStyle]="{'width': cardWidth, 'height': cardHeight}">
-  <div class="image__container">
+<mat-card class="card">
+  <a class="image__container">
       <img class="card__image" src="{{ product.productImage }}" alt="imagen del producto">
-  </div>
+  </a>
   <mat-card-content class="card__content" >
     <h4>{{ product.productName }}</h4>
+    <span></span>
     <span *ngIf="showPrice">$&nbsp;{{ product.productPrice}}</span>
     <mat-card-actions class="card__action">
       <button *ngIf="showAddButton" mat-raised-button color="primary">Agregar</button>

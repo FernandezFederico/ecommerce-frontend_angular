@@ -1,8 +1,8 @@
 export interface Product {
   _id: string;
-  productImage: string;
+  productImage: string | any;
   productName: string;
-  productCategory: string | ProductsCategory;
+  productCategory: string;
   productPrice: number;
   createdAt: Date | string;
   productStock: number;

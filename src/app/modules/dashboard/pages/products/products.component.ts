@@ -35,15 +35,14 @@ export class ProductsComponent implements AfterViewInit {
   constructor(
     private productsService: ProductsService,
     public matDialog: MatDialog,
-    private alertService: AlertService,
+    private alertService: AlertService
   ) {
     this.loadProducts();
   }
   loadProducts() {
     this.productsService.getProducts().subscribe({
       next: (products) => {
-        this.dataSource.data = products;       
-        
+        this.dataSource.data = products;
       },
     });
   }
@@ -127,4 +126,5 @@ export class ProductsComponent implements AfterViewInit {
         },
       });
   }
+
 }

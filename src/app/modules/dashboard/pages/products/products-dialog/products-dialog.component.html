@@ -1,10 +1,9 @@
 <mat-dialog-content class="products__dialog">
 	<h2 mat-dialog-title>PRODUCTO</h2>
 	<form class="products__form" [formGroup]="productForm">
-
 		<mat-form-field class="products__field">
 			<mat-label>IMAGEN</mat-label>
-			<input matInput type="text" formControlName="productImage" />
+			<input matInput type="text" formControlName="productImage"/>
 			<mat-error>
 				{{ productForm.get('productImage')?.errors | validationErrors }}
 			</mat-error>
