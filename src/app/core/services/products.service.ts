@@ -1,15 +1,8 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpClient,
-  HttpHeaders,
-  HttpErrorResponse,
-} from '@angular/common/http';
+import {  HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, catchError, mergeMap, of } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
-import {
-  Product,
-  ProductsCategory,
-} from '../../modules/dashboard/pages/products/interface/index';
+import { Product, ProductsCategory } from '../../modules/dashboard/pages/products/interface/index';
 import { AlertService } from './alert.service';
 
 @Injectable({
@@ -18,6 +11,9 @@ import { AlertService } from './alert.service';
 export class ProductsService {
   private productQuerySubject = new BehaviorSubject<string>('');
   productQuery$ = this.productQuerySubject.asObservable();
+
+  private categoryQuerySubject = new BehaviorSubject<ProductsCategory[]>([]);
+  categories$ = this.categoryQuerySubject.asObservable();
 
   constructor(private http: HttpClient, private alertService: AlertService) {}
 
@@ -39,6 +35,13 @@ export class ProductsService {
           return of([]);
         })
       );
+  }
+
+  loadCategories() {
+    this.getCategories().subscribe({
+      next: (categories) => this.categoryQuerySubject.next(categories),
+      error: (err) => this.alertService.showErrorAlert('Error al cargar las categorías'),
+    });
   }
 
   createProduct(newProduct: Product) {
@@ -117,7 +120,12 @@ export class ProductsService {
   }
 
   searchProducts(query: string) {
-    return this.http.get<any>(`${environment.apiUrl}/products/?q=${query}`);
+    return this.http.get<Product[]>(`${environment.apiUrl}/products/?q=${query}`).pipe(
+      catchError((error) => {
+        this.alertService.showErrorAlert('Error al buscar los productos');
+        return of([]);
+      })
+    );
   }
 
   getSearchParam(query: string) {

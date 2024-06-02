@@ -14,16 +14,25 @@ export class LayoutService {
   toggleSidenav() {
     this.isSidenavOpen = !this.isSidenavOpen;
   }
+
+  toggleCartInfo() {
+    this.showCartInfo = !this.showCartInfo;
+  }
+
+  toggleUserInfo() {
+    this.showUserInfo = !this.showUserInfo;
+  }
+
   toggleCart() {
     this.showCartInfo = false;
-    this.showCartInfo = !this.showCartInfo;
     this.showUserInfo = false;
+    this.toggleCartInfo();
     this.toggleSidenav();
   }
   toggleUser() {
     this.showUserInfo = false;
-    this.showUserInfo = !this.showUserInfo;
     this.showCartInfo = false;
+    this.toggleUserInfo();
     this.toggleSidenav();
   }
 }
