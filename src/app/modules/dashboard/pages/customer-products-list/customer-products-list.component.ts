@@ -1,8 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductsService } from '../../../../core/services/products.service';
 import { Product } from '../products/interface';
-import { Subject, takeUntil, switchMap } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-customer-products-list',
@@ -15,7 +14,6 @@ export class CustomerProductsListComponent implements OnInit, OnDestroy {
 
   constructor(
     private productsService: ProductsService,
-    private activeRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {

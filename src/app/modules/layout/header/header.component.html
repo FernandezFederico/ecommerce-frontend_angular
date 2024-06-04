@@ -28,10 +28,10 @@
   <div class="header__nav">
     <ul class="list">
       <li class="list__item">
-        <a routerLink="/dashboard/customer-products-list"><mat-icon>list</mat-icon> TODOS LOS PRODUCTOS</a>
+        <a routerLink="/dashboard/customer-products-list" (click)="showAllProducts()"><mat-icon>list</mat-icon> TODOS LOS PRODUCTOS</a>
       </li>
       <li class="list__item" *ngFor="let category of categories">
-        <a (click)="searchCategory(category)"> {{ category }}</a>
+        <a routerLink="/dashboard/customer-products-list" (click)="productsByCategory(category)"> {{ category }}</a>
       </li>
     </ul>
   </div>

@@ -60,8 +60,8 @@ export class HeaderComponent implements OnInit{
     const target = event.target as HTMLInputElement;
     this.productsService.getSearchParam(target.value);
   }
-  searchCategory(data: string) {
-    this.route.navigate([`/dashboard/customer-products-list/search/${data}`]);  
+  productsByCategory(data: string) {
+    this.productsService.getSearchParam(data);
   }
 
   showAllProducts(): void {
