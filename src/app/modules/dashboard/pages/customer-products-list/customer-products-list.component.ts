@@ -1,24 +1,28 @@
-import { Component, OnInit, Pipe } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductsService } from '../../../../core/services/products.service';
-import { Product, ProductsCategory } from '../products/interface';
-import { Subject, takeUntil } from 'rxjs';
+import { Product } from '../products/interface';
+import { Subject, takeUntil, switchMap } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-customer-products-list',
   templateUrl: './customer-products-list.component.html',
-  styleUrl: './customer-products-list.component.scss',
+  styleUrls: ['./customer-products-list.component.scss'],
 })
-export class CustomerProductsListComponent implements OnInit {
+export class CustomerProductsListComponent implements OnInit, OnDestroy {
   productsList: Product[] = [];
   private destroy$ = new Subject<void>();
-  constructor(private productsService: ProductsService) {
-  }
+
+  constructor(
+    private productsService: ProductsService,
+    private activeRoute: ActivatedRoute
+  ) { }
+
   ngOnInit(): void {
     this.productsService.productQuery$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((query) => {
-        this.loadProducts(query);
-      });
+    .subscribe((query) => {
+      this.loadProducts(query);
+    });
 
   }
 
@@ -49,7 +53,5 @@ export class CustomerProductsListComponent implements OnInit {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
-    this.productsService.clearSearchParam();
   }
-
 }

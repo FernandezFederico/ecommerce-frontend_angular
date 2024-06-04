@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { custGuard } from '../../core/guards/cust.guard';
+import { ProductSearchComponent } from './pages/customer-products-list/pages/product-search/product-search.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/customer-products-list/customer-products-list.module').then((m) => m.CustomerProductsListModule),
   },
+
   {
     path: '**',
     redirectTo: 'home',

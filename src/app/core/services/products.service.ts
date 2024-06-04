@@ -11,9 +11,7 @@ import { AlertService } from './alert.service';
 export class ProductsService {
   private productQuerySubject = new BehaviorSubject<string>('');
   productQuery$ = this.productQuerySubject.asObservable();
-
-  private categoryQuerySubject = new BehaviorSubject<ProductsCategory[]>([]);
-  categories$ = this.categoryQuerySubject.asObservable();
+  
 
   constructor(private http: HttpClient, private alertService: AlertService) {}
 
@@ -35,13 +33,6 @@ export class ProductsService {
           return of([]);
         })
       );
-  }
-
-  loadCategories() {
-    this.getCategories().subscribe({
-      next: (categories) => this.categoryQuerySubject.next(categories),
-      error: (err) => this.alertService.showErrorAlert('Error al cargar las categorías'),
-    });
   }
 
   createProduct(newProduct: Product) {
@@ -135,4 +126,5 @@ export class ProductsService {
   clearSearchParam() {
     this.productQuerySubject.next('');
   }
+
 }

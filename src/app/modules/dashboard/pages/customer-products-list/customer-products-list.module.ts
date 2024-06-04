@@ -11,7 +11,7 @@ import { ProductSearchComponent } from './pages/product-search/product-search.co
 @NgModule({
   declarations: [
     CustomerProductsListComponent,
-    ProductSearchComponent
+    ProductSearchComponent,
   ],
   imports: [
     CommonModule,

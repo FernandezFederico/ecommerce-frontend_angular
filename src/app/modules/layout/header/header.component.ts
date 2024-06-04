@@ -1,34 +1,47 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LayoutService } from '../../../core/services/layout.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { ProductsService } from '../../../core/services/products.service';
-import { ProductsCategory } from '../../dashboard/pages/products/interface/index';
-import { Subject, takeUntil } from 'rxjs';
+import { Product } from '../../dashboard/pages/products/interface';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent implements OnInit, OnDestroy {
-  categories: ProductsCategory[] = [];
-  private destroy$ = new Subject<void>();
-
+export class HeaderComponent implements OnInit{
+  productsList: Product[] = [];
+  categories: string[] = [];
   constructor(
     private layoutService: LayoutService,
     public authService: AuthService,
     public route: Router,
     public productsService: ProductsService
   ) {}
-
   ngOnInit(): void {
-    this.productsService.categories$
-    .pipe(takeUntil(this.destroy$))
-    .subscribe((categories) => {
-      this.categories = categories;
-    })
-    this.productsService.loadCategories();
+    this.loadProducts()
+  }
+
+  loadProducts() {
+    this.productsService.getProducts().subscribe({
+      next: (products) => {
+        this.productsList = products;
+        this.extractCategories(products);
+
+      },
+    });
+  }
+
+  extractCategories(products: Product[]) : void {
+    const categorySet = new Set<string>();
+    products.forEach(product => {
+      if (product.productCategory) {
+        categorySet.add(product.productCategory);
+      }
+    });
+
+    this.categories = Array.from(categorySet);
   }
 
   onToggleCartSidenav() {
@@ -47,18 +60,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     const target = event.target as HTMLInputElement;
     this.productsService.getSearchParam(target.value);
   }
-
-  productsByCategory(data: string) {
-    this.productsService.getSearchParam(data);
+  searchCategory(data: string) {
+    this.route.navigate([`/dashboard/customer-products-list/search/${data}`]);  
   }
 
   showAllProducts(): void {
     this.productsService.clearSearchParam();
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
   }
 
 }

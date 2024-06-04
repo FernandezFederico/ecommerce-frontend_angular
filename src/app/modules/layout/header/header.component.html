@@ -1,11 +1,12 @@
 <mat-toolbar class="header__container header mat-elevation-z4">
 
   <div class="header">
-    <div class="header__form" *ngIf="route.url.includes('dashboard/customer-products-list')" >
+    <div class="header__form" *ngIf="route.url === '/dashboard/customer-products-list'">
       <p-iconField>
         <p-inputIcon styleClass="pi pi-search" />
-        <input class="header__input" type="text" name="search" pInputText placeholder=" Search" (keyup)="onGetSearchParam($event)" />
-    </p-iconField>
+        <input class="header__input" type="text" name="search" pInputText placeholder=" Search"
+          (keyup)="onGetSearchParam($event)" />
+      </p-iconField>
     </div>
     <div class="header__logo">
       <mat-nav-list>
@@ -13,7 +14,7 @@
           <h1>Logo</h1>
         </a>
       </mat-nav-list>
-    </div> 
+    </div>
     <section class="header__actions">
       <button mat-icon-button class="header__button" *ngIf="onIsLoggedIn()" (click)="onToggleCartSidenav()">
         <mat-icon>shopping_cart</mat-icon>
@@ -23,13 +24,14 @@
       </button>
     </section>
   </div>
-  
+
   <div class="header__nav">
     <ul class="list">
       <li class="list__item">
-        <a routerLink="/dashboard/customer-products-list" (click)="showAllProducts()"><mat-icon>list</mat-icon> TODOS LOS PRODUCTOS</a></li>
+        <a routerLink="/dashboard/customer-products-list"><mat-icon>list</mat-icon> TODOS LOS PRODUCTOS</a>
+      </li>
       <li class="list__item" *ngFor="let category of categories">
-        <a routerLink="/dashboard/customer-products-list" (click)="productsByCategory(category.productCategory)">{{category.productCategory}}</a>
+        <a (click)="searchCategory(category)"> {{ category }}</a>
       </li>
     </ul>
   </div>

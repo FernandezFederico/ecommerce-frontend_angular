@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     component: CustomerProductsListComponent
-  }, 
+  },
   {
     path: 'search/:query',
     component: ProductSearchComponent

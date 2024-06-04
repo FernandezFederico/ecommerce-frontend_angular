@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../../../core/services/products.service';
 import { Product } from '../products/interface';
 
@@ -7,14 +7,16 @@ import { Product } from '../products/interface';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   selectedProductsList!: Product[];
+
+  ngOnInit(): void {
+    this.loadSelectedProducts()
+  }
 
   constructor (
     private productService: ProductsService
-  ) {
-    this.loadSelectedProducts()
-  }
+  ) { }
 
   loadSelectedProducts() {
     this.productService.getSelectedProducts().subscribe({
