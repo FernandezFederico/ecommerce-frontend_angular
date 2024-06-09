@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   loadSelectedProducts() {
     this.productService.getSelectedProducts().subscribe({
       next: (products) => {
-        this.selectedProductsList = products        
+        this.selectedProductsList = products.slice(0, 4)
       }
     })
   }

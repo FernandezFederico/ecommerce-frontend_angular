@@ -23,7 +23,6 @@ export class ProductsService {
       })
     );
   }
-
   getCategories() {
     return this.http
       .get<ProductsCategory[]>(`${environment.apiUrl}/categories`)
@@ -81,6 +80,16 @@ export class ProductsService {
         catchError((error) => {
           this.alertService.showErrorAlert('Error al borrar las categorías');
           return of([]);
+        })
+      );
+  }
+  getProductById(id: string) {
+    return this.http
+      .get<Product>(`${environment.apiUrl}/products/${id}`)
+      .pipe(
+        catchError((error) => {
+          this.alertService.showErrorAlert('Error al cargar el producto');
+          return of(null);
         })
       );
   }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -29,6 +30,7 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
+
 @NgModule({
   declarations: [
     CarouselComponent,
@@ -43,6 +45,7 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
     NgbCarouselModule,
     MatCardModule,
     MatButtonModule,
+    RouterModule,
 
 
   ],

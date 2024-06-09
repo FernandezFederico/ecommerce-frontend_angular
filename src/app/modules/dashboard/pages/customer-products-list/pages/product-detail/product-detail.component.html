@@ -1,1 +1,16 @@
-<p>product-detail works!</p>
+<div class="product-detail__container">
+  <section class="image__container">
+    <img class="product-detail__image" src="{{productData?.productImage}}" alt="product image">
+  </section>
+  <section class="data__container">
+    <div class="product-detail__info">
+      <h3>{{productData?.productName}}</h3>
+      <span>{{productData?._id}}</span>
+      <span>{{productData?.productPrice}}</span>
+      <button class="product-detail__button" mat-raised-button color="primary">Comprar</button>
+    </div>
+    <div class="product-detail__description">
+      <p>{{productData?.productDescription}}</p>
+    </div>
+  </section>
+</div>

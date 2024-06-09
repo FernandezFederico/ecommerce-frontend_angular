@@ -1,0 +1,37 @@
+.product-detail__container {
+  display: grid;
+  height: 100%;
+  margin: 30px 0px;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+
+  .image__container {
+    background-color: cadetblue;
+
+    .product-detail__image {
+      height: 700px;
+      width: auto;
+    }
+  }
+  .data__container {
+    background-color: blue; 
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+
+    .product-detail__info {
+      background-color: aquamarine;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .product-detail__button {
+      max-width: 200px;
+      border-radius: 0;
+    }
+  }
+  .product-detail__description {
+    background-color: yellowgreen;
+  }
+}
