@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { LayoutService } from '../../core/services/layout.service';
 import { AuthService } from '../../core/services/auth.service';
@@ -10,16 +10,14 @@ import { AlertService } from '../../core/services/alert.service';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
   showSignUpForm = false;
   constructor(
     public layoutService: LayoutService,
     public authService: AuthService,
     public resetPassService: ResetPassService,
     private alertService: AlertService
-  ) {}
-
-  ngOnInit(): void {
+  ) {
     this.onGetLoggedInUser();
   }
   onIsloggedIn(): boolean {

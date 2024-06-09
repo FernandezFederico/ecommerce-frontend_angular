@@ -5,11 +5,17 @@
   <section class="data__container">
     <div class="product-detail__info">
       <h3>{{productData?.productName}}</h3>
-      <span>{{productData?._id}}</span>
-      <span>{{productData?.productPrice}}</span>
+      <span>ID#: {{productData?._id}}</span>
+      <span>$ {{productData?.productPrice}}</span>
+      <div class="product-detail__quantity">
+        <button mat-raised-button (click)="onDecrementQuantity('min')">-</button>
+        <input type="text" value="{{quantity}}">
+        <button mat-raised-button (click)="onDecrementQuantity('plus')">+</button>
+      </div>
       <button class="product-detail__button" mat-raised-button color="primary">Comprar</button>
     </div>
     <div class="product-detail__description">
+      <h4>Descripción:</h4>
       <p>{{productData?.productDescription}}</p>
     </div>
   </section>

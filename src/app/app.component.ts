@@ -12,5 +12,4 @@ export class AppComponent {
 
   constructor(private loadingService: LoadingService) { }
 
-
 }

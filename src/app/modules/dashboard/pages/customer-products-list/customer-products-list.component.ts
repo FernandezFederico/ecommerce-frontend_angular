@@ -14,13 +14,15 @@ export class CustomerProductsListComponent implements OnInit, OnDestroy {
 
   constructor(
     private productsService: ProductsService,
-  ) { }
-
-  ngOnInit(): void {
+  ) {
     this.productsService.productQuery$
     .subscribe((query) => {
       this.loadProducts(query);
     });
+   }
+
+  ngOnInit(): void {
+
 
   }
 
