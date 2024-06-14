@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LayoutService } from '../../../../core/services/layout.service';
 
 import { AuthService } from '../../../../core/services/auth.service';
+import { AlertService } from '../../../../core/services/alert.service';
+import { LoginComponent } from '../login/login.component';
+import { User } from '../../pages/users/interface/index';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -16,34 +19,36 @@ export class SignUpComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private layoutService: LayoutService,
+    private alertService: AlertService,
   ) {
     this.signUpForm = this.fb.group({
-      name: this.fb.control('', [Validators.required, Validators.minLength(3)]),
-      lastName: this.fb.control('', [Validators.required, Validators.minLength(3)]),
-      email: this.fb.control('', [Validators.required, Validators.email, Validators.minLength(6)]),
-      password: this.fb.control('', [Validators.required, Validators.minLength(6), Validators.maxLength(12),]),
+      userName: this.fb.control('', [Validators.required, Validators.minLength(3)]),
+      userLastName: this.fb.control('', [Validators.required, Validators.minLength(3)]),
+      userEmail: this.fb.control('', [Validators.required, Validators.email, Validators.minLength(6)]),
+      userPassword: this.fb.control('', [Validators.required, Validators.minLength(6), Validators.maxLength(12),]),
     });
   }
 
   ngOnInit(): void { }
 
-  onUserSignUp(data: any): void {
-    if (this.signUpForm.invalid) {
+  onUserSignUp(data: User): void {
+    console.log(data);
+    if(this.signUpForm.invalid){
       this.signUpForm.markAllAsTouched();
-      alert('Form invalid');
-    } else {
-      alert('Form valid');
+      this.alertService.showErrorAlert(' error en la carga de datos ')
+    } else{
       this.authService.signUp(data).subscribe({
-        next: (result) => {
-          alert('Cuenta creada con éxito');
+        next: () => {
+          this.alertService.showSuccessAlert('Registro exitoso');
           this.signUpForm.reset();
           this.layoutService.toggleSidenav();
         },
-        error: (error) => {
-          alert('Error en inicio de sesión');
+        error: () => {
+          this.alertService.showErrorAlert('Error en el registro');
         }
-      });
+      })
     }
+    
   }
 
 

@@ -13,6 +13,8 @@ import { AlertService } from '../../../../core/services/alert.service';
 export class LoginComponent {
   loginForm: FormGroup;
   ShowLoginPassword = false;
+  loginMail: string = '';
+  loginPassword: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -35,11 +37,14 @@ export class LoginComponent {
   }
 
   onUserLogin() {
+    this.loginMail = this.loginForm.value.email;
+    this.loginPassword = this.loginForm.value.password;
+
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
       this.alertService.showErrorAlert('Por favor, verifique los campos');
     } else {
-      this.authService.login(this.loginForm.value).subscribe({
+      this.authService.login( this.loginMail, this.loginPassword).subscribe({
         next: (response) => {
           this.loginForm.reset();
           this.layoutService.toggleSidenav();

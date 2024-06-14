@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ProductsService } from '../../../../core/services/products.service';
 import { Product } from '../products/interface';
 import { Subject, takeUntil } from 'rxjs';
@@ -8,22 +8,14 @@ import { Subject, takeUntil } from 'rxjs';
   templateUrl: './customer-products-list.component.html',
   styleUrls: ['./customer-products-list.component.scss'],
 })
-export class CustomerProductsListComponent implements OnInit, OnDestroy {
+export class CustomerProductsListComponent implements OnDestroy {
   productsList: Product[] = [];
   private destroy$ = new Subject<void>();
 
-  constructor(
-    private productsService: ProductsService,
-  ) {
-    this.productsService.productQuery$
-    .subscribe((query) => {
+  constructor(private productsService: ProductsService) {
+    this.productsService.productQuery$.subscribe((query) => {
       this.loadProducts(query);
     });
-   }
-
-  ngOnInit(): void {
-
-
   }
 
   loadProducts(query: string) {

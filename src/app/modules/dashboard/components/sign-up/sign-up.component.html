@@ -9,23 +9,23 @@
 			<form  class="sign-up__form" [formGroup]="signUpForm">
 				<mat-form-field class="sign-up__field">
 					<mat-label>Nombre</mat-label>
-					<input formControlName="name" matInput type="text" />
-					<mat-error>{{ signUpForm.get('name')?.errors | validationErrors }}</mat-error>
+					<input formControlName="userName" matInput type="text" />
+					<mat-error>{{ signUpForm.get('userName')?.errors | validationErrors }}</mat-error>
 				</mat-form-field>
 				<mat-form-field class="sign-up__field">
 					<mat-label>Apellido</mat-label>
-					<input formControlName="lastName"  matInput type="text" />
-					<mat-error>{{ signUpForm.get('lastName')?.errors | validationErrors }}</mat-error>
+					<input formControlName="userLastName"  matInput type="text" />
+					<mat-error>{{ signUpForm.get('userLastName')?.errors | validationErrors }}</mat-error>
 				</mat-form-field>
         <mat-form-field class="sign-up__field">
 					<mat-label>Email</mat-label>
-					<input formControlName="email" form  matInput type="email" />
-					<mat-error>{{ signUpForm.get('email')?.errors | validationErrors }}</mat-error>
+					<input formControlName="userEmail" form  matInput type="text" />
+					<mat-error>{{ signUpForm.get('userEmail')?.errors | validationErrors }}</mat-error>
 				</mat-form-field>
 				<mat-form-field class="sign-up__field">
 					<mat-label>Contraseña</mat-label>
-					<input formControlName="password" matInput [type]="ShowLoginPassword ? 'text' : 'password'" />
-					<mat-error>{{ signUpForm.get('password')?.errors | validationErrors }}</mat-error>
+					<input formControlName="userPassword" matInput [type]="ShowLoginPassword ? 'text' : 'password'" />
+					<mat-error>{{ signUpForm.get('userPassword')?.errors | validationErrors }}</mat-error>
 					<button type="button" mat-icon-button matSuffix (click)="ShowLoginPassword = !ShowLoginPassword">
 						<mat-icon class="login__icon">visibility</mat-icon>
 					</button>

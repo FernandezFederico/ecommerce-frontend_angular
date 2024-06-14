@@ -16,7 +16,7 @@ export class ProductDetailComponent {
   constructor(
     private activeRoute: ActivatedRoute,
     private productsService: ProductsService,
-    private alertService: AlertService,
+    private alertService: AlertService
   ) {
     this.getProductData();
   }
@@ -28,28 +28,26 @@ export class ProductDetailComponent {
         if (this.productId) {
           this.onGetProductById(this.productId);
         }
-      }
+      },
     });
   }
   onGetProductById(data: string) {
     this.productsService.getProductById(data).subscribe({
       next: (result) => {
         this.productData = result;
-        console.log(this.productData);
       },
       error: (error) => {
         console.log(error);
         this.alertService.showErrorAlert('Error al cargar el producto');
-      }
+      },
     });
   }
 
-  onDecrementQuantity(value: string){
-    if ( this.quantity < 10 && value === 'plus') {
+  onDecrementQuantity(value: string) {
+    if (this.quantity < 10 && value === 'plus') {
       this.quantity++;
-    } else if ( this.quantity > 1 && value === 'min') {
+    } else if (this.quantity > 1 && value === 'min') {
       this.quantity--;
     }
-
   }
 }

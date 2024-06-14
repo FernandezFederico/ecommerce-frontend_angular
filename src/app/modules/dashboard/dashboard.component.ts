@@ -20,7 +20,7 @@ export class DashboardComponent {
   ) {
     this.onGetLoggedInUser();
   }
-  onIsloggedIn(): boolean {
+  onIsLoggedIn(): boolean {
     return this.authService.isLoggedIn();
   }
   onUserLogout(): void {

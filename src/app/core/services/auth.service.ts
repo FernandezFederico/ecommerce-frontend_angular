@@ -2,10 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 import { User } from '../../modules/dashboard/pages/users/interface';
-import { UserLoginData } from '../../modules/dashboard/pages/users/interface';
 import { AlertService } from './alert.service';
 
 @Injectable({
@@ -18,23 +17,12 @@ export class AuthService {
     private router: Router,
     private alertService: AlertService
   ) {}
-  generateRandomString(length: number) {
-    const characters =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let result = '';
-    const charactersLength = characters.length;
-    for (let i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
-  }
   signUp(newUser: User) {
-    return this.http.post<User>(`${environment.apiUrl}/users`, {
-      ...newUser,
-      role: 'Cust',
-      created_at: new Date(),
-      token: this.generateRandomString(15),
-    });
+    return this.http
+      .post<User[]>(`${environment.apiUrl}/users`, {
+        newUser,
+        userRole: 'CUST',
+      })
   }
 
   private setAuthLoginUser(user: User) {
@@ -42,19 +30,23 @@ export class AuthService {
     localStorage.setItem('userData', JSON.stringify(user));
   }
 
-  login(data: UserLoginData) {
+  login(userEmail: string, userPassword: string): Observable<User> {
     return this.http
-      .get<User[]>(
-        `${environment.apiUrl}/users?email=${data.email}&password=${data.password}`
+      .post<User>(
+        `${environment.apiUrl}/users/login`,
+        { userEmail, userPassword }
       )
       .pipe(
-        tap((response) => {
-          if (!!response[0]) {
-            this.setAuthLoginUser(response[0]);
-          } else {
+        tap(
+          (user) => {
+            this.setAuthLoginUser(user);
+            this.router.navigate(['dashboard']);
+          },
+          (error) => {
+            console.error('Error en el login:', error);
             this.alertService.showErrorAlert('Credenciales incorrectas');
           }
-        })
+        )
       );
   }
 
