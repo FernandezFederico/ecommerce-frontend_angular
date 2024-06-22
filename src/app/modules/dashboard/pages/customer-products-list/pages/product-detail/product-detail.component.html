@@ -12,7 +12,8 @@
         <input type="text" value="{{quantity}}">
         <button mat-raised-button (click)="onHandleQuantity('plus')">+</button>
       </div>
-      <button class="product-detail__button" (click)="addToCart()" mat-raised-button color="primary">Agregar a Carrito</button>
+      <button class="product-detail__button" *ngIf="!removeCart" (click)="addToCart()" mat-raised-button color="primary">Agregar a Carrito</button>
+      <button class="product-detail__button" *ngIf="removeCart" (click)="removeToCart(productData!._id)" mat-raised-button color="warn">Quitar del Carrito</button>
     </div>
     <div class="product-detail__description">
       <h4>Descripción:</h4>

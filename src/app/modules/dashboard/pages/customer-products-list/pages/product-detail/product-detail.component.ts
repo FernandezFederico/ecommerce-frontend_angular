@@ -13,6 +13,9 @@ export class ProductDetailComponent {
   productId!: string | null;
   productData!: null | Product;
   quantity: number = 1;
+  cartData = localStorage.getItem('cartData');
+  cartProducts: Product[] = [];
+  removeCart: boolean = false
   constructor(
     private activeRoute: ActivatedRoute,
     private productsService: ProductsService,
@@ -30,6 +33,15 @@ export class ProductDetailComponent {
         }
       },
     });
+    if(this.productId && this.cartData){
+      this.cartProducts = JSON.parse(this.cartData);
+      let index = this.cartProducts.filter((product: Product) => this.productId === product._id.toString());
+      if(!index.length){
+        this.removeCart = false;
+    }else{
+      this.removeCart = true;
+    }
+    }
   }
   onGetProductById(data: string) {
     this.productsService.getProductById(data).subscribe({
@@ -58,9 +70,16 @@ export class ProductDetailComponent {
     this.productData.quantity = this.quantity;
     if(localStorage.getItem('userData')){
       this.productsService.setProductData(this.productData)
+      this.removeCart = true;
     }
     
   }
+  }
+
+  removeToCart(productDataId: string) {
+    this.productsService.removeItemFromCart(productDataId)
+    this.removeCart = false;
+    
   }
 
 }

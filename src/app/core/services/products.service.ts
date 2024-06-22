@@ -149,4 +149,17 @@ export class ProductsService {
     }
     this.cartQuantity.emit(this.cartProduct);
   }
+
+  removeItemFromCart(itemId: string){
+    this.cartData = localStorage.getItem('cartData');
+    if(this.cartData){
+      let items: Product[] = JSON.parse(this.cartData);
+      let index = items.filter((product: Product) => itemId !== product._id);
+      localStorage.setItem('cartData' , JSON.stringify(index));
+      this.cartQuantity.emit(index);
+    }
+  }
+
+
+
 }
