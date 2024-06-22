@@ -15,7 +15,7 @@ export class ProductDetailComponent {
   quantity: number = 1;
   cartData = localStorage.getItem('cartData');
   cartProducts: Product[] = [];
-  removeCart: boolean = false
+  showRemoveCartButton: boolean = false
   constructor(
     private activeRoute: ActivatedRoute,
     private productsService: ProductsService,
@@ -37,9 +37,9 @@ export class ProductDetailComponent {
       this.cartProducts = JSON.parse(this.cartData);
       let index = this.cartProducts.filter((product: Product) => this.productId === product._id.toString());
       if(!index.length){
-        this.removeCart = false;
+        this.showRemoveCartButton = false;
     }else{
-      this.removeCart = true;
+      this.showRemoveCartButton = true;
     }
     }
   }
@@ -68,9 +68,12 @@ export class ProductDetailComponent {
     this.alertService.showErrorAlert('Error al cagar el producto!')
   else{
     this.productData.quantity = this.quantity;
-    if(localStorage.getItem('userData')){
+    if(!localStorage.getItem('userData')){
       this.productsService.setProductData(this.productData)
-      this.removeCart = true;
+      this.showRemoveCartButton = true;
+    }else{
+      console.log('user is logged');
+      
     }
     
   }
@@ -78,7 +81,7 @@ export class ProductDetailComponent {
 
   removeToCart(productDataId: string) {
     this.productsService.removeItemFromCart(productDataId)
-    this.removeCart = false;
+    this.showRemoveCartButton = false;
     
   }
 

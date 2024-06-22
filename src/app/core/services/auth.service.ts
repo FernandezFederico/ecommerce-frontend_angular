@@ -58,7 +58,6 @@ export class AuthService {
   }
   logout() {
     localStorage.removeItem('userData');
-    localStorage.removeItem('cartData');
     this.authLoginUser = null;
     this.router.navigate(['dashboard', 'home']);
   }
