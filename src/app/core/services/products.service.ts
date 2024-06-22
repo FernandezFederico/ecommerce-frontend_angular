@@ -138,28 +138,4 @@ export class ProductsService {
     this.productQuerySubject.next('');
   }
 
-  setProductData(data: Product) {
-    this.cartData = localStorage.getItem('cartData');
-    if(!this.cartData){
-      localStorage.setItem('cartData', JSON.stringify([data]))
-    }else{
-      this.cartProduct = JSON.parse(this.cartData)
-      this.cartProduct.push(data);
-      localStorage.setItem('cartData', JSON.stringify(this.cartProduct))
-    }
-    this.cartQuantity.emit(this.cartProduct);
-  }
-
-  removeItemFromCart(itemId: string){
-    this.cartData = localStorage.getItem('cartData');
-    if(this.cartData){
-      let items: Product[] = JSON.parse(this.cartData);
-      let index = items.filter((product: Product) => itemId !== product._id);
-      localStorage.setItem('cartData' , JSON.stringify(index));
-      this.cartQuantity.emit(index);
-    }
-  }
-
-
-
 }

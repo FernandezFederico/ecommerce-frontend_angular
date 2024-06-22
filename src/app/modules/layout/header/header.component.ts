@@ -4,6 +4,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { ProductsService } from '../../../core/services/products.service';
 import { Product } from '../../dashboard/pages/products/interface';
+import { CartService } from '../../../core/services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -14,39 +15,32 @@ export class HeaderComponent {
   productsList: Product[] = [];
   categories: string[] = [];
   cartItems = 0;
-  cartQuantity: string | number | null = null;
   constructor(
     private layoutService: LayoutService,
     public authService: AuthService,
     public route: Router,
-    public productsService: ProductsService
+    public productsService: ProductsService,
+    private cartService: CartService
   ) {
     this.loadProducts();
-    this.cartQuantity = localStorage.getItem('cartData');
-    if(this.cartQuantity){
-      this.cartItems = JSON.parse(this.cartQuantity).length;
-    }
-    this.productsService.cartQuantity.subscribe({
-      next: (data: Product[]) => {
-        this.cartItems = data.length;
-      },
-    })
-
-}
+    this.cartItems = this.cartService.getCartItemCount();
+    this.cartService.cart$.subscribe((cart) => {
+      this.cartItems = cart.length;
+    });
+  }
 
   loadProducts() {
     this.productsService.getProducts().subscribe({
       next: (products) => {
         this.productsList = products;
         this.extractCategories(products);
-
       },
     });
   }
 
-  extractCategories(products: Product[]) : void {
+  extractCategories(products: Product[]): void {
     const categorySet = new Set<string>();
-    products.forEach(product => {
+    products.forEach((product) => {
       if (product.productCategory) {
         categorySet.add(product.productCategory);
       }
@@ -78,5 +72,4 @@ export class HeaderComponent {
   showAllProducts(): void {
     this.productsService.clearSearchParam();
   }
-
 }

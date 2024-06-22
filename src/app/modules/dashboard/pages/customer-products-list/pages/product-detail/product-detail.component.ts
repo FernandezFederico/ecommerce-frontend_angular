@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../../../../../../core/services/products.service';
 import { Product } from '../../../products/interface';
 import { AlertService } from '../../../../../../core/services/alert.service';
+import { CartService } from '../../../../../../core/services/cart.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -12,16 +13,15 @@ import { AlertService } from '../../../../../../core/services/alert.service';
 export class ProductDetailComponent {
   productId!: string | null;
   productData!: null | Product;
-  quantity: number = 1;
-  cartData = localStorage.getItem('cartData');
-  cartProducts: Product[] = [];
-  showRemoveCartButton: boolean = false
+  quantityOfProducts: number = 1;
+  showRemoveCartButton: boolean = false;
   constructor(
     private activeRoute: ActivatedRoute,
     private productsService: ProductsService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private cartService: CartService
   ) {
-    this.getProductData();    
+    this.getProductData();
   }
 
   getProductData() {
@@ -30,18 +30,10 @@ export class ProductDetailComponent {
         this.productId = params.get('id');
         if (this.productId) {
           this.onGetProductById(this.productId);
+          this.checkProductInCart(this.productId);
         }
       },
     });
-    if(this.productId && this.cartData){
-      this.cartProducts = JSON.parse(this.cartData);
-      let index = this.cartProducts.filter((product: Product) => this.productId === product._id.toString());
-      if(!index.length){
-        this.showRemoveCartButton = false;
-    }else{
-      this.showRemoveCartButton = true;
-    }
-    }
   }
   onGetProductById(data: string) {
     this.productsService.getProductById(data).subscribe({
@@ -55,34 +47,39 @@ export class ProductDetailComponent {
     });
   }
 
+  checkProductInCart(productId: string) {
+    let cartProducts = this.cartService.getCart();
+    this.showRemoveCartButton = cartProducts.some(
+      (product) => product._id === productId
+    );
+  }
+
   onHandleQuantity(value: string) {
-    if (this.quantity < 10 && value === 'plus') {
-      this.quantity++;
-    } else if (this.quantity > 1 && value === 'min') {
-      this.quantity--;
+    if (this.quantityOfProducts < 10 && value === 'plus') {
+      this.quantityOfProducts++;
+    } else if (this.quantityOfProducts > 1 && value === 'min') {
+      this.quantityOfProducts--;
     }
   }
 
-  addToCart(){
-    if(!this.productData)
-    this.alertService.showErrorAlert('Error al cagar el producto!')
-  else{
-    this.productData.quantity = this.quantity;
-    if(!localStorage.getItem('userData')){
-      this.productsService.setProductData(this.productData)
-      this.showRemoveCartButton = true;
-    }else{
-      console.log('user is logged');
-      
+  onAddToCart() {
+    if (!this.productData)
+      this.alertService.showErrorAlert('Error al cagar el producto!');
+    else {
+      this.productData.quantity = this.quantityOfProducts;
+      if (!localStorage.getItem('userData')) {
+        this.cartService.addToCard(this.productData);
+        this.showRemoveCartButton = true;
+      } else {
+        console.log('user is logged');
+      }
     }
-    
-  }
   }
 
-  removeToCart(productDataId: string) {
-    this.productsService.removeItemFromCart(productDataId)
-    this.showRemoveCartButton = false;
-    
+  onRemoveFromCart(productDataId: string) {
+    if (this.productData) {
+      this.cartService.removeFromCart(this.productData);
+      this.showRemoveCartButton = false;
+    }
   }
-
 }
