@@ -18,7 +18,7 @@ export class ProductDetailComponent {
     private productsService: ProductsService,
     private alertService: AlertService
   ) {
-    this.getProductData();
+    this.getProductData();    
   }
 
   getProductData() {
@@ -43,11 +43,24 @@ export class ProductDetailComponent {
     });
   }
 
-  onDecrementQuantity(value: string) {
+  onHandleQuantity(value: string) {
     if (this.quantity < 10 && value === 'plus') {
       this.quantity++;
     } else if (this.quantity > 1 && value === 'min') {
       this.quantity--;
     }
   }
+
+  addToCart(){
+    if(!this.productData)
+    this.alertService.showErrorAlert('Error al cagar el producto!')
+  else{
+    this.productData.quantity = this.quantity;
+    if(localStorage.getItem('userData')){
+      this.productsService.setProductData(this.productData)
+    }
+    
+  }
+  }
+
 }

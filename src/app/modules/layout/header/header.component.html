@@ -17,7 +17,7 @@
     </div>
     <section class="header__actions">
       <button mat-icon-button class="header__button" *ngIf="onIsLoggedIn()" (click)="onToggleCartSidenav()">
-        <mat-icon>shopping_cart</mat-icon>
+        <mat-icon matBadge="{{cartItems}}" aria-hidden="false">shopping_cart</mat-icon>
       </button>
       <button mat-icon-button class="header__button" (click)="onToggleUserSidenav()">
         <mat-icon>person</mat-icon>

@@ -6,6 +6,7 @@ export interface Product {
   productPrice: number;
   createdAt: Date | string;
   productStock: number;
+  quantity?: number;
   productDescription: string;
 }
 

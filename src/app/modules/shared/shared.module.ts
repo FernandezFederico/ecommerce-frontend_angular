@@ -19,6 +19,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatBadgeModule} from '@angular/material/badge';
 
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
@@ -71,7 +72,8 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    MatProgressSpinnerModule,    
+    MatProgressSpinnerModule,
+    MatBadgeModule,
   ]
 })
 export class SharedModule { }

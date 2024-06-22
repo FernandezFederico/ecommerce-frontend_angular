@@ -8,11 +8,11 @@
       <span>ID#: {{productData?._id}}</span>
       <span>$ {{productData?.productPrice}}</span>
       <div class="product-detail__quantity">
-        <button mat-raised-button (click)="onDecrementQuantity('min')">-</button>
+        <button mat-raised-button (click)="onHandleQuantity('min')">-</button>
         <input type="text" value="{{quantity}}">
-        <button mat-raised-button (click)="onDecrementQuantity('plus')">+</button>
+        <button mat-raised-button (click)="onHandleQuantity('plus')">+</button>
       </div>
-      <button class="product-detail__button" mat-raised-button color="primary">Comprar</button>
+      <button class="product-detail__button" (click)="addToCart()" mat-raised-button color="primary">Agregar a Carrito</button>
     </div>
     <div class="product-detail__description">
       <h4>Descripción:</h4>

@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import {  HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { EventEmitter, Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, catchError, mergeMap, of } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 import { Product, ProductsCategory } from '../../modules/dashboard/pages/products/interface/index';
@@ -11,7 +11,9 @@ import { AlertService } from './alert.service';
 export class ProductsService {
   private productQuerySubject = new BehaviorSubject<string>('');
   productQuery$ = this.productQuerySubject.asObservable();
-  
+  cartData: string | null = null;
+  cartProduct: Product[] = [];
+  cartQuantity = new EventEmitter<Product[] | []>();
 
   constructor(private http: HttpClient, private alertService: AlertService) {}
 
@@ -84,14 +86,12 @@ export class ProductsService {
       );
   }
   getProductById(id: string) {
-    return this.http
-      .get<Product>(`${environment.apiUrl}/products/${id}`)
-      .pipe(
-        catchError((error) => {
-          this.alertService.showErrorAlert('Error al cargar el producto');
-          return of(null);
-        })
-      );
+    return this.http.get<Product>(`${environment.apiUrl}/products/${id}`).pipe(
+      catchError((error) => {
+        this.alertService.showErrorAlert('Error al cargar el producto');
+        return of(null);
+      })
+    );
   }
 
   updateProduct(productId: string | number, updatedProduct: Product) {
@@ -120,12 +120,14 @@ export class ProductsService {
   }
 
   searchProducts(query: string) {
-    return this.http.get<Product[]>(`${environment.apiUrl}/products/?q=${query}`).pipe(
-      catchError((error) => {
-        this.alertService.showErrorAlert('Error al buscar los productos');
-        return of([]);
-      })
-    );
+    return this.http
+      .get<Product[]>(`${environment.apiUrl}/products/?q=${query}`)
+      .pipe(
+        catchError((error) => {
+          this.alertService.showErrorAlert('Error al buscar los productos');
+          return of([]);
+        })
+      );
   }
 
   getSearchParam(query: string) {
@@ -136,4 +138,15 @@ export class ProductsService {
     this.productQuerySubject.next('');
   }
 
+  setProductData(data: Product) {
+    this.cartData = localStorage.getItem('cartData');
+    if(!this.cartData){
+      localStorage.setItem('cartData', JSON.stringify([data]))
+    }else{
+      this.cartProduct = JSON.parse(this.cartData)
+      this.cartProduct.push(data);
+      localStorage.setItem('cartData', JSON.stringify(this.cartProduct))
+    }
+    this.cartQuantity.emit(this.cartProduct);
+  }
 }

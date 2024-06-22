@@ -18,11 +18,10 @@ export class AuthService {
     private alertService: AlertService
   ) {}
   signUp(newUser: User) {
-    return this.http
-      .post<User[]>(`${environment.apiUrl}/users`, {
-        newUser,
-        userRole: 'CUST',
-      })
+    return this.http.post<User[]>(`${environment.apiUrl}/users`, {
+      newUser,
+      userRole: 'CUST',
+    });
   }
 
   private setAuthLoginUser(user: User) {
@@ -32,21 +31,21 @@ export class AuthService {
 
   login(userEmail: string, userPassword: string): Observable<User> {
     return this.http
-      .post<User>(
-        `${environment.apiUrl}/users/login`,
-        { userEmail, userPassword }
-      )
+      .post<User>(`${environment.apiUrl}/users/login`, {
+        userEmail,
+        userPassword,
+      })
       .pipe(
-        tap(
-          (user) => {
+        tap({
+          next: (user) => {
             this.setAuthLoginUser(user);
-            this.router.navigate(['dashboard']);
+            this.router.navigate(['dashboard', 'home']);
           },
-          (error) => {
+          error: (error) => {
             console.error('Error en el login:', error);
             this.alertService.showErrorAlert('Credenciales incorrectas');
-          }
-        )
+          },
+        })
       );
   }
 
@@ -59,6 +58,7 @@ export class AuthService {
   }
   logout() {
     localStorage.removeItem('userData');
+    localStorage.removeItem('cartData');
     this.authLoginUser = null;
     this.router.navigate(['dashboard', 'home']);
   }

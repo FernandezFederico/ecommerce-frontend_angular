@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { LayoutService } from '../../../core/services/layout.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
@@ -10,18 +10,29 @@ import { Product } from '../../dashboard/pages/products/interface';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent {
   productsList: Product[] = [];
   categories: string[] = [];
+  cartItems = 0;
+  cartQuantity: string | number | null = null;
   constructor(
     private layoutService: LayoutService,
     public authService: AuthService,
     public route: Router,
     public productsService: ProductsService
-  ) {}
-  ngOnInit(): void {
-    this.loadProducts()
-  }
+  ) {
+    this.loadProducts();
+    this.cartQuantity = localStorage.getItem('cartData');
+    if(this.cartQuantity){
+      this.cartItems = JSON.parse(this.cartQuantity).length;
+    }
+    this.productsService.cartQuantity.subscribe({
+      next: (data: Product[]) => {
+        this.cartItems = data.length;
+      },
+    })
+
+}
 
   loadProducts() {
     this.productsService.getProducts().subscribe({
