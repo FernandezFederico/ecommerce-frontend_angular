@@ -4,6 +4,8 @@ import { ProductsService } from '../../../../../../core/services/products.servic
 import { Product } from '../../../products/interface';
 import { AlertService } from '../../../../../../core/services/alert.service';
 import { CartService } from '../../../../../../core/services/cart.service';
+import { AuthService } from '../../../../../../core/services/auth.service';
+import { Cart } from './interface';
 
 @Component({
   selector: 'app-product-detail',
@@ -12,6 +14,7 @@ import { CartService } from '../../../../../../core/services/cart.service';
 })
 export class ProductDetailComponent {
   productId!: string | null;
+  userId!: string | undefined;
   productData!: null | Product;
   quantityOfProducts: number = 1;
   showRemoveCartButton: boolean = false;
@@ -19,7 +22,8 @@ export class ProductDetailComponent {
     private activeRoute: ActivatedRoute,
     private productsService: ProductsService,
     private alertService: AlertService,
-    private cartService: CartService
+    private cartService: CartService,
+    private authService: AuthService
   ) {
     this.getProductData();
   }
@@ -71,7 +75,23 @@ export class ProductDetailComponent {
         this.cartService.addToCard(this.productData);
         this.showRemoveCartButton = true;
       } else {
-        console.log('user is logged');
+        const userData = this.authService.authLoginUser;
+        if (userData) {
+          let cartData: Cart = {
+            Product: this.productData,
+            userId: userData._id,
+          };
+          this.cartService.createCartDataInDb(cartData).subscribe({
+            next: (result) => {
+              this.cartService.loadCartFromDb(userData._id);
+              this.showRemoveCartButton = true;
+            },
+            error: (error) => {
+              this.alertService.showErrorAlert('Error al cargar los datos!');
+            },
+          });
+          this.showRemoveCartButton = true;
+        }
       }
     }
   }

@@ -53,7 +53,7 @@ export class AuthService {
     return localStorage.getItem('userData') !== null;
   }
 
-  getLoggedInUser(): Array<User> | void {
+  getLoggedInUser(): User | void {
     this.authLoginUser = JSON.parse(localStorage.getItem('userData') || '{}');
   }
   logout() {

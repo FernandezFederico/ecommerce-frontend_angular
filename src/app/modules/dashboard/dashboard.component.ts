@@ -4,6 +4,7 @@ import { LayoutService } from '../../core/services/layout.service';
 import { AuthService } from '../../core/services/auth.service';
 import { ResetPassService } from '../../core/services/reset-pass.service';
 import { AlertService } from '../../core/services/alert.service';
+import { CartService } from '../../core/services/cart.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +17,8 @@ export class DashboardComponent {
     public layoutService: LayoutService,
     public authService: AuthService,
     public resetPassService: ResetPassService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private cartService: CartService,
   ) {
     this.onGetLoggedInUser();
   }
@@ -27,6 +29,7 @@ export class DashboardComponent {
     this.authService.logout();
     this.layoutService.toggleSidenav();
     this.alertService.showSuccessAlert('Sesión cerrada');
+    this.cartService.resetCart();
   }
 
   onToggleSidenav(): void {
