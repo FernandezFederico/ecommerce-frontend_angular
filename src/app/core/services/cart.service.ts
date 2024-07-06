@@ -26,7 +26,6 @@ export class CartService {
   setCartItems(cart: Product[]) {
     this.cart = cart;
     this.cartSubject.next(this.cart);
-    console.log(this.cart, 'trae producto de cart');
     
   }
   addToCard(product: Product) {
@@ -35,12 +34,15 @@ export class CartService {
     this.cartSubject.next(this.cart);
   }
 
-  removeFromCart(product: Product) {
+  removeFromLocalCart(product: Product) {
     let index = this.cart.findIndex((item) => item._id === product._id);
     if (index !== -1) {
       this.cart.splice(index, 1);
       localStorage.setItem('cartData', JSON.stringify(this.cart));
       this.cartSubject.next(this.cart);
+    }
+    if(this.getCartItemCount() <= 0) {
+      this.clearCart();
     }
   }
   clearCart() {
@@ -68,22 +70,23 @@ export class CartService {
       .get<Cart[]>(`${environment.apiUrl}/carts/user/${userId}`)
       .pipe(
         catchError((error) => {
-          this.alertService.showErrorAlert('Error al cargar los productos 11111');
+          this.alertService.showErrorAlert('Error al cargar los productos');
           return of([]);
         })
       );
   }
-  loadCartFromDb(userId: string) {
+  getCartProductsFromDb(userId: string) {
     this.getCartListByUserId(userId).subscribe({
       next: (cartItem: Cart[]) => {
         this.setCartItems(cartItem.map((item) => item.Product));        
       },
       error: (error) => {
-        this.alertService.showErrorAlert('Error al cargar los datos! 222222');
+        this.alertService.showErrorAlert('Error al cargar los datos!');
       },
     });        
   }
-    
 
-
+  removeProductFromCart(userId: string, productId: string) {
+    return this.http.delete<Cart>(`${environment.apiUrl}/carts/user/${userId}/product/${productId}`);
+  }
 }

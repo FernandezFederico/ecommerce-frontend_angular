@@ -27,6 +27,11 @@ export class HeaderComponent {
     this.cartService.cart$.subscribe((cart) => {
       this.cartItems = cart.length;
     });
+    let loggedUser = localStorage.getItem('userData');
+    if (loggedUser) {
+      let userId = JSON.parse(loggedUser)._id;
+      this.cartService.getCartProductsFromDb(userId);
+    }
   }
 
   loadProducts() {

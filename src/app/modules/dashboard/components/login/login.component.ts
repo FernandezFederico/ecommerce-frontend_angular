@@ -63,12 +63,12 @@ export class LoginComponent {
   }
 
   saveLocalCartInDb() {
-    let data = localStorage.getItem('cartData');
+    let cartData = localStorage.getItem('cartData');
     let loggedUser = localStorage.getItem('userData');
     if (loggedUser) {
       let userId = JSON.parse(loggedUser)._id;
-      if (data) {
-        let cartDataList: Product[] = JSON.parse(data);
+      if (cartData) {
+        let cartDataList: Product[] = JSON.parse(cartData);
         cartDataList.forEach((product: Product, index: number) => {
           let cartData: Cart = {
             userId: userId,
@@ -78,7 +78,7 @@ export class LoginComponent {
             next: (result) => {
               if (cartDataList.length === index + 1) {
                 localStorage.removeItem('cartData');
-                this.cartService.loadCartFromDb(userId);
+                this.cartService.getCartProductsFromDb(userId);
               }
             },
             error: (error) => {
@@ -87,7 +87,7 @@ export class LoginComponent {
           });
         });
       } else {
-        this.cartService.loadCartFromDb(userId);
+        this.cartService.getCartProductsFromDb(userId);
       }
     }
   }

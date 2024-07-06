@@ -35,6 +35,16 @@ export class ProductDetailComponent {
         if (this.productId) {
           this.onGetProductById(this.productId);
           this.checkProductInCart(this.productId);
+          let loggedUser = localStorage.getItem('userData');
+          if (loggedUser) {
+            let userId = JSON.parse(loggedUser)._id;
+            this.cartService.getCartProductsFromDb(userId);
+            this.cartService.cart$.subscribe((cart) => {
+              this.showRemoveCartButton = cart.some(
+                (product) => product._id === this.productId
+              );
+            });
+          }
         }
       },
     });
@@ -83,7 +93,7 @@ export class ProductDetailComponent {
           };
           this.cartService.createCartDataInDb(cartData).subscribe({
             next: (result) => {
-              this.cartService.loadCartFromDb(userData._id);
+              this.cartService.getCartProductsFromDb(userData._id);
               this.showRemoveCartButton = true;
             },
             error: (error) => {
@@ -97,9 +107,26 @@ export class ProductDetailComponent {
   }
 
   onRemoveFromCart(productDataId: string) {
-    if (this.productData) {
-      this.cartService.removeFromCart(this.productData);
-      this.showRemoveCartButton = false;
+    if (!localStorage.getItem('userData')) {
+      if (this.productData) {
+        this.cartService.removeFromLocalCart(this.productData);
+      }
+    } else {
+      this.userId = this.authService.authLoginUser?._id;
+
+      if (this.userId && this.productId) {
+        this.cartService
+          .removeProductFromCart(this.userId, this.productId)
+          .subscribe({
+            next: (result) => {
+              this.cartService.getCartProductsFromDb(this.userId!);
+            },
+            error: (error) => {
+              this.alertService.showErrorAlert('Error al cargar los datos!');
+            },
+          });
+      }
     }
+    this.showRemoveCartButton = false;
   }
 }

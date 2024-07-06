@@ -17,7 +17,8 @@
     </div>
     <section class="header__actions">
       <button mat-icon-button class="header__button" (click)="onToggleCartSidenav()">
-        <mat-icon matBadge="{{cartItems}}" aria-hidden="false">shopping_cart</mat-icon>
+        <mat-icon *ngIf="!cartItems" aria-hidden="false">shopping_cart</mat-icon> 
+        <mat-icon *ngIf="cartItems" matBadge="{{cartItems}}" aria-hidden="false">shopping_cart</mat-icon>
       </button>
       <button mat-icon-button class="header__button" (click)="onToggleUserSidenav()">
         <mat-icon>person</mat-icon>
