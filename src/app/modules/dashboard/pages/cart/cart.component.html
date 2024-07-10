@@ -1,0 +1,35 @@
+<div class="cart__container">
+  <section class="product__container">
+    <h3>Carrito</h3>
+    <section *ngFor="let product of productData"  class="product">
+      <section class="products__image">
+        <img class="product-detail__image" src="{{product.productImage}}" alt="product image">
+      </section>
+      <section class="product__data">
+        <div class="product__title">
+          <h4>{{product.productName}}</h4>
+        </div>
+        <span>ID#: {{product._id}}</span>
+        <div class="product__quantity">
+          <button mat-raised-button>-</button>
+          <input type="text" value="{{product.quantity}}">
+          <button mat-raised-button>+</button>
+        </div>
+        <button class="product-remove__button" mat-raised-button color="warn">Quitar del Carrito</button>
+      </section>
+      <section class="product__price">
+        <span>$ {{product.productPrice}}</span>
+      </section>
+    </section>
+  </section>
+  <section class="resume__container">
+    <div class="resume__totals">
+      <h3>Resumen</h3>
+      <span>Total: $ {{subTotalPrice}}</span>
+      <span>Envío: $ {{delivery}}</span>
+      <span>Descuento: $ - {{discount}}</span>
+      <h4>Total a pagar: $ {{totalPrice}}</h4>
+    </div>
+    <button class="resume__button" mat-raised-button color="primary">Pagar</button>
+  </section>
+</div>

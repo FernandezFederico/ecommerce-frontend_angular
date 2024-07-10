@@ -26,7 +26,6 @@ export class CartService {
   setCartItems(cart: Product[]) {
     this.cart = cart;
     this.cartSubject.next(this.cart);
-    
   }
   addToCard(product: Product) {
     this.cart.push(product);
@@ -41,7 +40,7 @@ export class CartService {
       localStorage.setItem('cartData', JSON.stringify(this.cart));
       this.cartSubject.next(this.cart);
     }
-    if(this.getCartItemCount() <= 0) {
+    if (this.getCartItemCount() <= 0) {
       this.clearCart();
     }
   }
@@ -78,15 +77,16 @@ export class CartService {
   getCartProductsFromDb(userId: string) {
     this.getCartListByUserId(userId).subscribe({
       next: (cartItem: Cart[]) => {
-        this.setCartItems(cartItem.map((item) => item.Product));        
+        this.setCartItems(cartItem.map((item) => item.Product));
       },
       error: (error) => {
         this.alertService.showErrorAlert('Error al cargar los datos!');
       },
-    });        
+    });
   }
-
   removeProductFromCart(userId: string, productId: string) {
-    return this.http.delete<Cart>(`${environment.apiUrl}/carts/user/${userId}/product/${productId}`);
+    return this.http.delete<Cart>(
+      `${environment.apiUrl}/carts/user/${userId}/product/${productId}`
+    );
   }
 }

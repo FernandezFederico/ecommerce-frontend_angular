@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { custGuard } from '../../core/guards/cust.guard';
 
-
 const routes: Routes = [
   {
     path: 'home',
@@ -24,9 +23,15 @@ const routes: Routes = [
   {
     path: 'customer-products-list',
     loadChildren: () =>
-      import('./pages/customer-products-list/customer-products-list.module').then((m) => m.CustomerProductsListModule),
+      import(
+        './pages/customer-products-list/customer-products-list.module'
+      ).then((m) => m.CustomerProductsListModule),
   },
-
+  {
+    path: 'cart',
+    loadChildren: () =>
+      import('./pages/cart/cart.module').then((m) => m.CartModule),
+  },
   {
     path: '**',
     redirectTo: 'home',
