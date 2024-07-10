@@ -23,14 +23,18 @@ const routes: Routes = [
   {
     path: 'customer-products-list',
     loadChildren: () =>
-      import(
-        './pages/customer-products-list/customer-products-list.module'
-      ).then((m) => m.CustomerProductsListModule),
+      import('./pages/customer-products-list/customer-products-list.module')
+      .then((m) => m.CustomerProductsListModule),
   },
   {
     path: 'cart',
     loadChildren: () =>
       import('./pages/cart/cart.module').then((m) => m.CartModule),
+  },
+  {
+    path: 'checkout',
+    loadChildren: () =>
+      import('./pages/checkout/checkout.module').then((m) => m.CheckoutModule),
   },
   {
     path: '**',

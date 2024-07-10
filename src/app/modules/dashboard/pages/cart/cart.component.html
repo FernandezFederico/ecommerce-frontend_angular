@@ -12,7 +12,7 @@
         <span>ID#: {{product._id}}</span>
         <div class="product__quantity">
           <button mat-raised-button>-</button>
-          <input type="text" value="{{product.quantity}}">
+          <span>{{product.quantity}}</span>
           <button mat-raised-button>+</button>
         </div>
         <button class="product-remove__button" mat-raised-button color="warn">Quitar del Carrito</button>
@@ -30,6 +30,6 @@
       <span>Descuento: $ - {{discount}}</span>
       <h4>Total a pagar: $ {{totalPrice}}</h4>
     </div>
-    <button class="resume__button" mat-raised-button color="primary">Pagar</button>
+    <button class="resume__button" routerLink="/dashboard/checkout"  mat-raised-button color="primary">Pagar</button>
   </section>
 </div>

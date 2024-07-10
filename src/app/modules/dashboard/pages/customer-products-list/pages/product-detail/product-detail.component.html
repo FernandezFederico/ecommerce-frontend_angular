@@ -9,7 +9,7 @@
       <span>$ {{productData?.productPrice}}</span>
       <div class="product-detail__quantity">
         <button mat-raised-button (click)="onHandleQuantity('min')">-</button>
-        <input type="text" value="{{quantityOfProducts}}">
+        <span>{{quantityOfProducts}}</span>
         <button mat-raised-button (click)="onHandleQuantity('plus')">+</button>
       </div>
       <button class="product-detail__button" *ngIf="!showRemoveCartButton" (click)="onAddToCart()" mat-raised-button color="primary">Agregar a Carrito</button>
