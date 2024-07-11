@@ -15,20 +15,20 @@
           <span>{{product.quantity}}</span>
           <button mat-raised-button>+</button>
         </div>
-        <button class="product-remove__button" mat-raised-button color="warn">Quitar del Carrito</button>
+        <button class="product-remove__button" (click)="onRemoveFromCart(product._id)" mat-raised-button color="warn"><mat-icon>delete</mat-icon></button>
       </section>
       <section class="product__price">
-        <span>$ {{product.productPrice}}</span>
+        <span> {{formatPrice(product.productPrice)}}</span>
       </section>
     </section>
   </section>
   <section class="resume__container">
     <div class="resume__totals">
       <h3>Resumen</h3>
-      <span>Total: $ {{subTotalPrice}}</span>
-      <span>Envío: $ {{delivery}}</span>
-      <span>Descuento: $ - {{discount}}</span>
-      <h4>Total a pagar: $ {{totalPrice}}</h4>
+      <span>Total: {{formatPrice(subTotalPrice)}}</span>
+      <span>Envío: {{formatPrice(delivery)}}</span>
+      <span>Descuento: - {{formatPrice(discount)}}</span>
+      <h4>Total a pagar: {{formatPrice(totalPrice)}}</h4>
     </div>
     <button class="resume__button" routerLink="/dashboard/checkout"  mat-raised-button color="primary">Pagar</button>
   </section>

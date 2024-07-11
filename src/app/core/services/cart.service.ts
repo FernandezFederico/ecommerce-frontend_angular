@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../../modules/dashboard/pages/products/interface';
-import { BehaviorSubject, catchError, of } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Cart } from '../../modules/dashboard/pages/customer-products-list/pages/product-detail/interface/index';
 import { environment } from '../../../environments/environment.development';
