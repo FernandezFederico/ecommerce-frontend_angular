@@ -11,9 +11,7 @@
         </div>
         <span>ID#: {{product._id}}</span>
         <div class="product__quantity">
-          <button mat-raised-button>-</button>
-          <span>{{product.quantity}}</span>
-          <button mat-raised-button>+</button>
+          <span>Cantidad: {{product.quantity}}</span>
         </div>
         <button class="product-remove__button" (click)="onRemoveFromCart(product._id)" mat-raised-button color="warn"><mat-icon>delete</mat-icon></button>
       </section>

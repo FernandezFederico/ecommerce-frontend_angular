@@ -16,7 +16,7 @@
       </mat-nav-list>
     </div>
     <section class="header__actions">
-      <button mat-icon-button class="header__button" (click)="onToggleCartSidenav()">
+      <button #toggle mat-icon-button [disabled]="cartItems === 0" class="header__button" (click)="onToggleCartSidenav()">
         <mat-icon *ngIf="!cartItems" aria-hidden="false">shopping_cart</mat-icon> 
         <mat-icon *ngIf="cartItems" matBadge="{{cartItems}}" aria-hidden="false">shopping_cart</mat-icon>
       </button>
