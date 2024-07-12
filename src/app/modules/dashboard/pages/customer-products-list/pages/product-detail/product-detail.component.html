@@ -8,9 +8,9 @@
       <span>ID#: {{productData?._id}}</span>
       <span>$ {{productData?.productPrice}}</span>
       <div class="product-detail__quantity">
-        <button mat-raised-button (click)="onHandleQuantity('min')">-</button>
+        <button [disabled]="showRemoveCartButton" mat-raised-button (click)="onHandleQuantity('min')">-</button>
         <span>{{quantityOfProducts}}</span>
-        <button mat-raised-button (click)="onHandleQuantity('plus')">+</button>
+        <button [disabled]="showRemoveCartButton" mat-raised-button (click)="onHandleQuantity('plus')">+</button>
       </div>
       <button class="product-detail__button" *ngIf="!showRemoveCartButton" (click)="onAddToCart()" mat-raised-button color="primary">Agregar a Carrito</button>
       <button class="product-detail__button" *ngIf="showRemoveCartButton" (click)="onRemoveFromCart(productData!._id)" mat-raised-button color="warn">Quitar del Carrito</button>
