@@ -66,4 +66,8 @@ export class DashboardComponent {
       },
     });
   }
+
+  onFormatPrice(price: number) {
+    return this.cartService.formatPrice(price);
+  }
 }

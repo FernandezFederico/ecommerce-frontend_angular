@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../../../core/services/cart.service';
 import { Product } from '../products/interface';
-import { User } from '../users/interface';
 import { AlertService } from '../../../../core/services/alert.service';
 import { AuthService } from '../../../../core/services/auth.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -17,12 +17,11 @@ export class CartComponent {
   discount: number = 0;
   delivery: number = 0;
 
-  
-
   constructor(
     private cartService: CartService,
     private alertService: AlertService,
     private authService: AuthService,
+    private router: Router
   ) {
     this.cartService.cart$.subscribe({
       next: (cart) => {
@@ -44,7 +43,8 @@ export class CartComponent {
     });
     this.discount = parseFloat((this.subTotalPrice * 0.2).toFixed(2));
     this.delivery = parseFloat((this.subTotalPrice * 0.1).toFixed(2));
-    this.totalPrice = parseFloat((this.subTotalPrice - this.discount + this.delivery).toFixed(2));
+    this.totalPrice = parseFloat((this.subTotalPrice - this.discount + this.delivery).toFixed(2)
+    );
   }
 
   onRemoveFromCart(productDataId: string) {
@@ -55,6 +55,7 @@ export class CartComponent {
         .subscribe({
           next: (result) => {
             this.cartService.getCartProductsFromDb(this.userId);
+            this.router.navigate(['/dashboard/home']);
           },
           error: (error) => {
             this.alertService.showErrorAlert('Error al cargar los datos!');

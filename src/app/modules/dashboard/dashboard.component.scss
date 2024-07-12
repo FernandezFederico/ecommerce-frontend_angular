@@ -55,6 +55,14 @@
         flex-direction: column;
         justify-content: space-between;
 
+        .product__title {
+          background-color: aliceblue;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+        }
+
         .product__quantity {
           background-color: antiquewhite;
           display: flex;
@@ -67,13 +75,7 @@
         }
       }
 
-      .product__price {
-        background-color: blue;
-        width: 150px;
-        display: flex;
-        justify-content: center;
-        align-items: start;
-      }
+   
     }
 
     .user__data {

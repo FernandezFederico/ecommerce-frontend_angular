@@ -57,7 +57,6 @@ export class CartService {
   getCart(): Product[] {
     return this.cart;
   }
-
   resetCart() {
     this.cart = [];
     localStorage.removeItem('cartData');
@@ -66,7 +65,6 @@ export class CartService {
   getCartItemCount(): number {
     return this.cart.length;
   }
-
   formatPrice(value: number): string {
     return this.formatter.format(value);
   }
