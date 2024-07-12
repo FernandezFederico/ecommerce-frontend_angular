@@ -14,6 +14,11 @@ export class CartService {
   private cartSubject = new BehaviorSubject<Product[]>(this.cart);
   cart$ = this.cartSubject.asObservable();
 
+  formatter = new Intl.NumberFormat('es-AR', {
+    style: 'currency',
+    currency: 'ARS',
+  });
+
   constructor(private http: HttpClient, private alertService: AlertService) {
     this.loadCartFromStorage();
   }
@@ -60,6 +65,10 @@ export class CartService {
   }
   getCartItemCount(): number {
     return this.cart.length;
+  }
+
+  formatPrice(value: number): string {
+    return this.formatter.format(value);
   }
   createCartDataInDb(newCart: Cart) {
     return this.http.post<Cart>(`${environment.apiUrl}/carts`, newCart);

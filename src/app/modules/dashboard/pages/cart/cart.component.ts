@@ -3,47 +3,36 @@ import { CartService } from '../../../../core/services/cart.service';
 import { Product } from '../products/interface';
 import { User } from '../users/interface';
 import { AlertService } from '../../../../core/services/alert.service';
+import { AuthService } from '../../../../core/services/auth.service';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
 })
 export class CartComponent {
-  userData!: User;
   userId: string = '';
   productData: Product[] = [];
   subTotalPrice: number = 0;
   totalPrice: number = 0;
   discount: number = 0;
   delivery: number = 0;
-  cartItems: number = 0;
 
-  formatter = new Intl.NumberFormat('es-AR', {
-    style: 'currency',
-    currency: 'ARS',
-  });
+  
 
   constructor(
     private cartService: CartService,
     private alertService: AlertService,
+    private authService: AuthService,
   ) {
     this.cartService.cart$.subscribe({
       next: (cart) => {
         this.productData = cart;
         this.calculateTotals();
-        this.cartItems = cart.length;
       },
       error: (error) => {
         console.log(error);
       },
     });
-    this.currentCart();
-  }
-
-  currentCart() {
-    this.userData = JSON.parse(localStorage.getItem('userData')!);
-    this.userId = this.userData._id;
-    this.cartService.getCartProductsFromDb(this.userId);
   }
 
   calculateTotals() {
@@ -59,6 +48,7 @@ export class CartComponent {
   }
 
   onRemoveFromCart(productDataId: string) {
+    this.userId = this.authService.authLoginUser!._id;
     if (this.userId && productDataId) {
       this.cartService
         .removeProductFromCart(this.userId, productDataId)
@@ -73,7 +63,7 @@ export class CartComponent {
     }
   }
 
-  formatPrice(value: number): string {
-    return this.formatter.format(value);
+  onFormatPrice(value: number): string {
+    return this.cartService.formatPrice(value);
   }
 }

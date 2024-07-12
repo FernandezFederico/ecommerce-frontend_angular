@@ -8,35 +8,41 @@
   display: flex;
   flex-direction: row;
 
-  .product__container{
+  .product__container {
     background-color: cadetblue;
     width: 100%;
     padding: 30px 10px;
 
-    .product{
+    .product {
       background-color: brown;
       width: 100%;
-      margin: 20px 0 ;
+      margin: 20px 0;
       display: flex;
       flex-direction: row;
       gap: 10px;
 
-      .products__image {background-color: yellow;
+      .products__image {
+        background-color: yellow;
         width: 150px;
+        cursor: pointer;
 
-        .product-detail__image{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .product-detail__image {
           width: 100%;
         }
       }
 
-      .product__data{
+      .product__data {
         width: 100%;
         background-color: aqua;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
 
-        .product__quantity{
+        .product__quantity {
           background-color: antiquewhite;
           max-width: 150px;
           display: flex;
@@ -49,12 +55,13 @@
           }
         }
 
-        .product-remove__button{
+        .product-remove__button {
           max-width: 200px;
           border-radius: 0;
         }
       }
-      .product__price{
+
+      .product__price {
         background-color: blue;
         width: 150px;
         display: flex;
@@ -64,7 +71,8 @@
     }
 
   }
-  .resume__container{
+
+  .resume__container {
     min-width: 30%;
     max-height: 300px;
     background-color: chocolate;
@@ -74,16 +82,16 @@
     flex-direction: column;
     justify-content: space-between;
 
-    .resume__totals{
+    .resume__totals {
       background-color: yellow;
       display: flex;
       flex-direction: column;
     }
 
-    .resume__button{
+    .resume__button {
       border-radius: 0;
     }
 
-    
+
   }
 }

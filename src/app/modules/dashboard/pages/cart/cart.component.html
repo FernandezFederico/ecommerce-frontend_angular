@@ -1,9 +1,13 @@
 <div class="cart__container">
   <section class="product__container">
     <h3>Carrito</h3>
+    <ng-container *ngIf="productData.length === 0">
+      <span>SIN PRODUCTOS EN CARRITO</span>
+    </ng-container>
+    
     <section *ngFor="let product of productData"  class="product">
       <section class="products__image">
-        <img class="product-detail__image" src="{{product.productImage}}" alt="product image">
+        <img class="product-detail__image" routerLink="/dashboard/customer-products-list/{{product._id}}" src="{{product.productImage}}" alt="product image">
       </section>
       <section class="product__data">
         <div class="product__title">
@@ -16,17 +20,17 @@
         <button class="product-remove__button" (click)="onRemoveFromCart(product._id)" mat-raised-button color="warn"><mat-icon>delete</mat-icon></button>
       </section>
       <section class="product__price">
-        <span> {{formatPrice(product.productPrice)}}</span>
+        <span> {{onFormatPrice(product.productPrice)}}</span>
       </section>
     </section>
   </section>
   <section class="resume__container">
     <div class="resume__totals">
       <h3>Resumen</h3>
-      <span>Total: {{formatPrice(subTotalPrice)}}</span>
-      <span>Envío: {{formatPrice(delivery)}}</span>
-      <span>Descuento: - {{formatPrice(discount)}}</span>
-      <h4>Total a pagar: {{formatPrice(totalPrice)}}</h4>
+      <span>Total: {{onFormatPrice(subTotalPrice)}}</span>
+      <span>Envío: {{onFormatPrice(delivery)}}</span>
+      <h4>Total a pagar: {{onFormatPrice(totalPrice)}}</h4>
+      <span>Descuento: - {{onFormatPrice(discount)}}</span>
     </div>
     <button class="resume__button" routerLink="/dashboard/checkout"  mat-raised-button color="primary">Pagar</button>
   </section>

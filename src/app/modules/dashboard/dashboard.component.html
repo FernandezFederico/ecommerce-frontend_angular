@@ -3,7 +3,22 @@
   <mat-drawer #drawer class="dashboard__sidenav" mode="over" position="end" [opened]="layoutService.isSidenavOpen">
     <div class="sidenav__container">
       <ng-container *ngIf="layoutService.showCartInfo">
-        <button *ngIf="onIsLoggedIn()" (click)="onToggleSidenav()" routerLink="/dashboard/cart" mat-raised-button color="primary">Carrito</button>
+        <button class="cart__button" *ngIf="onIsLoggedIn()" (click)="onToggleSidenav()" routerLink="/dashboard/cart" mat-raised-button color="primary">Carrito</button>
+        <section *ngFor="let product of productData" class="product">
+        <section class="products__image">
+          <img class="product-detail__image" src="{{product.productImage}}" alt="product image">
+        </section>
+        <section class="product__data">
+          <div class="product__title">
+            <span>{{product.productName}}</span>
+          </div>
+          <span>$ {{product.productPrice}}</span>
+          <div class="product__quantity">
+            <span>Cantidad: {{product.quantity}}</span>
+          </div>
+          <button class="product-remove__button" (click)="onRemoveFromCart(product._id)" mat-raised-button color="warn"><mat-icon>delete</mat-icon></button>
+        </section>
+      </section>
       </ng-container>
       <ng-container *ngIf="layoutService.showUserInfo">
         <section *ngIf="onIsLoggedIn()">
