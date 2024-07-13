@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,9 +7,6 @@ import { Router } from '@angular/router';
   styleUrl: './card.component.scss',
 })
 export class CardsComponent {
-  constructor(
-    private router: Router,
-  ) {}
 
   @Input() product!: {
     _id: string;
@@ -19,7 +16,19 @@ export class CardsComponent {
     productDescription: string;
     productCategory: string;
   };
-
   @Input() showPrice: boolean = true;
   @Input() showAddButton: boolean = true;
+  @Input() addButtonAction: EventEmitter<void> = new EventEmitter();
+  @Input() redirectRoute: string = '';
+
+  constructor(private router: Router) {}
+
+  onAddButtonAction() {
+    this.addButtonAction.emit();
+  }
+  onNavigateTo() {
+    if (this.redirectRoute) {
+      this.router.navigate([this.redirectRoute]);
+    }
+  }
 }

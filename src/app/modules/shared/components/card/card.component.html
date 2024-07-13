@@ -1,5 +1,5 @@
 <mat-card class="card">
-  <a class="image__container" routerLink="/dashboard/customer-products-list/{{ product._id }}">
+  <a class="image__container" [ngStyle]="{'cursor': redirectRoute ? 'pointer' : 'default'}" (click)="onNavigateTo()">
       <img class="card__image" src="{{ product.productImage }}" alt="imagen del producto">
   </a>
   <mat-card-content class="card__content" >
@@ -7,7 +7,7 @@
     <span></span>
     <span *ngIf="showPrice">$&nbsp;{{ product.productPrice}}</span>
     <mat-card-actions class="card__action">
-      <button *ngIf="showAddButton" mat-raised-button color="primary">Agregar</button>
+      <button *ngIf="showAddButton" (click)="onAddButtonAction()" mat-raised-button color="primary">Agregar</button>
     </mat-card-actions>
   </mat-card-content>
 </mat-card>

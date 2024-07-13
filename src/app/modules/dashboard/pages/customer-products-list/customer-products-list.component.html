@@ -1,4 +1,9 @@
 <div class="customer-products-list__container">
-  <app-card *ngFor="let product of productsList" [product]="product"></app-card>
+  <app-card *ngFor="let product of productsList" 
+  [product]="product"
+  [redirectRoute]="'/dashboard/customer-products-list/' + product._id"
+  [showAddButton]="false"
+  >
+</app-card>
   <span *ngIf="productsList.length === 0"> No se encontraron productos </span>
 </div>
