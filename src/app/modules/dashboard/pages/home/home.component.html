@@ -7,7 +7,8 @@
       *ngFor="let product of selectedProductsList"
       [product]="product"
       [showAddButton]="false"
-      [showPrice]="false"
+      [showPrice]="true"
+      [redirectRoute]="'/dashboard/customer-products-list/' + product._id"
     >
     </app-card>
   </section>
