@@ -21,12 +21,15 @@ export class CartComponent {
     private cartService: CartService,
     private alertService: AlertService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
   ) {
     this.cartService.cart$.subscribe({
       next: (cart) => {
         this.productData = cart;
         this.calculateTotals();
+        if (this.productData.length === 0 && this.router.url === '/dashboard/cart') {
+          this.router.navigate(['/dashboard/home']);
+        }
       },
       error: (error) => {
         console.log(error);
@@ -55,7 +58,6 @@ export class CartComponent {
         .subscribe({
           next: (result) => {
             this.cartService.getCartProductsFromDb(this.userId);
-            this.router.navigate(['/dashboard/home']);
           },
           error: (error) => {
             this.alertService.showErrorAlert('Error al cargar los datos!');
