@@ -34,17 +34,16 @@ export class ProductDetailComponent {
         this.productId = params.get('id');
         if (this.productId) {
           this.onGetProductById(this.productId);
-          this.checkProductInCart(this.productId);
           let loggedUser = localStorage.getItem('userData');
           if (loggedUser) {
             let userId = JSON.parse(loggedUser)._id;
             this.cartService.getCartProductsFromDb(userId);
-            this.cartService.cart$.subscribe((cart) => {
-              this.showRemoveCartButton = cart.some(
-                (product) => product._id === this.productId
-              );
-            });
           }
+          this.cartService.cart$.subscribe((cart) => {
+            this.showRemoveCartButton = cart.some(
+              (product) => product._id === this.productId
+            );
+          });
         }
       },
     });

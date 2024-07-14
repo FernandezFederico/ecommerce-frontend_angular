@@ -16,6 +16,8 @@ export class CustomerProductsListComponent implements OnDestroy {
     this.productsService.productQuery$.subscribe((query) => {
       this.loadProducts(query);
     });
+   
+    
   }
 
   loadProducts(query: string) {
@@ -25,7 +27,7 @@ export class CustomerProductsListComponent implements OnDestroy {
         .pipe(takeUntil(this.destroy$))
         .subscribe({
           next: (products) => {
-            this.productsList = products;
+            this.productsList = products;            
           },
           error: (err) => console.error(err),
         });
@@ -40,6 +42,7 @@ export class CustomerProductsListComponent implements OnDestroy {
           error: (err) => console.error(err),
         });
     }
+    
   }
 
   ngOnDestroy(): void {

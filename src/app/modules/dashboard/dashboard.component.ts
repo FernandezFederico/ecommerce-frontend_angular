@@ -13,8 +13,10 @@ import { Product } from './pages/products/interface';
   styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent {
+  productId: string | null = '';
   showSignUpForm = false;
   productData: Product[] = [];
+  showRemoveCartButton: boolean = false;
   constructor(
     public layoutService: LayoutService,
     public authService: AuthService,
@@ -53,18 +55,20 @@ export class DashboardComponent {
     this.resetPassService.toggleResetForms();
   }
 
-  onRemoveFromCart(productDataId: string) {
-    let userId = this.authService.authLoginUser!._id;
-    if (userId && productDataId) {
+  onRemoveFromCart(product: Product) {
+    const userId = this.authService.authLoginUser?._id;
+    if (userId && product._id) {
+      this.cartService.removeProductFromCart(userId, product._id).subscribe({
+        next: () => {
+          this.cartService.getCartProductsFromDb(userId);
+        },
+        error: () => {
+          this.alertService.showErrorAlert('Error al cargar los datos!');
+        },
+      });
+    } else {
+      this.cartService.removeFromLocalCart(product);
     }
-    this.cartService.removeProductFromCart(userId, productDataId).subscribe({
-      next: (result) => {
-        this.cartService.getCartProductsFromDb(userId);
-      },
-      error: (error) => {
-        this.alertService.showErrorAlert('Error al cargar los datos!');
-      },
-    });
   }
 
   onFormatPrice(price: number) {
