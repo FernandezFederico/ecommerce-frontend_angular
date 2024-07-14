@@ -1,5 +1,5 @@
 .header__container {
-  background-color: bisque;
+  background-color: whitesmoke;
   width: 100%;
   height: auto;
   padding: 20px;
@@ -26,7 +26,6 @@
 
       input {
         border: solid 0.5px grey;
-        border-radius: 5px;
       }
 
     }
@@ -37,10 +36,15 @@
       align-items: center;
       justify-content: center;
 
+      .header__link {
+        background-color: aquamarine;
+        width: 80px;
+        height: auto;
+        padding: 0;
+        border-radius: 50%;
 
-      a {
-        h1 {
-          font-size: 30px;
+        img {
+          object-fit: cover;
         }
       }
     }
@@ -54,7 +58,6 @@
       justify-content: center;
 
       .header__button {
-        background-color: brown;
         display: flex;
         align-items: center;
       }
@@ -75,7 +78,6 @@
       gap: 30px;
 
       .list__item {
-        background-color: blueviolet;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -84,6 +86,14 @@
           font-size: 15px;
           text-decoration: none;
           color: black;
+
+          span {
+            vertical-align: middle;
+          }
+
+          mat-icon {
+            vertical-align: middle;
+          }
         }
       }
     }

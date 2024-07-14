@@ -10,8 +10,8 @@
     </div>
     <div class="header__logo">
       <mat-nav-list>
-        <a mat-list-item routerLink="/dashboard/home">
-          <h1>Logo</h1>
+        <a class="header__link" mat-list-item routerLink="/dashboard/home">
+          <img src="../../../../assets/img/logoheader.png" alt="">
         </a>
       </mat-nav-list>
     </div>
@@ -29,7 +29,7 @@
   <div class="header__nav">
     <ul class="list">
       <li class="list__item">
-        <a routerLink="/dashboard/customer-products-list" (click)="showAllProducts()"><mat-icon>list</mat-icon> TODOS LOS PRODUCTOS</a>
+        <a routerLink="/dashboard/customer-products-list" (click)="showAllProducts()"><span> Todos los productos</span></a>
       </li>
       <li class="list__item" *ngFor="let category of categories">
         <a routerLink="/dashboard/customer-products-list" (click)="productsByCategory(category)"> {{ category }}</a>
