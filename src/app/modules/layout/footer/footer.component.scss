@@ -1,5 +1,5 @@
 .footer {
-  background-color: bisque;
+  background-color: rgb(239,240,240);;
   width: 100%;
   min-height: 50px;
   text-align: center;
@@ -23,14 +23,15 @@
   }
 
   .social__media {
-
+    gap: 10px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
 
     .social__link {
-      max-width: 24px;
+      color : black;
+      max-width: 23px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -40,13 +41,15 @@
   }
 
   .contact {
+    gap: 10px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
 
     .contact__link {
-      max-width: 24px;
+      color : black;
+      max-width: 23px;
       display: flex;
       align-items: center;
       justify-content: center;

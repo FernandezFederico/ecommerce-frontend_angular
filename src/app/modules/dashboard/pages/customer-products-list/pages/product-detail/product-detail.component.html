@@ -12,8 +12,8 @@
         <span>{{quantityOfProducts}}</span>
         <button [disabled]="showRemoveCartButton" mat-raised-button (click)="onHandleQuantity('plus')">+</button>
       </div>
-      <button class="product-detail__button" *ngIf="!showRemoveCartButton" (click)="onAddToCart()" mat-raised-button color="primary">Agregar a Carrito</button>
-      <button class="product-detail__button" *ngIf="showRemoveCartButton" (click)="onRemoveFromCart(productData!._id)" mat-raised-button color="warn">Quitar del Carrito</button>
+      <button class="product-detail__button-add" *ngIf="!showRemoveCartButton" (click)="onAddToCart()" mat-raised-button >Agregar a Carrito</button>
+      <button class="product-detail__button-remove" *ngIf="showRemoveCartButton" (click)="onRemoveFromCart(productData!._id)" mat-raised-button color="warn">Quitar del Carrito</button>
     </div>
     <div class="product-detail__description">
       <h4>Descripción:</h4>

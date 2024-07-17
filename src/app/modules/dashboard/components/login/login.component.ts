@@ -77,7 +77,6 @@ export class LoginComponent {
           this.cartService.createCartDataInDb(cartData).subscribe({
             next: (result) => {
               if (cartDataList.length === index + 1) {
-                localStorage.removeItem('cartData');
                 this.cartService.getCartProductsFromDb(userId);
               }
             },

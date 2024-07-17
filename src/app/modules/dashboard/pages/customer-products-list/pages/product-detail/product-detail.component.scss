@@ -6,7 +6,10 @@
   gap: 10px;
 
   .image__container {
-    background-color: cadetblue;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     .product-detail__image {
       height: 700px;
@@ -15,19 +18,25 @@
   }
 
   .data__container {
-    background-color: blue;
+    height: fit-content;
+    border: solid 0.5px grey;
     display: flex;
     flex-direction: column;
     padding: 20px;
 
     .product-detail__info {
-      background-color: aquamarine;
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
 
-    .product-detail__button {
+    .product-detail__button-add {
+      background-color: black;
+      color: white;
+      max-width: 200px;
+      border-radius: 0;
+    }
+    .product-detail__button-remove {
       max-width: 200px;
       border-radius: 0;
     }
@@ -38,15 +47,14 @@
       gap: 10px;
 
       span {
-        background-color: chocolate;
         text-align: center;
         width: 30px;
       }
+
 
     }
   }
 
   .product-detail__description {
-    background-color: yellowgreen;
   }
 }
