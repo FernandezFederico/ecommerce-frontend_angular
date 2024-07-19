@@ -18,7 +18,7 @@
       display: flex;
       flex-direction: row;
       gap: 10px;
-      border-bottom: solid 1px black ;
+      border-bottom: solid 1px black;
 
       .products__image {
 
@@ -36,15 +36,9 @@
 
       .product__data {
         width: 100%;
-
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-
-        .product__title{
-          border-bottom: solid 1px black;
-          padding-bottom: 1px;
-        }
 
         .product__quantity {
 
@@ -61,6 +55,10 @@
         .product-remove__button {
           max-width: 200px;
           border-radius: 0;
+
+          &:hover {
+            background-color: rgb(180, 0, 0);
+          }
         }
       }
 

@@ -1,9 +1,8 @@
 <mat-drawer-container class="dashboard__container" autosize>
-
   <mat-drawer #drawer class="dashboard__sidenav" mode="over" position="end" [opened]="layoutService.isSidenavOpen">
     <div class="sidenav__container">
       <ng-container *ngIf="layoutService.showCartInfo">
-        <button class="cart__button" *ngIf="onIsLoggedIn()" (click)="onToggleSidenav()" routerLink="/dashboard/cart" mat-raised-button color="primary">Carrito</button>
+        <button class="cart__button" *ngIf="onIsLoggedIn()" (click)="onToggleSidenav()" routerLink="/dashboard/cart" mat-raised-button>Carrito</button>
         <section *ngFor="let product of productData" class="product">
         <section class="products__image">
           <img class="product-detail__image" src="{{product.productImage}}" alt="product image">
@@ -27,7 +26,7 @@
             <p>{{authService.authLoginUser?.userName}} {{authService.authLoginUser?.userLastName}}</p>
           </div>
           <div class="logout__container">
-            <button (click)="onUserLogout()" class="logout__button" mat-flat-button color="primary">Logout</button>
+            <button (click)="onUserLogout()" class="logout__button" mat-flat-button >Logout</button>
           </div>
         </section>
         <section *ngIf=" authService.authLoginUser?.userRole === 'ADMIN' || authService.authLoginUser?.userRole === 'Employee'">
@@ -56,7 +55,7 @@
               <span *ngIf="!showSignUpForm">¿Quieres CREAR una cuenta? Ingresa aquí.</span>
               <span *ngIf="showSignUpForm">¿Ya TIENES una cuenta? Ingresa aquí.</span>
             </a>
-            <a *ngIf="!resetPassService.showResetPassForm" class="forms__restore-password"
+            <a class="forms__restore-password" *ngIf="!resetPassService.showResetPassForm" 
               (click)="onToggleResetForms()">
               ¿Olvidaste tu contraseña contraseña? Ingresa
               aquí.
