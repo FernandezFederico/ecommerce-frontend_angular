@@ -36,7 +36,7 @@
             <mat-list-item class="link" mat-list-item routerLink="/dashboard/home" (click)="onToggleSidenav()">
               <mat-icon>home</mat-icon> INICIO
             </mat-list-item>
-            <mat-list-item *ngIf="authService.authLoginUser?.userRole === 'Admin'" class="link" mat-list-item
+            <mat-list-item *ngIf="authService.authLoginUser?.userRole === 'ADMIN'" class="link" mat-list-item
               routerLink="/dashboard/users" (click)="onToggleSidenav()">
               <mat-icon>person</mat-icon> USUARIOS
             </mat-list-item>

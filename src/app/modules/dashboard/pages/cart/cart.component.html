@@ -5,7 +5,7 @@
       <span>SIN PRODUCTOS EN CARRITO</span>
     </ng-container>
     
-    <section *ngFor="let product of productData"  class="product">
+    <section *ngFor="let product of productData" class="product">
       <section class="products__image">
         <img class="product-detail__image" routerLink="/dashboard/customer-products-list/{{product._id}}" src="{{product.productImage}}" alt="product image">
       </section>
@@ -29,8 +29,8 @@
       <h3>Resumen</h3>
       <span>Total: {{onFormatPrice(subTotalPrice)}}</span>
       <span>Envío: {{onFormatPrice(delivery)}}</span>
-      <h4>Total a pagar: {{onFormatPrice(totalPrice)}}</h4>
       <span>Descuento: - {{onFormatPrice(discount)}}</span>
+      <h4 style="margin-top: 20px ;">Total a pagar: {{onFormatPrice(totalPrice)}}</h4>
     </div>
     <button class="resume__button" routerLink="/dashboard/checkout"  mat-raised-button color="primary">Pagar</button>
   </section>

@@ -9,7 +9,6 @@ import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 import { HomeModule } from './pages/home/home.module';
-import { UsersModule } from './pages/users/users.module';
 import { ResetPassComponent } from './components/reset-pass/reset-pass/reset-pass.component';
 
 @NgModule({
@@ -25,7 +24,6 @@ import { ResetPassComponent } from './components/reset-pass/reset-pass/reset-pas
     SharedModule,
     LayoutModule,
     HomeModule,
-    UsersModule,
   ],
   exports: [DashboardComponent],
 })
