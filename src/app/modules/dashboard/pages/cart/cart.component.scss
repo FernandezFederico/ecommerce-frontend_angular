@@ -89,6 +89,9 @@
 
     .resume__button {
       border-radius: 0;
+      &:hover{
+        background-color: green;
+      }
     }
 
 
