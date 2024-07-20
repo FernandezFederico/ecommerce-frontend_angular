@@ -1,3 +1,5 @@
 <div class="users__container">
-  <p>users works!</p>
+  <h2 class="users__title">USUARIOS</h2>
+  <ng-container *ngIf="dataSource.length === 0" mat-elevation-z8> Sin datos </ng-container>
+  <app-table [data]="dataSource" [columns]="tableColumns"></app-table>
 </div>

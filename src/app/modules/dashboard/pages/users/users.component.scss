@@ -1,9 +1,21 @@
 .users__container {
-  background-color: chocolate;
   width: 100%;
-  min-height: 80vh;
-  
+  min-height: 75vh;
+  padding: 40px;
+
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: start;
   align-items: center;
+
+  .users__title {
+    text-align: center;
+    font-size: 30px;
+    margin: 10px;
+    text-decoration: underline;
+  }
+
+  td {
+    vertical-align: middle;
+  }
 }

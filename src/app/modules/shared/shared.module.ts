@@ -28,6 +28,8 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { CardsComponent } from './components/card/card.component';
 import { ValidationErrorsPipe } from './pipes/validation-errors.pipe';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { TableComponent } from './components/table/table.component';
+import { ColumnValuePipe } from './pipes/column-value.pipe';
 
 
 
@@ -37,6 +39,8 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
     CarouselComponent,
     CardsComponent,
     ValidationErrorsPipe,
+    TableComponent,
+    ColumnValuePipe,
     
   ],
   imports: [
@@ -47,6 +51,7 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
     MatCardModule,
     MatButtonModule,
     RouterModule,
+    MatIconModule,
 
 
   ],
@@ -74,6 +79,7 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
     MatSelectModule,
     MatProgressSpinnerModule,
     MatBadgeModule,
+    TableComponent,
   ]
 })
 export class SharedModule { }

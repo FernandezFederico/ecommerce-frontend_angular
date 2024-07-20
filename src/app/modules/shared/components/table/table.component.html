@@ -1,0 +1,11 @@
+<div class="table__container">
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container *ngFor="let column of tableColumns" [matColumnDef]="column.def">
+      <th mat-header-cell *matHeaderCellDef>{{ column.label }}</th>
+      <td mat-cell *matCellDef="let row"> {{row | columnValue: column }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="tableDisplayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: tableDisplayedColumns; even as isEven"[ngClass]="{'gray-row': isEven, 'white-row': !isEven}"></tr>
+  </mat-table>
+</div>
