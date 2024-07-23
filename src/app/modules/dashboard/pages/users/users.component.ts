@@ -41,4 +41,8 @@ export class UsersComponent {
     } else {
     }
   }
+
+  onSelect(data: any){
+    console.log(data);
+  }
 }

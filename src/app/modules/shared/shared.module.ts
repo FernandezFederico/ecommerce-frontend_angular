@@ -19,7 +19,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import {MatBadgeModule} from '@angular/material/badge';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
@@ -52,6 +53,7 @@ import { ColumnValuePipe } from './pipes/column-value.pipe';
     MatButtonModule,
     RouterModule,
     MatIconModule,
+    MatCheckboxModule,
 
 
   ],
@@ -80,6 +82,7 @@ import { ColumnValuePipe } from './pipes/column-value.pipe';
     MatProgressSpinnerModule,
     MatBadgeModule,
     TableComponent,
+    MatCheckboxModule,
   ]
 })
 export class SharedModule { }
