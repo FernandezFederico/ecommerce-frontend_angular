@@ -56,6 +56,7 @@ import { ColumnValuePipe } from './pipes/column-value.pipe';
     MatIconModule,
     MatCheckboxModule,
     MatPaginatorModule,
+    MatInputModule,
 
 
   ],

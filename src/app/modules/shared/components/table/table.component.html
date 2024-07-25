@@ -1,4 +1,11 @@
 <div class="table__container">
+  <ng-container *ngIf="showFilter">
+    <mat-form-field>
+      <mat-label>Buscar</mat-label>
+      <input matInput (keyup)="applyFilter($event)" #input>
+    </mat-form-field>
+  </ng-container>
+  
   <mat-table *ngIf="dataSource.data.length > 0" [dataSource]="dataSource" class="mat-elevation-z8">
 
     <ng-container matColumnDef="select">
@@ -19,10 +26,6 @@
       <td mat-cell *matCellDef="let row"> {{row | columnValue: column }} </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="tableDisplayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: tableDisplayedColumns; even as isEven"
-      [ngClass]="{'gray-row': isEven, 'white-row': !isEven}"></tr>
-
     <div class="table__actions">
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> ACCIONES </th>
@@ -33,6 +36,15 @@
       </ng-container>
     </div>
 
+    <tr mat-header-row *matHeaderRowDef="tableDisplayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: tableDisplayedColumns; even as isEven"
+      [ngClass]="{'gray-row': isEven, 'white-row': !isEven}"></tr>
+
+    <ng-container *ngIf="showFilter">
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4"> No se encontraron coincidencias con "{{ currentFilterValue }}"</td>
+      </tr>
+    </ng-container>
   </mat-table>
 
   <ng-container *ngIf="showPaginator">

@@ -2,7 +2,6 @@ import {
   AfterViewInit,
   Component,
   EventEmitter,
-  input,
   Input,
   Output,
   ViewChild,
@@ -22,6 +21,7 @@ export class TableComponent implements AfterViewInit {
   tableDisplayedColumns: string[] = [];
   tableColumns: TableColumns[] = [];
   selection = new SelectionModel<any>(true, []);
+  currentFilterValue: string = '';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -38,8 +38,7 @@ export class TableComponent implements AfterViewInit {
       this.tableDisplayedColumns.unshift('select');
     }
   }
-  @Output() select: EventEmitter<any> = new EventEmitter();
-  @Output() action: EventEmitter<any> = new EventEmitter();
+
 
   @Input() set showActions(data: boolean) {
     if (data) {
@@ -48,6 +47,10 @@ export class TableComponent implements AfterViewInit {
   }
 
   @Input() showPaginator: boolean = false;
+  @Input() showFilter: boolean = false;
+
+  @Output() select: EventEmitter<any> = new EventEmitter();
+  @Output() action: EventEmitter<any> = new EventEmitter();
 
   constructor() {}
 
@@ -81,11 +84,14 @@ export class TableComponent implements AfterViewInit {
       row.position + 1
     }`;
   }
-  
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.currentFilterValue = filterValue;
+  }
   onEdit(row: any) {
     this.action.emit({ row, action: 'edit' });
   }
-  
   onDelete(row: any) {
     this.action.emit({ row, action: 'delete' });
   }
