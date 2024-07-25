@@ -1,22 +1,33 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { UsersService } from '../../../../core/services/users.service';
-import { AuthService } from '../../../../core/services/auth.service';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  input,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { TableColumns } from './models/table-columns';
 import { SelectionModel } from '@angular/cdk/collections';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss',
 })
-export class TableComponent {
-  dataSource: any[] = [];
+export class TableComponent implements AfterViewInit {
+  dataSource: MatTableDataSource<Array<any>> = new MatTableDataSource();
   tableDisplayedColumns: string[] = [];
   tableColumns: TableColumns[] = [];
-  
   selection = new SelectionModel<any>(true, []);
-  @Input() set data(data: any) {
-    this.dataSource = data;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  @Input() set data(data: Array<any>) {
+    this.dataSource = new MatTableDataSource<any>(data);
+    this.dataSource.paginator = this.paginator;
   }
   @Input() set columns(data: TableColumns[]) {
     this.tableColumns = data;
@@ -28,15 +39,27 @@ export class TableComponent {
     }
   }
   @Output() select: EventEmitter<any> = new EventEmitter();
-    
+  @Output() action: EventEmitter<any> = new EventEmitter();
+
+  @Input() set showActions(data: boolean) {
+    if (data) {
+      this.tableDisplayedColumns.push('actions');
+    }
+  }
+
+  @Input() showPaginator: boolean = false;
+
   constructor() {}
 
-  onSelect(){
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+  onSelect() {
     this.select.emit(this.selection.selected);
   }
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.length;
+    const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
 
@@ -47,11 +70,9 @@ export class TableComponent {
       return;
     }
 
-    this.selection.select(...this.dataSource);
+    this.selection.select(...this.dataSource.data);
     this.onSelect();
   }
-
-  /** The label for the checkbox on the passed row */
   checkboxLabel(row?: any): string {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
@@ -59,5 +80,13 @@ export class TableComponent {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${
       row.position + 1
     }`;
+  }
+  
+  onEdit(row: any) {
+    this.action.emit({ row, action: 'edit' });
+  }
+  
+  onDelete(row: any) {
+    this.action.emit({ row, action: 'delete' });
   }
 }

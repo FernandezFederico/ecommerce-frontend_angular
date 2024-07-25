@@ -19,9 +19,6 @@
       align-items: center;
     }
 
-    /*
-    ! cart 
-    */
     .cart__button {
       background-color: black;
       color: white;
@@ -32,7 +29,6 @@
       &:hover {
         background-color: grey;
       }
-
     }
 
     .product {
@@ -85,13 +81,8 @@
           }
         }
       }
-
-
     }
 
-    /* 
-    ! user
-    */
     .user__data {
       background-color: azure;
       margin: 20px;
@@ -115,12 +106,9 @@
         color: white;
         width: 100%;
 
-
         &:hover {
           background-color: rgb(180, 0, 0);
         }
-
-
       }
     }
 
@@ -131,7 +119,7 @@
       justify-content: end;
       align-items: center;
       gap: 15px;
-       margin-bottom: 50px;
+      margin-bottom: 50px;
 
       .forms__toggler,
       .forms__restore-password {
@@ -145,7 +133,6 @@
         &:hover {
           text-decoration: underline;
         }
-
       }
     }
 
@@ -177,8 +164,5 @@
         }
       }
     }
-
-
   }
-
 }

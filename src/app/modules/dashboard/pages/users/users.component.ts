@@ -42,7 +42,23 @@ export class UsersComponent {
     }
   }
 
-  onSelect(data: any){
-    console.log(data);
+  onSelect(data: any) {
+    console.log(data, 'onSelect');
+  }
+
+  onAction(data: any) {
+    console.log(data, 'onAction');
+    if (data.action === 'edit') {
+      this.onEditUser(data.row._id);
+    } else if (data.action === 'delete') {
+      this.onDeleteUser(data.row._id);
+    }
+  }
+  onEditUser(data: any) {
+    console.log(data, 'se edita');
+  }
+
+  onDeleteUser(data: any) {
+    console.log(data, 'se elimina');
   }
 }

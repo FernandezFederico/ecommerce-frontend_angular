@@ -21,6 +21,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatPaginator } from '@angular/material/paginator';
 
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
@@ -54,6 +55,7 @@ import { ColumnValuePipe } from './pipes/column-value.pipe';
     RouterModule,
     MatIconModule,
     MatCheckboxModule,
+    MatPaginatorModule,
 
 
   ],

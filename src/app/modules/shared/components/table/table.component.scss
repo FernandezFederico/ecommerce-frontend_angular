@@ -1,17 +1,23 @@
-.table__container{
+.table__container {
   width: 100%;
-}
-td{
-  width: 100vw;
-  vertical-align: middle;
-  justify-content: center;
-  text-align: center
+
+  .table__actions {
+    display: flex;
+    flex-direction: row;
+  }
+
+  th, td {
+    width: 100vw;
+    vertical-align: middle;
+    justify-content: center;
+    text-align: center
+  }
 }
 
 .gray-row {
-  background-color: #c2bfbf6b; /* Color gris */
+  background-color: #c2bfbf6b;
 }
 
 .white-row {
-  background-color: #ffffff; /* Color blanco */
+  background-color: #ffffff;
 }
