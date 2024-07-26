@@ -22,7 +22,8 @@
       <ng-container *ngIf="layoutService.showUserInfo">
         <section *ngIf="onIsLoggedIn()">
           <div class="user__data">
-            <img src="../../../assets/img/userimg.png" alt="Foto de usuario">
+            <img class="user__image" *ngIf="!authService.authLoginUser?.userImage" src="../../../assets/img/userimg.png" alt="Foto de usuario">
+            <img class="user__image" *ngIf="authService.authLoginUser?.userImage" src="{{authService.authLoginUser?.userImage}}" alt="Foto de usuario">
             <p>{{authService.authLoginUser?.userName}} {{authService.authLoginUser?.userLastName}}</p>
           </div>
           <div class="logout__container">

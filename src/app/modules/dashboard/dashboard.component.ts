@@ -28,6 +28,7 @@ export class DashboardComponent {
     this.cartService.cart$.subscribe((cart) => {
       this.productData = cart;
     });
+    
   }
   onIsLoggedIn(): boolean {
     return this.authService.isLoggedIn();

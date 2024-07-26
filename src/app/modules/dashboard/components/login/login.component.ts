@@ -41,25 +41,26 @@ export class LoginComponent {
   }
 
   onUserLogin() {
-    this.loginMail = (this.loginForm.value.email).toLowerCase();
-    this.loginPassword = this.loginForm.value.password;
-
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
       this.alertService.showErrorAlert('Por favor, verifique los campos');
-    } else {
-      this.authService.login(this.loginMail, this.loginPassword).subscribe({
-        next: (response) => {
-          this.loginForm.reset();
-          this.layoutService.toggleSidenav();
-          this.alertService.showSuccessAlert('Bienvenido');
-          this.saveLocalCartInDb();
-        },
-        error: (error) => {
-          this.alertService.showErrorAlert('Error al iniciar sesión');
-        },
-      });
+      return;
     }
+  
+    const { email, password } = this.loginForm.value;
+    const loginMail = email.toLowerCase();
+  
+    this.authService.login(loginMail, password).subscribe({
+      next: (response) => {
+        this.loginForm.reset();
+        this.layoutService.toggleSidenav();
+        this.alertService.showSuccessAlert('Bienvenido');
+        this.saveLocalCartInDb();
+      },
+      error: (error) => {
+        this.alertService.showErrorAlert('Error al iniciar sesión');
+      },
+    });
   }
 
   saveLocalCartInDb() {
