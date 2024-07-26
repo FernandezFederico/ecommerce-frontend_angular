@@ -41,7 +41,7 @@ export class LoginComponent {
   }
 
   onUserLogin() {
-    this.loginMail = this.loginForm.value.email;
+    this.loginMail = (this.loginForm.value.email).toLowerCase();
     this.loginPassword = this.loginForm.value.password;
 
     if (this.loginForm.invalid) {

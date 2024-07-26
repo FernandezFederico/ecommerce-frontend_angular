@@ -32,11 +32,11 @@ export class SignUpComponent implements OnInit {
   ngOnInit(): void { }
 
   onUserSignUp(data: User): void {
-    console.log(data);
     if(this.signUpForm.invalid){
       this.signUpForm.markAllAsTouched();
       this.alertService.showErrorAlert(' error en la carga de datos ')
     } else{
+      data.userEmail = data.userEmail.toLowerCase();
       this.authService.signUp(data).subscribe({
         next: () => {
           this.alertService.showSuccessAlert('Registro exitoso');
@@ -50,7 +50,5 @@ export class SignUpComponent implements OnInit {
     }
     
   }
-
-
 
 }
