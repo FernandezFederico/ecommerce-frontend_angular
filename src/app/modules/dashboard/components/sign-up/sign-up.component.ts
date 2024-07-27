@@ -6,6 +6,7 @@ import { AuthService } from '../../../../core/services/auth.service';
 import { AlertService } from '../../../../core/services/alert.service';
 import { LoginComponent } from '../login/login.component';
 import { User } from '../../pages/users/interface/index';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -20,6 +21,7 @@ export class SignUpComponent implements OnInit {
     private authService: AuthService,
     private layoutService: LayoutService,
     private alertService: AlertService,
+    private router: Router,
   ) {
     this.signUpForm = this.fb.group({
       userName: this.fb.control('', [Validators.required, Validators.minLength(3)]),
@@ -42,6 +44,7 @@ export class SignUpComponent implements OnInit {
           this.alertService.showSuccessAlert('Registro exitoso');
           this.signUpForm.reset();
           this.layoutService.toggleSidenav();
+          this.router.navigate(["dashboard", "home"]);
         },
         error: () => {
           this.alertService.showErrorAlert('Error en el registro');

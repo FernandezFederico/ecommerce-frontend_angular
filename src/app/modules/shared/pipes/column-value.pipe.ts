@@ -5,7 +5,7 @@ import { TableColumns } from '../components/table/models/table-columns';
   name: 'columnValue',
 })
 export class ColumnValuePipe implements PipeTransform {
-  transform(row: any, column: TableColumns): unknown {
+  transform(row: any, column: TableColumns): string {
     let displayValue = row[column.dataKey];
 
     switch (column.dataType) {
@@ -15,6 +15,19 @@ export class ColumnValuePipe implements PipeTransform {
             ...column.format,
           });
         }
+        break;
+        case 'object':
+        const arrayKeys = column.dataKey.split('.');
+        let currentValue: any;
+
+        arrayKeys.forEach((key) => {
+          if (currentValue === undefined) {
+            currentValue = row[key];
+            return;
+          }
+          currentValue = currentValue[key];
+        });
+        displayValue = currentValue;
         break;
 
       default:

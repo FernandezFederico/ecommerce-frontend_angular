@@ -32,6 +32,7 @@ import { ValidationErrorsPipe } from './pipes/validation-errors.pipe';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { TableComponent } from './components/table/table.component';
 import { ColumnValuePipe } from './pipes/column-value.pipe';
+import { MatSortModule } from '@angular/material/sort';
 
 
 
@@ -57,6 +58,7 @@ import { ColumnValuePipe } from './pipes/column-value.pipe';
     MatCheckboxModule,
     MatPaginatorModule,
     MatInputModule,
+    MatSortModule,
 
 
   ],
