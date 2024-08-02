@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AlertService } from './alert.service';
-import { User } from '../../modules/dashboard/pages/users/interface';
+import { User, userRole } from '../../modules/dashboard/pages/users/interface';
 import { environment } from '../../../environments/environment.development';
+import { catchError, mergeMap, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,29 @@ export class UsersService {
   }
 
   deleteUser(id: string) {
-    return this.http.delete<User>(`${environment.apiUrl}/users/${id}`);
+    return this.http.delete<User>(`${environment.apiUrl}/users/${id}`).pipe(
+      catchError((error) => {
+        this.alertService.showErrorAlert('Error al borrar el usuario');
+        return of([]);
+      })
+    );
+  }
+  getAllRoles(){
+    return this.http.get<userRole[]>(`${environment.apiUrl}/roles`).pipe(
+      catchError((error)=>{
+        this.alertService.showErrorAlert('Error al cargar las categorías');
+        return of([]);
+      })
+    )
+  }
+
+  addUser(user: User){
+    return this.http.post<User>(`${environment.apiUrl}/users/add`, user ).pipe(
+      mergeMap(() => this.getUsers()),
+      catchError((error)=> {
+        this.alertService.showErrorAlert('Error al crear Usuario')
+        return of([])
+      })
+    )
   }
 }

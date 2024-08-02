@@ -1,0 +1,62 @@
+<mat-dialog-content class="users__dialog">
+  
+  <h2 mat-dialog-title>USUARIOS</h2>
+  <form class="users__form" [formGroup]="userForm">
+    <mat-form-field class="users__field">
+      <mat-label>IMAGEN</mat-label>
+      <input matInput type="text" formControlName="userImage">
+      <mat-error>
+        "agregar error"
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="users__field">
+      <mat-label>NOMBRE</mat-label>
+      <input matInput type="text" formControlName="userName">
+      <mat-error>
+        "agregar error"
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="users__field">
+      <mat-label>APELLIDO</mat-label>
+      <input matInput type="text" formControlName="userLastName">
+      <mat-error>
+        "agregar error"
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="users__field">
+      <mat-label>MAIL</mat-label>
+      <input matInput type="text" formControlName="userEmail">
+      <mat-error>
+        "agregar error"
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="users__field">
+      <mat-label>CONTRASEÑA</mat-label>
+      <input matInput type="password" formControlName="userPassword">
+      <mat-error>
+        "agregar error"
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="users__field">
+      <mat-label for="userRole">ROL</mat-label>
+      <mat-select formControlName="userRole" id="userRole">
+        <mat-option value="default">
+          <p>Rol sin Asignar</p>
+        </mat-option>
+        <mat-option class="roles__optios" *ngFor="let role of userRoles" [value]="role.roleName">
+          <p> {{ role.roleName }}</p>
+        </mat-option>
+      </mat-select>
+      <mat-error>
+        "agregar error"
+      </mat-error>
+    </mat-form-field>
+  </form>
+
+  <mat-card-actions class="users__actions">
+		<button mat-raised-button color="primary" (click)="onSaveUser()">ACEPTAR</button>
+		<button mat-raised-button color="warn" mat-dialog-close>CANCELAR</button>
+	</mat-card-actions>
+
+</mat-dialog-content>
+<pre>{{ userForm.value | json }}</pre>

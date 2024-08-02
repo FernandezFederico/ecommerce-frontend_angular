@@ -7,3 +7,8 @@ export interface User {
   userPassword: string;
   userRole: string;
 }
+
+export interface userRole {
+  _id: string;
+  roleName: string;
+}

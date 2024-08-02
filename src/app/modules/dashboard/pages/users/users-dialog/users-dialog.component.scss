@@ -1,0 +1,21 @@
+.users__dialog{
+  .users__form{
+    width: 100%;
+
+    display: grid;
+    grid-template-columns:  1fr 1fr;
+    gap: 15px;
+
+  }
+  .users__actions{
+    display: flex;
+    justify-content: end;
+    gap: 15px;
+  }
+}
+p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 200px;
+}

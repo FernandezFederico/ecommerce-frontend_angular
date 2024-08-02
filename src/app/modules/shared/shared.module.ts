@@ -37,6 +37,7 @@ import { MatSortModule } from '@angular/material/sort';
 
 
 
+
 @NgModule({
   declarations: [
     CarouselComponent,
@@ -44,6 +45,7 @@ import { MatSortModule } from '@angular/material/sort';
     ValidationErrorsPipe,
     TableComponent,
     ColumnValuePipe,
+
     
   ],
   imports: [
@@ -59,7 +61,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatPaginatorModule,
     MatInputModule,
     MatSortModule,
-
+    MatDialogModule,
 
   ],
   exports: [

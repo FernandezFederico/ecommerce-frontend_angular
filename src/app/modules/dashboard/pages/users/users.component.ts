@@ -3,6 +3,9 @@ import { User } from './interface';
 import { UsersService } from '../../../../core/services/users.service';
 import { AuthService } from '../../../../core/services/auth.service';
 import { TableColumns } from '../../../shared/components/table/models/table-columns';
+import { AlertService } from '../../../../core/services/alert.service';
+import { MatDialog } from '@angular/material/dialog';
+import { UsersDialogComponent } from './users-dialog/users-dialog.component';
 
 @Component({
   selector: 'app-users',
@@ -14,7 +17,9 @@ export class UsersComponent {
   tableColumns: TableColumns[] = [];
   constructor(
     private userService: UsersService,
-    private authService: AuthService
+    private authService: AuthService,
+    private alertService: AlertService,
+    private matDialog: MatDialog,
   ) {
     this.onGetUsers();
     this.setTableColumns();
@@ -22,12 +27,13 @@ export class UsersComponent {
 
   setTableColumns() {
     this.tableColumns = [
+      { label: 'IMAGEN', def: 'userImage', dataKey: "userImage"},
       { label: 'ID', def: '_id', dataKey: '_id' },
       { label: 'NOMBRE', def: 'userName', dataKey: 'userName' },
       { label: 'APELLIDO', def: 'userLastName', dataKey: 'userLastName' },
       { label: 'MAIL', def: 'userEmail', dataKey: 'userEmail' },
       { label: 'CONTRASEÑA', def: 'userPassword', dataKey: 'userPassword' },
-      { label: 'ROLL', def: '_userRole', dataKey: 'userRole' },
+      { label: 'ROL', def: '_userRole', dataKey: 'userRole' },
     ];
   }
 
@@ -47,11 +53,12 @@ export class UsersComponent {
   }
 
   onAction(data: any) {
-    console.log(data, 'onAction');
     if (data.action === 'edit') {
       this.onEditUser(data.row._id);
     } else if (data.action === 'delete') {
       this.onDeleteUser(data.row._id);
+    } else if (data.action === 'add') {
+      this.onAddUser();
     }
   }
   onEditUser(data: any) {
@@ -60,5 +67,38 @@ export class UsersComponent {
 
   onDeleteUser(data: any) {
     console.log(data, 'se elimina');
+    this.alertService.showDeleteConfirmation().then((confirmed) => {
+      if (confirmed) {
+        this.userService.deleteUser(data).subscribe({
+          next: (result) => {
+            this.onGetUsers();
+          },
+          complete: () => {
+            this, this.alertService.showSuccessAlert('Se elimino Usuario');
+          },
+          error: (err) => {
+            this.alertService.showErrorAlert('Error al eliminar producto');
+          },
+        });
+      }
+    });
+  }
+
+  onAddUser():void {
+    console.log('se agrega');
+    this.matDialog.open(UsersDialogComponent).afterClosed().subscribe({
+      next: (result)=> {
+        if (result) {
+          this.userService.addUser(result).subscribe({
+            next: (user) => {
+              this.onGetUsers();
+            },
+            complete: () => {
+              this.alertService.showSuccessAlert('Se agrego el usuario');
+            },
+          })
+        }
+      }
+    })
   }
 }

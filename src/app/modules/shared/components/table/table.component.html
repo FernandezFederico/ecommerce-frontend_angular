@@ -1,11 +1,16 @@
 <div class="table__container">
+<div  class="table__filter">
   <ng-container *ngIf="showFilter">
     <mat-form-field>
       <mat-label>Buscar</mat-label>
       <input matInput (keyup)="applyFilter($event)">
     </mat-form-field>
   </ng-container>
-  
+  <button mat-raised-button color="primary" (click)="onAdd()">
+    <mat-icon>add</mat-icon>
+    AGREGAR 
+  </button>
+</div>
   <mat-table class="mat-elevation-z8" *ngIf="dataSource.data.length > 0" [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
 
     <ng-container matColumnDef="select">
@@ -45,8 +50,8 @@
         <td class="mat-cell" colspan="4"> No se encontraron coincidencias con "{{ currentFilterValue }}"</td>
       </tr>
     </ng-container>
+    
   </mat-table>
-
   <ng-container *ngIf="showPaginator">
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
     </mat-paginator>

@@ -1,18 +1,9 @@
-import {
-  AfterViewInit,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  viewChild,
-  ViewChild,
-} from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { TableColumns } from './models/table-columns';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { Sort } from '@angular/material/sort';
-import { concatAll } from 'rxjs';
 import { ColumnValuePipe } from '../../pipes/column-value.pipe';
 
 @Component({
@@ -128,7 +119,10 @@ export class TableComponent implements AfterViewInit {
     const column = this.tableColumns.find((column) => column.dataKey === columnName) as TableColumns;
     return this.getColumnValueType.transform(row, column);
   }
-
+  onAdd() {
+    this.action.emit({ action: 'add' });
+  }
+  
   onEdit(row: any) {
     this.action.emit({ row, action: 'edit' });
   }

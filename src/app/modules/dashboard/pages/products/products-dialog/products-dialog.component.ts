@@ -23,35 +23,16 @@ export class ProductsDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: Product
   ) {
     
-    
     this.loadCategories();
 
     this.productForm = this.fb.group({
-
-      productImage: this.fb.control('', [
-        Validators.required
-      ]),
-      productName: this.fb.control('', [
-        Validators.required,
-        Validators.minLength(3),
-      ]),
-      productCategory: this.fb.control('', [
-        Validators.required,
-        Validators.minLength(3),
-      ]),
-      productPrice: this.fb.control('', [
-        Validators.required,
-        Validators.pattern('[0-9]*'),
-      ]),
+      productImage: this.fb.control('', [Validators.required]),
+      productName: this.fb.control('', [Validators.required, Validators.minLength(3),]),
+      productCategory: this.fb.control('', [Validators.required, Validators.minLength(3),]),
+      productPrice: this.fb.control('', [Validators.required, Validators.pattern('[0-9]*'),]),
       createdAt: this.fb.control('', [Validators.required]),
-      productStock: this.fb.control('', [
-        Validators.required,
-        Validators.pattern('[0-9]*'),
-      ]),
-      productDescription: this.fb.control('', [
-        Validators.required,
-        Validators.minLength(3),
-      ]),
+      productStock: this.fb.control('', [Validators.required, Validators.pattern('[0-9]*'),]),
+      productDescription: this.fb.control('', [Validators.required, Validators.minLength(3),]),
     });
 
     this.categoryForm = this.fb.group({

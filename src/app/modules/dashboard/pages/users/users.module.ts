@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users.component';
 import { SharedModule } from '../../../shared/shared.module';
+import { UsersDialogComponent } from './users-dialog/users-dialog.component';
 
 
 @NgModule({
   declarations: [
-    UsersComponent
+    UsersComponent,
+    UsersDialogComponent
   ],
   imports: [
     CommonModule,
