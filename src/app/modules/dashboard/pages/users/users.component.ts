@@ -6,6 +6,7 @@ import { TableColumns } from '../../../shared/components/table/models/table-colu
 import { AlertService } from '../../../../core/services/alert.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UsersDialogComponent } from './users-dialog/users-dialog.component';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-users',
@@ -36,7 +37,6 @@ export class UsersComponent {
       { label: 'ROL', def: '_userRole', dataKey: 'userRole' },
     ];
   }
-
   onGetUsers() {
     if (this.authService.authLoginUser?.userRole === 'ADMIN') {
       this.userService.getUsers().subscribe({
@@ -47,24 +47,56 @@ export class UsersComponent {
     } else {
     }
   }
-
   onSelect(data: any) {
     console.log(data, 'onSelect');
   }
-
   onAction(data: any) {
     if (data.action === 'edit') {
-      this.onEditUser(data.row._id);
+      this.onEditUser(data.row);
     } else if (data.action === 'delete') {
       this.onDeleteUser(data.row._id);
     } else if (data.action === 'add') {
       this.onAddUser();
     }
   }
-  onEditUser(data: any) {
-    console.log(data, 'se edita');
-  }
 
+  onEditUser(user: User): void {
+    this.matDialog.open(UsersDialogComponent, {
+      data: user,
+    }).afterClosed().subscribe({
+      next: (updatedUser) => {
+        if(updatedUser) {
+          this.userService.updateUser(user._id, updatedUser).subscribe({
+            next: (updatedUser) => {
+              this.onGetUsers();
+            },
+            complete: () => {
+              this.alertService.showSuccessAlert('Se actualizo el usuario');
+            },
+            error: (err) => {
+              this.alertService.showErrorAlert('Error al actualizar usuario');
+            },
+          })
+        }
+      }
+    })
+  };
+  onAddUser():void {
+    this.matDialog.open(UsersDialogComponent).afterClosed().subscribe({
+      next: (result)=> {
+        if (result) {
+          this.userService.addUser(result).subscribe({
+            next: (user) => {
+              this.onGetUsers();
+            },
+            complete: () => {
+              this.alertService.showSuccessAlert('Se agrego el usuario');
+            },
+          })
+        }
+      }
+    })
+  }
   onDeleteUser(data: any) {
     console.log(data, 'se elimina');
     this.alertService.showDeleteConfirmation().then((confirmed) => {
@@ -82,23 +114,5 @@ export class UsersComponent {
         });
       }
     });
-  }
-
-  onAddUser():void {
-    console.log('se agrega');
-    this.matDialog.open(UsersDialogComponent).afterClosed().subscribe({
-      next: (result)=> {
-        if (result) {
-          this.userService.addUser(result).subscribe({
-            next: (user) => {
-              this.onGetUsers();
-            },
-            complete: () => {
-              this.alertService.showSuccessAlert('Se agrego el usuario');
-            },
-          })
-        }
-      }
-    })
   }
 }

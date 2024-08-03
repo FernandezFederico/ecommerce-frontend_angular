@@ -15,14 +15,6 @@ export class UsersService {
     return this.http.get<User[]>(`${environment.apiUrl}/users`);
   }
 
-  deleteUser(id: string) {
-    return this.http.delete<User>(`${environment.apiUrl}/users/${id}`).pipe(
-      catchError((error) => {
-        this.alertService.showErrorAlert('Error al borrar el usuario');
-        return of([]);
-      })
-    );
-  }
   getAllRoles(){
     return this.http.get<userRole[]>(`${environment.apiUrl}/roles`).pipe(
       catchError((error)=>{
@@ -41,4 +33,26 @@ export class UsersService {
       })
     )
   }
+
+  updateUser(userId: string | number, updatedUser: User) {
+    return this.http.put<User>(`${environment.apiUrl}/users/${userId}`, updatedUser).pipe(
+      mergeMap(() => this.getUsers()),
+      catchError((error) => {
+        this.alertService.showErrorAlert('Error al actualizar el usuario');
+        return of([]);
+      })
+    )
+  }
+
+  deleteUser(id: string) {
+    return this.http.delete<User>(`${environment.apiUrl}/users/${id}`).pipe(
+      catchError((error) => {
+        this.alertService.showErrorAlert('Error al borrar el usuario');
+        return of([]);
+      })
+    );
+  }
+
+
+
 }

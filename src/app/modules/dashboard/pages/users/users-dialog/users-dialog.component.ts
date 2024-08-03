@@ -14,9 +14,9 @@ export class UsersDialogComponent {
   userRoles!: userRole[];
   userForm: FormGroup;
   constructor(
-    private userService: UsersService,
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<UsersDialogComponent>,
+    private userService: UsersService,
     @Inject(MAT_DIALOG_DATA) public data: User
   ) {
     this.loadRoles();
@@ -28,6 +28,9 @@ export class UsersDialogComponent {
       userPassword: this.fb.control('', [Validators.required, Validators.minLength(6)]),
       userRole: this.fb.control('', [Validators.required]),
     })
+    if (data) {
+      this.userForm.patchValue(data);
+    }
   }
   loadRoles() {
     this.userService.getAllRoles().subscribe({
