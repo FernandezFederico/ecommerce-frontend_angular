@@ -34,16 +34,13 @@ export class TableComponent implements AfterViewInit {
       this.tableDisplayedColumns.unshift('select');
     }
   }
-
   @Input() set showActions(data: boolean) {
     if (data) {
       this.tableDisplayedColumns.push('actions');
     }
   }
-
   @Input() showPaginator: boolean = false;
   @Input() showFilter: boolean = false;
-
   @Output() select: EventEmitter<any> = new EventEmitter();
   @Output() action: EventEmitter<any> = new EventEmitter();
 

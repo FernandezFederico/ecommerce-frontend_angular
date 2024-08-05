@@ -21,7 +21,7 @@ export class UsersDialogComponent {
   ) {
     this.loadRoles();
     this.userForm = this.fb.group({
-      userImage: this.fb.control('', [Validators.required]),
+      userImage: this.fb.control(''),
       userName: this.fb.control('', [Validators.required, Validators.minLength(3)]),
       userLastName: this.fb.control('', [Validators.required, Validators.minLength(3)]),
       userEmail: this.fb.control('', [Validators.required, Validators.email]),

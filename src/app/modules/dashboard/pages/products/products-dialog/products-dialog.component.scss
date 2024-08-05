@@ -1,5 +1,11 @@
   .products__dialog {
 
+    .product__image-container {
+      width: 100%;
+      display: grid;
+      place-items: center;
+    }
+
     .products__form {
       width: 100%;
 
@@ -24,3 +30,6 @@
     min-width: 200px;
   }
 
+  .product__image {
+    max-width: 100px;
+  }

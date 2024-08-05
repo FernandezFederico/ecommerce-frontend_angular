@@ -1,6 +1,8 @@
 <mat-dialog-content class="users__dialog">
-  
-  <h2 mat-dialog-title>USUARIOS</h2>
+  <div class="user__image-container">
+		<img class="user__image" src="{{ userForm.get('productImage')?.value }}" alt="previsualización de imagen">
+	</div>
+  <h2 mat-dialog-title>{{ data ? 'EDITAR USUARIO' : 'CREAR USUARIO'}}</h2>
   <form class="users__form" [formGroup]="userForm">
     <mat-form-field class="users__field">
       <mat-label>IMAGEN</mat-label>

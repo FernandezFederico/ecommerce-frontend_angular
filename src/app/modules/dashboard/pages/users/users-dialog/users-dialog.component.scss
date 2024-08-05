@@ -1,4 +1,10 @@
 .users__dialog{
+
+  .user__image-container {
+    width: 100%;
+    display: grid;
+    place-items: center;
+  }
   .users__form{
     width: 100%;
 

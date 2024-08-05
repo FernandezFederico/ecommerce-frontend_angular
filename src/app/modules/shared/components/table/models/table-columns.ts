@@ -5,4 +5,5 @@ export interface TableColumns {
   dataKey: string ;
   format?: Intl.DateTimeFormatOptions; 
   dataType?: 'data' | 'object';
+  type?: 'image' | 'text' | 'date' | 'number' | 'boolean';
 }

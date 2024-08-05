@@ -6,7 +6,6 @@ import { TableColumns } from '../../../shared/components/table/models/table-colu
 import { AlertService } from '../../../../core/services/alert.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UsersDialogComponent } from './users-dialog/users-dialog.component';
-import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-users',
@@ -28,13 +27,13 @@ export class UsersComponent {
 
   setTableColumns() {
     this.tableColumns = [
-      { label: 'IMAGEN', def: 'userImage', dataKey: "userImage"},
-      { label: 'ID', def: '_id', dataKey: '_id' },
-      { label: 'NOMBRE', def: 'userName', dataKey: 'userName' },
-      { label: 'APELLIDO', def: 'userLastName', dataKey: 'userLastName' },
-      { label: 'MAIL', def: 'userEmail', dataKey: 'userEmail' },
-      { label: 'CONTRASEÑA', def: 'userPassword', dataKey: 'userPassword' },
-      { label: 'ROL', def: '_userRole', dataKey: 'userRole' },
+      { label: 'IMAGEN', def: 'userImage', dataKey: "userImage", dataType: 'data', type: 'image' },
+      { label: 'ID', def: '_id', dataKey: '_id', dataType: 'data' },
+      { label: 'NOMBRE', def: 'userName', dataKey: 'userName', dataType: 'data' },
+      { label: 'APELLIDO', def: 'userLastName', dataKey: 'userLastName', dataType: 'data' },
+      { label: 'MAIL', def: 'userEmail', dataKey: 'userEmail', dataType: 'data' },
+      { label: 'CONTRASEÑA', def: 'userPassword', dataKey: 'userPassword', dataType: 'data' },
+      { label: 'ROL', def: '_userRole', dataKey: 'userRole', dataType: 'data' },
     ];
   }
   onGetUsers() {

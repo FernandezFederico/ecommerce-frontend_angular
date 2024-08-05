@@ -5,6 +5,7 @@ import { ProductsService } from '../../../../../core/services/products.service';
 import { Product, ProductsCategory } from '../interface';
 import { MatSelect } from '@angular/material/select';
 import { AlertService } from '../../../../../core/services/alert.service';
+import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-products-dialog',
   templateUrl: './products-dialog.component.html',
@@ -15,18 +16,21 @@ export class ProductsDialogComponent {
   productForm: FormGroup;
   categoryForm: FormGroup;
   categories: ProductsCategory[] = [];
+  file: File | null = null;
+  previewImage: string | null = null;
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<ProductsDialogComponent>,
     private productsService: ProductsService,
     private alertService: AlertService,
+    private sanitizer: DomSanitizer,
     @Inject(MAT_DIALOG_DATA) public data: Product
   ) {
     
     this.loadCategories();
 
     this.productForm = this.fb.group({
-      productImage: this.fb.control('', [Validators.required]),
+      productImage: this.fb.control(''),
       productName: this.fb.control('', [Validators.required, Validators.minLength(3),]),
       productCategory: this.fb.control('', [Validators.required, Validators.minLength(3),]),
       productPrice: this.fb.control('', [Validators.required, Validators.pattern('[0-9]*'),]),
