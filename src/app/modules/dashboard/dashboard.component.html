@@ -30,7 +30,7 @@
             <button (click)="onUserLogout()" class="logout__button" mat-flat-button >Logout</button>
           </div>
         </section>
-        <section *ngIf=" authService.authLoginUser?.userRole === 'ADMIN' || authService.authLoginUser?.userRole === 'Employee'">
+        <section *ngIf=" authService.authLoginUser?.userRole === 'ADMIN' || authService.authLoginUser?.userRole === 'EMP'">
           <h4>Administración</h4>
           <mat-nav-list class="admin__links">
             <mat-list-item class="link" mat-list-item routerLink="/dashboard/home" (click)="onToggleSidenav()">
