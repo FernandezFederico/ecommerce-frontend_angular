@@ -3,7 +3,7 @@
     [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus">
     <ng-template class="slider" *ngFor="let product of carouselProductsList" ngbSlide>
       <div class="image__container">
-        <a routerLink="/dashboard/customer-products-list/{{ product._id }}"><img class="carousel__image" src="{{ product.productImage }}" alt="Random first slide" /></a>
+        <a routerLink="/dashboard/customer-products-list/{{ product._id }}"><img class="carousel__image" [src]="'http://localhost:8000' + product.productImage" alt="Random first slide" /></a>
       </div>
       <div class="carousel-caption">
         <h3>{{ product.productName }}</h3>

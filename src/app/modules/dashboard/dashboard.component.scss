@@ -84,7 +84,7 @@
     }
 
     .user__data {
-      background-color: azure;
+      color: white;
       margin: 20px;
       font-size: 20px;
 
@@ -97,6 +97,10 @@
         width: 150px;
         height: 150px;
         border-radius: 50%;
+      }
+
+      p {
+        color:black;
       }
     }
 

@@ -22,7 +22,7 @@
 
       <ng-container matColumnDef="productImage">
         <th mat-header-cell *matHeaderCellDef> IMAGEN </th>
-        <td mat-cell *matCellDef="let product"> <img class="products__image" src="{{product.productImage}}" alt="Imagen del producto"> </td>
+        <td mat-cell *matCellDef="let product"> <img class="products__image" [src]="'http://localhost:8000' + product.productImage" alt="Imagen del producto"> </td>
       </ng-container>
 
       <ng-container matColumnDef="productName">

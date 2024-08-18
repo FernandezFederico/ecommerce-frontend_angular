@@ -12,3 +12,11 @@ export interface userRole {
   _id: string;
   roleName: string;
 }
+
+export interface AuthenticatedUser {
+  _id: string;
+  userImage?: string;
+  userName: string;
+  userLastName: string;
+  userRole: string;
+}

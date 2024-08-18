@@ -27,7 +27,6 @@ export class ProductDetailComponent {
   ) {
     this.getProductData();
   }
-
   getProductData() {
     this.activeRoute.paramMap.subscribe({
       next: (params) => {
@@ -54,8 +53,7 @@ export class ProductDetailComponent {
         this.productData = result;
       },
       error: (error) => {
-        console.log(error);
-        this.alertService.showErrorAlert('Error al cargar el producto');
+        this.alertService.showErrorAlert('Error al cargar los datos!');
       },
     });
   }

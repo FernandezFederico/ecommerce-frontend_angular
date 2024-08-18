@@ -36,7 +36,7 @@ export class ProductsService {
       );
   }
 
-  createProduct(newProduct: Product) {
+  createProduct(newProduct: FormData) {
     return this.http
       .post<Product>(`${environment.apiUrl}/products`, newProduct)
       .pipe(
@@ -116,7 +116,7 @@ export class ProductsService {
   }
 
   getSelectedProducts() {
-    return this.http.get<Product[]>(`${environment.apiUrl}/products?_limit=4`);
+    return this.http.get<Product[]>(`${environment.apiUrl}/products?_limit=3`);
   }
 
   searchProducts(query: string) {

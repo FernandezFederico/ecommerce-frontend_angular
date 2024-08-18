@@ -97,7 +97,6 @@ export class UsersComponent {
     })
   }
   onDeleteUser(data: any) {
-    console.log(data, 'se elimina');
     this.alertService.showDeleteConfirmation().then((confirmed) => {
       if (confirmed) {
         this.userService.deleteUser(data).subscribe({

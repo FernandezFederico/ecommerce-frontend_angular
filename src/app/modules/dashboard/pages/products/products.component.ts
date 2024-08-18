@@ -67,9 +67,9 @@ export class ProductsComponent implements AfterViewInit {
       })
       .afterClosed()
       .subscribe({
-        next: (result) => {
-          if (result) {
-            this.productsService.createProduct(result).subscribe({
+        next: (fd) => {
+          if (fd) {
+            this.productsService.createProduct(fd).subscribe({
               next: (product) => {
                 this.dataSource.data = product;
               },

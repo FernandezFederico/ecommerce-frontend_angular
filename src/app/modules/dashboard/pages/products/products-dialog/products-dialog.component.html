@@ -1,20 +1,14 @@
 <mat-dialog-content class="products__dialog">
-	<div class="product__image-container">
-		<img class="product__image" src="{{ productForm.get('productImage')?.value }}" alt="previsualización de imagen">
-	</div>
 	<h2 mat-dialog-title>{{ data ? 'EDITAR PRODUCTO' : 'CREAR PRODUCTO'}}</h2>
 	<form class="products__form" [formGroup]="productForm">
-		<mat-form-field class="products__field">
-			<mat-label>IMAGEN</mat-label>
-			<input matInput type="text" formControlName="productImage" />
-			<mat-error>
-				{{ productForm.get('productImage')?.errors | validationErrors }}
-			</mat-error>
-		</mat-form-field>
 
+		<div class="product__photo">
+			<input type="file" style="display: none;" (change)="onPhotoSelected($event)" #photoInput>
+			<img [src]=" this.previewImage || '../../../../../../assets/img/no_img.png' " alt="sin imagen cargada"(click)="photoInput.click()">
+		</div>
 		<mat-form-field class="products__field">
 			<mat-label>NOMBRE</mat-label>
-			<input matInput type="text" formControlName="productName" />
+			<input matInput type="text" formControlName="productName"/>
 			<mat-error>
 				{{ productForm.get('productName')?.errors | validationErrors }}
 			</mat-error>

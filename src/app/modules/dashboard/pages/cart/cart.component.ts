@@ -58,6 +58,7 @@ export class CartComponent {
         .subscribe({
           next: (result) => {
             this.cartService.getCartProductsFromDb(this.userId);
+            this.alertService.showSuccessAlert('Se elimino el producto con éxito!');
           },
           error: (error) => {
             this.alertService.showErrorAlert('Error al cargar los datos!');
