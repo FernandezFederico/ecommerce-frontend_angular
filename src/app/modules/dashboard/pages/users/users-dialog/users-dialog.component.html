@@ -1,16 +1,10 @@
 <mat-dialog-content class="users__dialog">
-  <div class="user__image-container">
-		<img class="user__image" src="{{ userForm.get('productImage')?.value }}" alt="previsualización de imagen">
-	</div>
   <h2 mat-dialog-title>{{ data ? 'EDITAR USUARIO' : 'CREAR USUARIO'}}</h2>
   <form class="users__form" [formGroup]="userForm">
-    <mat-form-field class="users__field">
-      <mat-label>IMAGEN</mat-label>
-      <input matInput type="text" formControlName="userImage">
-      <mat-error>
-        "agregar error"
-      </mat-error>
-    </mat-form-field>
+    <div class="user__photo">
+			<input type="file" style="display: none;" (change)="onPhotoSelected($event)" #photoInput>
+			<img [src]=" this.previewImage || '../../../../../../assets/img/no_img.png' " alt="sin imagen cargada"(click)="photoInput.click()">
+		</div>
     <mat-form-field class="users__field">
       <mat-label>NOMBRE</mat-label>
       <input matInput type="text" formControlName="userName">

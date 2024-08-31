@@ -1,6 +1,5 @@
-import { Component, Inject, inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { UsersService } from '../../../../../core/services/users.service';
-import { ProductsCategory } from '../../products/interface';
 import { User, userRole } from '../interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -13,6 +12,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class UsersDialogComponent {
   userRoles!: userRole[];
   userForm: FormGroup;
+  file: File | null = null;
+  previewImage: string | null = null;
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<UsersDialogComponent>,
@@ -21,7 +22,7 @@ export class UsersDialogComponent {
   ) {
     this.loadRoles();
     this.userForm = this.fb.group({
-      userImage: this.fb.control(''),
+      userImage: [null],
       userName: this.fb.control('', [Validators.required, Validators.minLength(3)]),
       userLastName: this.fb.control('', [Validators.required, Validators.minLength(3)]),
       userEmail: this.fb.control('', [Validators.required, Validators.email]),
@@ -30,6 +31,23 @@ export class UsersDialogComponent {
     })
     if (data) {
       this.userForm.patchValue(data);
+      if (data.userImage) {
+        this.previewImage = 'http://localhost:8000' + data.userImage;
+      }
+    }
+  }
+  onSaveUser(): void {
+    if(this.userForm.valid){
+      const fd = new FormData();
+      fd.append('userImage', this.file || '');
+      fd.append('userName', this.userForm.value.userName);
+      fd.append('userLastName', this.userForm.value.userLastName);
+      fd.append('userEmail', this.userForm.value.userEmail);
+      fd.append('userPassword', this.userForm.value.userPassword);
+      fd.append('userRole', this.userForm.value.userRole);
+      this.dialogRef.close(fd);
+    } else {
+      this.userForm.markAllAsTouched();
     }
   }
   loadRoles() {
@@ -39,12 +57,10 @@ export class UsersDialogComponent {
       }
     })
   }
-
-  onSaveUser(): void {
-    if(this.userForm.value){
-      this.dialogRef.close(this.userForm.value)
-    } else {
-      this.userForm.markAllAsTouched();
+  onPhotoSelected(event: any): void {
+    if (event.target.files && event.target.files[0]) {
+      this.file = event.target.files[0];
+      this.previewImage = URL.createObjectURL(this.file!);
     }
   }
 }

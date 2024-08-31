@@ -115,6 +115,8 @@ export class TableComponent implements AfterViewInit {
   getValue( row:any , columnName: string) {
     const column = this.tableColumns.find((column) => column.dataKey === columnName) as TableColumns;
     return this.getColumnValueType.transform(row, column);
+    console.log(column, 'column');
+    
   }
   onAdd() {
     this.action.emit({ action: 'add' });

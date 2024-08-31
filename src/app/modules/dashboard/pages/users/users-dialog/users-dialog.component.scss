@@ -1,11 +1,18 @@
 .users__dialog{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, auto);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
 
-  .user__image-container {
-    width: 100%;
-    display: grid;
-    place-items: center;
+  .user__photo {
+    grid-area: 1 / 1 / 2 / 3;
+    max-width: 150px; 
+    margin: 0 auto; 
+    cursor: pointer;
   }
   .users__form{
+    grid-area: 2 / 1 / 3 / 3;
     width: 100%;
 
     display: grid;
@@ -14,6 +21,7 @@
 
   }
   .users__actions{
+    grid-area: 3 / 1 / 4 / 3;
     display: flex;
     justify-content: end;
     gap: 15px;
