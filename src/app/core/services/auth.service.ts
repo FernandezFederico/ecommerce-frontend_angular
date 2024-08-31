@@ -27,8 +27,6 @@ export class AuthService {
   private setAuthLoginUser(user: User) {
     this.authLoginUser = user;
     localStorage.setItem('userData', JSON.stringify(user));
-    console.log(this.authLoginUser);
-    
   }
 
   login(userEmail: string, userPassword: string): Observable<User> {

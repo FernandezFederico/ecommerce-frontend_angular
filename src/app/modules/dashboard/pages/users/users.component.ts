@@ -41,10 +41,9 @@ export class UsersComponent {
       this.userService.getUsers().subscribe({
         next: (users) => {
           this.dataSource = users;
-        },
+        }
       });
-    } else {
-    }
+    } 
   }
   onSelect(data: any) {
     console.log(data, 'onSelect');
@@ -57,29 +56,7 @@ export class UsersComponent {
     } else if (data.action === 'add') {
       this.onAddUser();
     }
-  }
-
-  onEditUser(user: User): void {
-    this.matDialog.open(UsersDialogComponent, {
-      data: user,
-    }).afterClosed().subscribe({
-      next: (updatedUser) => {
-        if(updatedUser) {
-          this.userService.updateUser(user._id, updatedUser).subscribe({
-            next: (updatedUser) => {
-              this.onGetUsers();
-            },
-            complete: () => {
-              this.alertService.showSuccessAlert('Se actualizo el usuario');
-            },
-            error: (err) => {
-              this.alertService.showErrorAlert('Error al actualizar usuario');
-            },
-          })
-        }
-      }
-    })
-  };
+  }  
   onAddUser():void {
     this.matDialog.open(UsersDialogComponent).afterClosed().subscribe({
       next: (result)=> {
@@ -113,4 +90,25 @@ export class UsersComponent {
       }
     });
   }
+  onEditUser(user: User): void {
+    this.matDialog.open(UsersDialogComponent, {
+      data: user,
+    }).afterClosed().subscribe({
+      next: (updatedUser) => {
+        if(updatedUser) {
+          this.userService.updateUser(user._id, updatedUser).subscribe({
+            next: (updatedUser) => {
+              this.onGetUsers();
+            },
+            complete: () => {
+              this.alertService.showSuccessAlert('Se actualizo el usuario');
+            },
+            error: (err) => {
+              this.alertService.showErrorAlert('Error al actualizar usuario');
+            },
+          })
+        }
+      }
+    })
+  };
 }

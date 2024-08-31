@@ -1,83 +1,16 @@
 <div class="products__container">
-  <h2 class="products__title">PRODUCTOS</h2>
-  <ng-container *ngIf="dataSource.data.length === 0" class="products__message"> SIN PRODUCTOS DISPONIBLES</ng-container>
-  <div class=" table__container mat-elevation-z8">
-    <div class="table__actions">
-      <mat-form-field class="products__filter">
-        <mat-label>BUSCAR</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
-      </mat-form-field>
-      <div class="button__container">
-        <button class="products__add" mat-raised-button color="primary" (click)="openDialog('325ms', '150ms')">
-          AGREGAR
-          <mat-icon>add</mat-icon>
-        </button>
-      </div>
-    </div>
-    <table *ngIf="dataSource.data.length > 0" mat-table [dataSource]="dataSource" class=" products__table" matSort>
-      <ng-container matColumnDef="_id">
-        <th mat-header-cell *matHeaderCellDef> ID </th>
-        <td mat-cell *matCellDef="let product"  > {{product._id}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="productImage">
-        <th mat-header-cell *matHeaderCellDef> IMAGEN </th>
-        <td mat-cell *matCellDef="let product"> <img class="products__image" [src]="'http://localhost:8000' + product.productImage" alt="Imagen del producto"> </td>
-      </ng-container>
-
-      <ng-container matColumnDef="productName">
-        <th mat-header-cell *matHeaderCellDef > NOMBRE </th>
-        <td mat-cell *matCellDef="let product"> {{product.productName}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="productCategory">
-        <th mat-header-cell *matHeaderCellDef > CATEGORÍA </th>
-        <td mat-cell *matCellDef="let product"> {{product.productCategory}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="productPrice">
-        <th mat-header-cell *matHeaderCellDef > PRECIO </th>
-        <td mat-cell *matCellDef="let product">
-          <span matTextPrefix>$&nbsp;</span>
-          {{product.productPrice}}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="createdAt">
-        <th mat-header-cell *matHeaderCellDef> FECHA DE CREACIÓN </th>
-        <td mat-cell *matCellDef="let product"> {{product.createdAt | date: 'medium'}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="productStock">
-        <th mat-header-cell *matHeaderCellDef> STOCK </th>
-        <td mat-cell *matCellDef="let product"> {{product.productStock}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="productDescription">
-        <th mat-header-cell *matHeaderCellDef> DESCRIPCIÓN </th>
-        <td mat-cell *matCellDef="let product"> {{product.productDescription}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="productActions">
-        <th mat-header-cell *matHeaderCellDef> ACCIONES </th>
-        <td mat-cell *matCellDef="let product">
-          <button mat-icon-button color="black" (click)="onEditProduct(product)">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-icon-button color="warn" (click)="onDeleteProduct(product._id)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let product; columns: displayedColumns; even as isEven" [ngClass]="{'gray-row': isEven, 'white-row': !isEven}"></tr>
-    </table>
-
-
-    <mat-paginator class="products__paginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
-      aria-label="Select page of periodic elements">
-    </mat-paginator>
-  </div>
+  <h2 class="users__title">USUARIOS</h2>
+  <ng-container *ngIf="dataSource.length === 0" mat-elevation-z8> Sin datos </ng-container>
+  <app-table 
+  [data]="dataSource" 
+  [columns]="tableColumns" 
+  [showCheckbox]="false" 
+  [showActions]="true"
+  [showPaginator]="true"
+  [showFilter]="true"
+  (select)="onSelect($event)" 
+  (action)="onAction($event)"
+    >
+  </app-table>
 </div>
 
