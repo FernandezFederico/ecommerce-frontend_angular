@@ -27,21 +27,57 @@ export class ProductsComponent {
   }
   setTableColumns() {
     this.tableColumns = [
-      { label: 'IMAGEN', def: 'productImage', dataKey: "productImage", dataType: 'data', type: 'image' },
+      {
+        label: 'IMAGEN',
+        def: 'productImage',
+        dataKey: 'productImage',
+        dataType: 'data',
+        type: 'image',
+      },
       { label: 'ID', def: '_id', dataKey: '_id', dataType: 'data' },
-      { label: 'NOMBRE', def: 'productName', dataKey: 'productName', dataType: 'data' },
-      { label: 'CATEGORIA', def: 'productCategory', dataKey: 'productCategory', dataType: 'data' },
-      { label: 'PRECIO', def: 'productPrice', dataKey: 'productPrice', dataType: 'data' },
-      { label: 'CREADO', def: 'createdAt', dataKey: 'createdAt', dataType: 'data' },
-      { label: 'STOCK', def: 'productStock', dataKey: 'productStock', dataType: 'data' },
-      { label: 'DESCRIPCION', def: 'productDescription', dataKey: 'productDescription', dataType: 'data' },
+      {
+        label: 'NOMBRE',
+        def: 'productName',
+        dataKey: 'productName',
+        dataType: 'data',
+      },
+      {
+        label: 'CATEGORIA',
+        def: 'productCategory',
+        dataKey: 'productCategory',
+        dataType: 'data',
+      },
+      {
+        label: 'PRECIO',
+        def: 'productPrice',
+        dataKey: 'productPrice',
+        dataType: 'data',
+      },
+      {
+        label: 'CREADO',
+        def: 'createdAt',
+        dataKey: 'createdAt',
+        dataType: 'data',
+      },
+      {
+        label: 'STOCK',
+        def: 'productStock',
+        dataKey: 'productStock',
+        dataType: 'data',
+      },
+      {
+        label: 'DESCRIPCION',
+        def: 'productDescription',
+        dataKey: 'productDescription',
+        dataType: 'data',
+      },
     ];
   }
   loadProducts() {
     this.productsService.getProducts().subscribe({
-    next: (products) => {
-      this.dataSource = products;
-      }
+      next: (products) => {
+        this.dataSource = products;
+      },
     });
   }
   onSelect(data: any) {
@@ -51,22 +87,18 @@ export class ProductsComponent {
     if (data.action === 'edit') {
       this.onEditProduct(data.row);
     } else if (data.action === 'delete') {
-      this. onDeleteProduct(data.row._id);
+      this.onDeleteProduct(data.row._id);
     } else if (data.action === 'add') {
       this.openDialog();
     }
   }
   openDialog(): void {
-    this.matDialog
-      .open(ProductsDialogComponent, {
-      })
-      .afterClosed()
-      .subscribe({
-        next: (fd) => {
-          if (fd) {
-            this.productsService.createProduct(fd).subscribe({
+    this.matDialog.open(ProductsDialogComponent).afterClosed().subscribe({
+        next: (result) => {
+          if (result) {
+            this.productsService.createProduct(result).subscribe({
               next: (product) => {
-                this.dataSource = product;
+                this.loadProducts();
               },
               complete: () => {
                 this.alertService.showSuccessAlert('Se agrego el producto');

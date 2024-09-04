@@ -21,6 +21,7 @@ export class UsersDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: User
   ) {
     this.loadRoles();
+    
     this.userForm = this.fb.group({
       userImage: [null],
       userName: this.fb.control('', [Validators.required, Validators.minLength(3)]),
