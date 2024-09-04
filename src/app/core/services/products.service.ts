@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, catchError, mergeMap, of } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 import { Product, ProductsCategory } from '../../modules/dashboard/pages/products/interface/index';
