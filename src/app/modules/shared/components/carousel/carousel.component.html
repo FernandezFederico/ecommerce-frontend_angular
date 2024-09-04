@@ -4,7 +4,7 @@
     <ng-template class="slider" *ngFor="let product of carouselProductsList" ngbSlide>
       <div class="image__container">
         <a routerLink="/dashboard/customer-products-list/{{ product._id }}">
-          <img class="carousel__image" [src]="imageUrlBase + product.productImage"
+          <img class="carousel__image" [src]="'https://ecommerce-backend-express-tjc9.onrender.com' + product.productImage"
             alt="Random first slide" /></a>
       </div>
       <div class="carousel-caption">
