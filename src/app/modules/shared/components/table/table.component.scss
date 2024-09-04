@@ -49,3 +49,13 @@ td {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
 }
+.mat-column-productImage {
+  width: 80px;
+  padding: 8px;
+
+  img {
+    max-width: 80px;
+    object-fit: cover;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+}
