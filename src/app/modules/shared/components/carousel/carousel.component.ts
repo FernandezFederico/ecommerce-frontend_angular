@@ -3,7 +3,7 @@ import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 import { ProductsService } from '../../../../core/services/products.service';
 import { Product } from '../../../dashboard/pages/products/interface';
 import { AlertService } from '../../../../core/services/alert.service';
-import { UrlService } from '../../../../core/services/url.service';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-carousel',
@@ -16,17 +16,13 @@ export class CarouselComponent {
   pauseOnHover = true;
   pauseOnFocus = true;
   @ViewChild('carousel', { static: true }) carousel?: NgbCarousel;
+  imageUrlBase = environment.apiUrl;
 
   constructor(
     private productsService: ProductsService,
     private alertService: AlertService,
-    private urlService: UrlService
   ) {
     this.loadCarousel();
-  }
-
-  getImagesUrl(imagePath: string): string {
-    return this.urlService.getImagesUrl(imagePath);
   }
   loadCarousel() {
     this.productsService.carouselProducts().subscribe({
