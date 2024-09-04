@@ -3,6 +3,7 @@ import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 import { ProductsService } from '../../../../core/services/products.service';
 import { Product } from '../../../dashboard/pages/products/interface';
 import { AlertService } from '../../../../core/services/alert.service';
+import { UrlService } from '../../../../core/services/url.service';
 
 @Component({
   selector: 'app-carousel',
@@ -18,9 +19,14 @@ export class CarouselComponent {
 
   constructor(
     private productsService: ProductsService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private urlService: UrlService
   ) {
     this.loadCarousel();
+  }
+
+  getImagesUrl(imagePath: string): string {
+    return this.urlService.getImagesUrl(imagePath);
   }
   loadCarousel() {
     this.productsService.carouselProducts().subscribe({
