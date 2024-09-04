@@ -1,6 +1,6 @@
 <mat-card class="card">
   <a class="image__container" [ngStyle]="{'cursor': redirectRoute ? 'pointer' : 'default'}" (click)="onNavigateTo()">
-      <img class="card__image" [src]="'http://localhost:8000' + product.productImage" alt="imagen del producto">
+      <img class="card__image" [src]="'https://ecommerce-backend-express-tjc9.onrender.com' + product.productImage" alt="imagen del producto">
   </a>
   <mat-card-content class="card__content" >
     <h4>{{ product.productName }}</h4>

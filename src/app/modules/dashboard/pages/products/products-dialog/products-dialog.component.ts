@@ -58,7 +58,7 @@ export class ProductsDialogComponent {
     if (data) {
       this.productForm.patchValue(data);
       if (data.productImage) {
-        this.previewImage = 'http://localhost:8000' + data.productImage;
+        this.previewImage = 'https://ecommerce-backend-express-tjc9.onrender.com' + data.productImage;
       }
     }
   }

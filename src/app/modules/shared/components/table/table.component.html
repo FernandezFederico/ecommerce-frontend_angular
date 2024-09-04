@@ -32,7 +32,7 @@
       <td mat-cell *matCellDef="let row">
         <ng-container [ngSwitch]="column.type">
           <ng-container *ngSwitchCase="'image'">
-            <img *ngIf=" row[column.dataKey]" [src]="'http://localhost:8000' + row[column.dataKey]" alt="User Image">
+            <img *ngIf=" row[column.dataKey]" [src]="'https://ecommerce-backend-express-tjc9.onrender.com' + row[column.dataKey]" alt="User Image">
             <img *ngIf="!row[column.dataKey]" src="../../../../../assets/img/no_img.png" alt="Default User Image">
           </ng-container>
           <ng-container *ngSwitchDefault>

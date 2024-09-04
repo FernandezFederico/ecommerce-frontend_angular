@@ -33,7 +33,7 @@ export class UsersDialogComponent {
     if (data) {
       this.userForm.patchValue(data);
       if (data.userImage) {
-        this.previewImage = 'http://localhost:8000' + data.userImage;
+        this.previewImage = 'https://ecommerce-backend-express-tjc9.onrender.com' + data.userImage;
       }
     }
   }
