@@ -1,7 +1,7 @@
 # Frontend de E-commerce (Stack MEAN)
 Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli) versión 17.0.6.
 
-## Capturas de Pantalla
+Este proyecto es una aplicación completa de comercio electrónico desarrollada utilizando el stack MEAN (MongoDB, Express, Angular y Node.js). El objetivo es ofrecer una plataforma robusta para la gestión de productos, usuarios y carritos de compras, permitiendo una experiencia de usuario intuitiva y una administración eficiente.
 
 ![Vista de la aplicación](https://res.cloudinary.com/dg4jn9vi5/image/upload/v1726417246/e-com_github_wuqpr3.png)
 
