@@ -1,6 +1,10 @@
 # Frontend de E-commerce (Stack MEAN)
 Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli) versión 17.0.6.
 
+## Capturas de Pantalla
+
+![Vista de la aplicación](https://asset.cloudinary.com/dg4jn9vi5/4e8c0436378965e00602be14d58a3114)
+
 ## Funcionalidades
 
 - **Gestión de Roles**:
