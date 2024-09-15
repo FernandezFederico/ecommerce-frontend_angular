@@ -1,3 +1,5 @@
+# Frontend de E-commerce (Stack MEAN)
+
 # Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli) versión 17.0.6.
 
 ## Servidor de desarrollo
