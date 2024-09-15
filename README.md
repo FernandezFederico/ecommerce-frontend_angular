@@ -49,5 +49,5 @@ Ejecuta `ng e2e` para ejecutar las pruebas end-to-end utilizando una plataforma 
 Para obtener más ayuda sobre Angular CLI, usa `ng help` o consulta la [Descripción general y referencia de comandos de Angular CLI](https://angular.io/cli).
 
 ## Backend
-- El backend de este proyecto está desarrollado con Node.js y Express. Puedes encontrar el enlace [aquí](https://github.com/FernandezFederico/ecommerce-frontend_angular).
+- El backend de este proyecto está desarrollado con Node.js y Express. Puedes encontrar el enlace [aquí](https://github.com/FernandezFederico/ecommerce-backend_express).
 
