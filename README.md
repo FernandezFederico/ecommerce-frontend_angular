@@ -5,19 +5,15 @@ Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-
 
 - **Gestión de Roles**:
   - **Usuarios**: Permite ingresar al sistema como usuario, vendedor o encargado. Cada rol tiene permisos específicos y accesos diferentes dentro de la aplicación.
-  
 - **Gestión de Usuarios**:
   - Agregar, quitar y modificar usuarios según el rol asignado.
-
 - **Gestión de Productos**:
   - Agregar, quitar y modificar productos según el rol asignado.
   - Secciones por categorías para una mejor organización de los productos.
   - Filtrado de productos por diferentes criterios para facilitar la búsqueda.
-
 - **Carrito de Compras**:
   - Agregar, quitar y editar productos en el carrito de compras.
   - Antes de finalizar la compra, los usuarios pueden verificar los detalles en un módulo de checkout.
-
 - **Administración de Productos y Usuarios**:
   - Visualización en tablas con funcionalidades de filtrado, ordenado y paginado para una gestión eficiente.
 
