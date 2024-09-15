@@ -3,7 +3,7 @@ Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-
 
 ## Capturas de Pantalla
 
-![Vista de la aplicación](https://asset.cloudinary.com/dg4jn9vi5/4e8c0436378965e00602be14d58a3114)
+![Vista de la aplicación](https://res.cloudinary.com/dg4jn9vi5/image/upload/v1726417246/e-com_github_wuqpr3.png)
 
 ## Funcionalidades
 
